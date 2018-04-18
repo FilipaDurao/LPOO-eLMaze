@@ -1,5 +1,7 @@
 package com.mygdx.game.model.entities;
 
+import com.badlogic.gdx.math.Vector2;
+
 public class EntityModel {
 	
 	private float x;
@@ -30,5 +32,14 @@ public class EntityModel {
 	public void setPosition(float x, float y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public void setPosition(Vector2 position) {
+		this.x = position.x;
+		this.y = position.y;
+	}
+	
+	public Vector2 getPosition() {
+		return new Vector2(x, y);
 	}
 }

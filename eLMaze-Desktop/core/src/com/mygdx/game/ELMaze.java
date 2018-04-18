@@ -3,7 +3,6 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.model.GameModel;
 import com.mygdx.game.view.GameView;
 
 public class ELMaze extends Game {

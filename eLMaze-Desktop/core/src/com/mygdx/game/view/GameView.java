@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.ELMaze;
 import com.mygdx.game.model.GameModel;
+import com.mygdx.game.model.entities.BallModel;
 import com.mygdx.game.view.entities.*;
 
 public class GameView extends ScreenAdapter {
@@ -72,12 +73,15 @@ public class GameView extends ScreenAdapter {
     }
     
     public void drawBackground() {
-    	 Texture background = game.getAssetManager().get("background.png", Texture.class);
-         background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
-         game.getSpriteBatch().draw(background, 0, 0, 0, 0, (int)(VIEWPORT_WIDTH / PIXEL_TO_METER), (int) (VIEWPORT_WIDTH / PIXEL_TO_METER));
+    	Texture background = game.getAssetManager().get("background.png", Texture.class);
+    	background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+    	game.getSpriteBatch().draw(background, 0, 0, 0, 0, (int)(VIEWPORT_WIDTH / PIXEL_TO_METER), (int) (VIEWPORT_WIDTH / PIXEL_TO_METER));
     }
     
     public void drawEntities() {
-    	// TODO
+    	BallModel ball = GameModel.getInstance().getBall();
+    	BallView ballView = new BallView(game);
+    	ballView.update(ball);
+    	ballView.draw(game.getSpriteBatch());
     }
 }
