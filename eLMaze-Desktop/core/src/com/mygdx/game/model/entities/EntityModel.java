@@ -26,4 +26,9 @@ public class EntityModel {
 	public void setY(float y) {
 		this.y = y;
 	}	
+	
+	public void setPosition(float x, float y) {
+		this.x = x;
+		this.y = y;
+	}
 }

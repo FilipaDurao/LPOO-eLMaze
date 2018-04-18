@@ -20,9 +20,7 @@ public class ELMaze extends Game {
 	}
 	
 	private void startElMaze() {
-		GameModel model = new GameModel();
-		//GameController controller = new GameController();
-		GameView view = new GameView(this, model);
+		GameView view = new GameView(this);
 		
         setScreen(view);
     }

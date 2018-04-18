@@ -15,8 +15,6 @@ public class GameView extends ScreenAdapter {
     private static final float SCREEN_RATIO = (float)(Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
 	
     private final ELMaze game;
-    private final GameModel model;
-    //private final GameController controller;
     private final OrthographicCamera camera;
     private final BallView ballView;
     private final DoorView doorView;
@@ -24,10 +22,8 @@ public class GameView extends ScreenAdapter {
     private final ExitView exitView;
     private final WallView wallView;
     
-    public GameView(ELMaze game, GameModel model/*, GameController controller*/) {
+    public GameView(ELMaze game) {
     	this.game = game;
-    	this.model = model;
-    	//this.controller = controller;
     	
     	loadAssets();
     	
