@@ -5,6 +5,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.ELMaze;
+import com.mygdx.game.controller.GameController;
 import com.mygdx.game.model.GameModel;
 import com.mygdx.game.model.entities.BallModel;
 import com.mygdx.game.view.entities.*;
@@ -17,11 +18,11 @@ public class GameView extends ScreenAdapter {
 	
     private final ELMaze game;
     private final OrthographicCamera camera;
-    private final BallView ballView;
-    private final DoorView doorView;
-    private final ButtonView buttonView;
-    private final ExitView exitView;
-    private final WallView wallView;
+    private BallView ballView;
+    private DoorView doorView;
+    private ButtonView buttonView;
+    private ExitView exitView;
+    private WallView wallView;
     
     public GameView(ELMaze game) {
     	this.game = game;
@@ -61,7 +62,7 @@ public class GameView extends ScreenAdapter {
     public void render(float delta) {
         //handleInputs(delta);
 
-        //controller.update(delta);
+        GameController.getInstance().update(delta);
 
         camera.update();
         game.getSpriteBatch().setProjectionMatrix(camera.combined);
@@ -80,7 +81,7 @@ public class GameView extends ScreenAdapter {
     
     public void drawEntities() {
     	BallModel ball = GameModel.getInstance().getBall();
-    	BallView ballView = new BallView(game);
+    	ballView = new BallView(game);
     	ballView.update(ball);
     	ballView.draw(game.getSpriteBatch());
     }
