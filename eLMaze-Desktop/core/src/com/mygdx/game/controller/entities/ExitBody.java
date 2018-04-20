@@ -4,28 +4,28 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.model.entities.BallModel;
 import com.mygdx.game.model.entities.EntityModel;
+import com.mygdx.game.model.entities.ExitModel;
 
-public class BallBody extends EntityBody {
-	
-	public BallBody(World world, EntityModel model) {
-		super(world, model, BodyDef.BodyType.DynamicBody);
+public class ExitBody extends EntityBody {
+
+	public ExitBody(World world, EntityModel model) {
+		super(world, model, BodyDef.BodyType.KinematicBody);
 
         CircleShape circle = new CircleShape();
         circle.setRadius( 
-        		((BallModel) model).getRadius() 
+        		((ExitModel) model).getRadius() 
         );
         
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circle;
-        fixtureDef.density = .5f;
-        fixtureDef.friction = .5f;
-        fixtureDef.restitution = .5f;
+        fixtureDef.density = 0;
+        fixtureDef.friction = 0;
+        fixtureDef.restitution = 0;
         
         body.createFixture(fixtureDef);
         
         circle.dispose();
 	}
-
+	
 }

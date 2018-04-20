@@ -10,9 +10,9 @@ public abstract class EntityBody {
 	
 	protected final Body body;
 
-	public EntityBody(World world, EntityModel model, boolean isStatic) {
+	public EntityBody(World world, EntityModel model, BodyDef.BodyType bodyType) {
 		BodyDef bodyDef = new BodyDef();
-		bodyDef.type = isStatic ? BodyDef.BodyType.StaticBody : BodyDef.BodyType.DynamicBody;
+		bodyDef.type = bodyType;
 		bodyDef.position.set(model.getPosition());
 		
 		body = world.createBody(bodyDef);

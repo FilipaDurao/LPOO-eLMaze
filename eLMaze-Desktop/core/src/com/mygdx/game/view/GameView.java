@@ -12,7 +12,9 @@ import com.mygdx.game.ELMaze;
 import com.mygdx.game.controller.GameController;
 import com.mygdx.game.model.GameModel;
 import com.mygdx.game.model.entities.BallModel;
+import com.mygdx.game.model.entities.DoorModel;
 import com.mygdx.game.model.entities.EntityModel;
+import com.mygdx.game.model.entities.ExitModel;
 import com.mygdx.game.model.entities.WallModel;
 import com.mygdx.game.view.entities.*;
 
@@ -48,8 +50,8 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().load( "ball.png" , Texture.class);
         this.game.getAssetManager().load( "wall.png" , Texture.class);
         this.game.getAssetManager().load( "background.png" , Texture.class);
-        //this.game.getAssetManager().load( "door.png" , Texture.class);
-        //this.game.getAssetManager().load( "exit.png" , Texture.class);
+        this.game.getAssetManager().load( "exit.png" , Texture.class);
+        this.game.getAssetManager().load( "door.png" , Texture.class);
         //this.game.getAssetManager().load( "button.png" , Texture.class);
 
         this.game.getAssetManager().finishLoading();
@@ -82,9 +84,9 @@ public class GameView extends ScreenAdapter {
         drawEntities();
         game.getSpriteBatch().end();
         
-//        debugCamera = camera.combined.cpy();
-//        debugCamera.scl(1 / PIXEL_TO_METER);
-//        debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
+        debugCamera = camera.combined.cpy();
+        debugCamera.scl(1 / PIXEL_TO_METER);
+        debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
     }
     
     public void drawBackground() {
@@ -103,6 +105,17 @@ public class GameView extends ScreenAdapter {
     		WallView wallView = new WallView(game, wall);
     		wallView.update(wall);
     		wallView.draw(game.getSpriteBatch());
+    	}
+    	
+    	ExitModel exit = GameModel.getInstance().getExit();
+    	ExitView exitView = new ExitView(game, exit);
+    	exitView.update(exit);
+    	exitView.draw(game.getSpriteBatch());
+    	
+    	for (DoorModel door : GameModel.getInstance().getDoors()) {
+    		DoorView doorView = new DoorView(game, door);
+    		doorView.update(door);
+    		doorView.draw(game.getSpriteBatch());
     	}
     }
     	

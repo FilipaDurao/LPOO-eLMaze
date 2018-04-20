@@ -7,6 +7,7 @@ import com.mygdx.game.model.entities.BallModel;
 import com.mygdx.game.model.entities.ButtonModel;
 import com.mygdx.game.model.entities.DoorModel;
 import com.mygdx.game.model.entities.EntityModel;
+import com.mygdx.game.model.entities.ExitModel;
 import com.mygdx.game.model.entities.WallModel;
 
 public class GameModel {
@@ -17,7 +18,7 @@ public class GameModel {
 	private ArrayList<DoorModel> doors = new ArrayList<DoorModel>();
 	private ArrayList<ButtonModel> buttons = new ArrayList<ButtonModel>();
 	private ArrayList<WallModel> walls = new ArrayList<WallModel>();
-	private EntityModel exit;
+	private ExitModel exit;
 
 	public static GameModel getInstance() {
 		if (instance == null) {
@@ -28,7 +29,7 @@ public class GameModel {
 	
 	private GameModel() {
 		ball = new BallModel(GameController.MAP_WIDTH/2, GameController.MAP_HEIGHT/2 + 2f, 0.5f, 0);
-		exit = new EntityModel(3, 3);
+		exit = new ExitModel(3, GameController.MAP_HEIGHT - 2f, 0.5f);
 		
 		createButtons();
 		createDoors();
@@ -40,7 +41,7 @@ public class GameModel {
 	}
 	
 	private void createDoors() {
-		doors.add(new DoorModel(1, 1));
+		doors.add(new DoorModel(0.5f, GameController.MAP_HEIGHT/2 - 0.15f, 1.5f, 0.3f));
 	}
 	
 	private void createWalls() {
@@ -63,7 +64,7 @@ public class GameModel {
 		return buttons;
 	}
 	
-	public EntityModel getExit() {
+	public ExitModel getExit() {
 		return exit;
 	}
 	

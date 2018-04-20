@@ -6,8 +6,11 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.controller.entities.BallBody;
+import com.mygdx.game.controller.entities.DoorBody;
+import com.mygdx.game.controller.entities.ExitBody;
 import com.mygdx.game.controller.entities.WallBody;
 import com.mygdx.game.model.GameModel;
+import com.mygdx.game.model.entities.DoorModel;
 import com.mygdx.game.model.entities.EntityModel;
 import com.mygdx.game.model.entities.WallModel;
 
@@ -37,6 +40,12 @@ public class GameController {
 		
 		for (WallModel wallModel : GameModel.getInstance().getWalls()) {
 			new WallBody(world, wallModel);
+		}
+		
+		new ExitBody(world, GameModel.getInstance().getExit());
+		
+		for (DoorModel doorModel : GameModel.getInstance().getDoors()) {
+			new DoorBody(world, doorModel);
 		}
 	}
 	

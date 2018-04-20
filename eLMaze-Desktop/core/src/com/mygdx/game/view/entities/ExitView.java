@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.ELMaze;
 import com.mygdx.game.model.entities.EntityModel;
+import com.mygdx.game.model.entities.ExitModel;
+import com.mygdx.game.view.GameView;
 
 public class ExitView extends EntityView {
 
@@ -13,9 +15,16 @@ public class ExitView extends EntityView {
 
 	@Override
 	public void createSprite(ELMaze game, EntityModel model) {
-        Texture texture = game.getAssetManager().get("wall.png");
+        Texture texture = game.getAssetManager().get("exit.png");
 
-        sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
+        sprite = new Sprite(texture, 
+        					texture.getWidth(), 
+        					texture.getHeight());
+        
+        sprite.setSize(
+    			((ExitModel)model).getRadius()*2 / GameView.PIXEL_TO_METER, 
+    			((ExitModel)model).getRadius()*2 / GameView.PIXEL_TO_METER
+    		);
 	}
 
 }
