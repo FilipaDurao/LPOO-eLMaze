@@ -13,7 +13,6 @@ import com.mygdx.game.controller.GameController;
 import com.mygdx.game.model.GameModel;
 import com.mygdx.game.model.entities.BallModel;
 import com.mygdx.game.model.entities.DoorModel;
-import com.mygdx.game.model.entities.EntityModel;
 import com.mygdx.game.model.entities.ExitModel;
 import com.mygdx.game.model.entities.WallModel;
 import com.mygdx.game.view.entities.*;
@@ -23,6 +22,8 @@ public class GameView extends ScreenAdapter {
     public static final float PIXEL_TO_METER = .05f;
     public static final float VIEWPORT_WIDTH = 20;
     public static final float SCREEN_RATIO = (float)(Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
+    
+    private static final boolean DEBUG = false;
 	
     private final ELMaze game;
     private final OrthographicCamera camera;
@@ -63,9 +64,11 @@ public class GameView extends ScreenAdapter {
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
         
-        debugRenderer = new Box2DDebugRenderer();
-        debugCamera = camera.combined.cpy();
-        debugCamera.scl(1 / PIXEL_TO_METER);
+        if (DEBUG) {
+	        debugRenderer = new Box2DDebugRenderer();
+	        debugCamera = camera.combined.cpy();
+	        debugCamera.scl(1 / PIXEL_TO_METER);
+        }
         
         return camera;
     }   
@@ -84,9 +87,11 @@ public class GameView extends ScreenAdapter {
         drawEntities();
         game.getSpriteBatch().end();
         
-        debugCamera = camera.combined.cpy();
-        debugCamera.scl(1 / PIXEL_TO_METER);
-        debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
+        if (DEBUG) {
+	        debugCamera = camera.combined.cpy();
+	        debugCamera.scl(1 / PIXEL_TO_METER);
+	        debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
+        }
     }
     
     public void drawBackground() {
@@ -120,17 +125,19 @@ public class GameView extends ScreenAdapter {
     }
     	
     public void handleInputs() {
-    	 if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-             GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(-2, 0), true);
-         }
-    	 else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-             GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(2, 0), true);
-         }
-    	 else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-             GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(0, 2), true);
-         }
-    	 else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-             GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(0, -2), true);
-         }
+    	float speed = 5;
+    	
+		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+		    GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(-speed, 0), true);
+		}
+		else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+		    GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(speed, 0), true);
+		}
+		else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+		    GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(0, speed), true);
+		}
+		else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+		    GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(0, -speed), true);
+		}
     }
 }
