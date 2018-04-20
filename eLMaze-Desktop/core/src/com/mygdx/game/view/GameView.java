@@ -1,28 +1,40 @@
 package com.mygdx.game.view;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.mygdx.game.ELMaze;
 import com.mygdx.game.controller.GameController;
 import com.mygdx.game.model.GameModel;
 import com.mygdx.game.model.entities.BallModel;
+import com.mygdx.game.model.entities.EntityModel;
+import com.mygdx.game.model.entities.WallModel;
 import com.mygdx.game.view.entities.*;
 
 public class GameView extends ScreenAdapter {
 	
-    public final static float PIXEL_TO_METER = 0.02f;
-    private static final float VIEWPORT_WIDTH = 20;
-    private static final float SCREEN_RATIO = (float)(Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
+    public static final float PIXEL_TO_METER = .05f;
+    public static final float VIEWPORT_WIDTH = 20;
+    public static final float SCREEN_RATIO = (float)(Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
 	
     private final ELMaze game;
     private final OrthographicCamera camera;
-    private BallView ballView;
-    private DoorView doorView;
-    private ButtonView buttonView;
-    private ExitView exitView;
-    private WallView wallView;
+    
+    /**
+     * A renderer used to debug the physical fixtures.
+     */
+    private Box2DDebugRenderer debugRenderer;
+
+    /**
+     * The transformation matrix used to transform meters into
+     * pixels in order to show fixtures in their correct places.
+     */
+    private Matrix4 debugCamera;
     
     public GameView(ELMaze game) {
     	this.game = game;
@@ -30,12 +42,6 @@ public class GameView extends ScreenAdapter {
     	loadAssets();
     	
     	camera = initCamera();
-    	
-    	ballView = new BallView(game);
-    	doorView = new DoorView(game);
-    	buttonView = new ButtonView(game);
-    	exitView = new ExitView(game);
-    	wallView = new WallView(game);
     }
     
     private void loadAssets() {
@@ -55,12 +61,16 @@ public class GameView extends ScreenAdapter {
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
         camera.update();
         
+        debugRenderer = new Box2DDebugRenderer();
+        debugCamera = camera.combined.cpy();
+        debugCamera.scl(1 / PIXEL_TO_METER);
+        
         return camera;
     }   
     
     @Override
     public void render(float delta) {
-        //handleInputs(delta);
+        handleInputs();
 
         GameController.getInstance().update(delta);
 
@@ -71,18 +81,43 @@ public class GameView extends ScreenAdapter {
         drawBackground();
         drawEntities();
         game.getSpriteBatch().end();
+        
+//        debugCamera = camera.combined.cpy();
+//        debugCamera.scl(1 / PIXEL_TO_METER);
+//        debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
     }
     
     public void drawBackground() {
     	Texture background = game.getAssetManager().get("background.png", Texture.class);
     	background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
-    	game.getSpriteBatch().draw(background, 0, 0, 0, 0, (int)(VIEWPORT_WIDTH / PIXEL_TO_METER), (int) (VIEWPORT_WIDTH / PIXEL_TO_METER));
+    	game.getSpriteBatch().draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
     
     public void drawEntities() {
     	BallModel ball = GameModel.getInstance().getBall();
-    	ballView = new BallView(game);
+    	BallView ballView = new BallView(game, ball);
     	ballView.update(ball);
     	ballView.draw(game.getSpriteBatch());
+    	
+    	for (WallModel wall : GameModel.getInstance().getWalls()) {
+    		WallView wallView = new WallView(game, wall);
+    		wallView.update(wall);
+    		wallView.draw(game.getSpriteBatch());
+    	}
+    }
+    	
+    public void handleInputs() {
+    	 if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+             GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(-2, 0), true);
+         }
+    	 else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+             GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(2, 0), true);
+         }
+    	 else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+             GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(0, 2), true);
+         }
+    	 else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+             GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(0, -2), true);
+         }
     }
 }

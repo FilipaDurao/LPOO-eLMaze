@@ -10,8 +10,8 @@ public abstract class EntityView {
 	
 	Sprite sprite;
 
-	public EntityView(ELMaze game) {
-		sprite = createSprite(game);
+	public EntityView(ELMaze game, EntityModel model) {
+		createSprite(game, model);
 	}
 	
     public void draw(SpriteBatch batch) {
@@ -22,5 +22,5 @@ public abstract class EntityView {
         sprite.setCenter(model.getX() / GameView.PIXEL_TO_METER, model.getY() / GameView.PIXEL_TO_METER);
     }
 	
-	public abstract Sprite createSprite(ELMaze game);
+	public abstract void createSprite(ELMaze game, EntityModel model);
 }

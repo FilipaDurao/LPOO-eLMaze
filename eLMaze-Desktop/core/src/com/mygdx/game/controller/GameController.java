@@ -6,12 +6,17 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.controller.entities.BallBody;
+import com.mygdx.game.controller.entities.WallBody;
 import com.mygdx.game.model.GameModel;
 import com.mygdx.game.model.entities.EntityModel;
+import com.mygdx.game.model.entities.WallModel;
 
 public class GameController {
 	
 	private static GameController instance;
+	
+	private BallBody ballBody;
+
 	
 	public static final int MAP_WIDTH = 20;
 	public static final int MAP_HEIGHT = MAP_WIDTH * Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
@@ -26,13 +31,21 @@ public class GameController {
 	}
 
 	private GameController() {
-		world = new World(new Vector2(0, -10), true);
+		world = new World(new Vector2(0, 0), true);
 
-		new BallBody(world, GameModel.getInstance().getBall());
+		ballBody = new BallBody(world, GameModel.getInstance().getBall());
+		
+		for (WallModel wallModel : GameModel.getInstance().getWalls()) {
+			new WallBody(world, wallModel);
+		}
 	}
 	
 	public World getWorld() {
 		return world;
+	}
+	
+	public BallBody getBallBody() {
+		return ballBody;
 	}
 	
     public void update(float delta) {

@@ -3,10 +3,12 @@ package com.mygdx.game.model.entities;
 public class BallModel extends EntityModel {
 	
 	private int playerNum;
+	private float radius;
 
-	public BallModel(float x, float y, int playerNum) {
+	public BallModel(float x, float y, float radius, int playerNum) {
 		super(x, y);
 		this.playerNum = playerNum;
+		this.radius = radius;
 	}
 
 	public int getPlayerNum() {
@@ -15,5 +17,13 @@ public class BallModel extends EntityModel {
 
 	public void setPlayerNum(int playerNum) {
 		this.playerNum = playerNum;
+	}
+
+	public float getRadius() {
+		return radius;
+	}
+
+	public void setRadius(float radius) {
+		this.radius = radius;
 	}
 }

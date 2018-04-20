@@ -3,19 +3,19 @@ package com.mygdx.game.view.entities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.ELMaze;
+import com.mygdx.game.model.entities.EntityModel;
 
 public class ButtonView extends EntityView {
 
-	public ButtonView(ELMaze game) {
-		super(game);
-		// TODO Auto-generated constructor stub
+	public ButtonView(ELMaze game, EntityModel model) {
+		super(game, model);
 	}
 
 	@Override
-	public Sprite createSprite(ELMaze game) {
+	public void createSprite(ELMaze game, EntityModel model) {
         Texture texture = game.getAssetManager().get("wall.png");
 
-        return new Sprite(texture, texture.getWidth(), texture.getHeight());
+        sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
 	}
 
 }
