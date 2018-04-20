@@ -14,7 +14,7 @@ public class ExitBody extends EntityBody {
 
         CircleShape circle = new CircleShape();
         circle.setRadius( 
-        		((ExitModel) model).getRadius() 
+        	((ExitModel) model).getRadius() 
         );
         
         FixtureDef fixtureDef = new FixtureDef();
