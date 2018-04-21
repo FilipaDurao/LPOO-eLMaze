@@ -6,7 +6,6 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.model.entities.DoorModel;
 import com.mygdx.game.model.entities.EntityModel;
-import com.mygdx.game.model.entities.WallModel;
 
 public class DoorBody extends EntityBody {
 

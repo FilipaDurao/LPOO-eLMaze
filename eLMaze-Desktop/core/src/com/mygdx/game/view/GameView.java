@@ -94,37 +94,21 @@ public class GameView extends ScreenAdapter {
         }
     }
     
-    public void drawBackground() {
+    private void drawBackground() {
     	Texture background = game.getAssetManager().get("background.png", Texture.class);
     	background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
     	game.getSpriteBatch().draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
     
-    public void drawEntities() {
-    	BallModel ball = GameModel.getInstance().getBall();
-    	BallView ballView = new BallView(game, ball);
-    	ballView.update(ball);
-    	ballView.draw(game.getSpriteBatch());
-    	
-    	for (WallModel wall : GameModel.getInstance().getWalls()) {
-    		WallView wallView = new WallView(game, wall);
-    		wallView.update(wall);
-    		wallView.draw(game.getSpriteBatch());
-    	}
-    	
-    	ExitModel exit = GameModel.getInstance().getExit();
-    	ExitView exitView = new ExitView(game, exit);
-    	exitView.update(exit);
-    	exitView.draw(game.getSpriteBatch());
-    	
-    	for (DoorModel door : GameModel.getInstance().getDoors()) {
-    		DoorView doorView = new DoorView(game, door);
-    		doorView.update(door);
-    		doorView.draw(game.getSpriteBatch());
-    	}
+    private void drawEntities() {
+    	drawWalls();
+    	drawDoors();
+    	drawButtons();
+    	drawExit();
+    	drawBall();   	
     }
     	
-    public void handleInputs() {
+    private void handleInputs() {
     	float speed = 5;
     	
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
@@ -139,5 +123,39 @@ public class GameView extends ScreenAdapter {
 		else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 		    GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(0, -speed), true);
 		}
+    }
+    
+    private void drawBall() {
+    	BallModel ball = GameModel.getInstance().getBall();
+    	BallView ballView = new BallView(game, ball);
+    	ballView.update(ball);
+    	ballView.draw(game.getSpriteBatch());
+    }
+    
+    private void drawExit() {
+    	ExitModel exit = GameModel.getInstance().getExit();
+    	ExitView exitView = new ExitView(game, exit);
+    	exitView.update(exit);
+    	exitView.draw(game.getSpriteBatch());
+    }
+    
+    private void drawWalls() {    	
+    	for (WallModel wall : GameModel.getInstance().getWalls()) {
+    		WallView wallView = new WallView(game, wall);
+    		wallView.update(wall);
+    		wallView.draw(game.getSpriteBatch());
+    	}
+    }
+    
+    private void drawDoors() {
+    	for (DoorModel door : GameModel.getInstance().getDoors()) {
+    		DoorView doorView = new DoorView(game, door);
+    		doorView.update(door);
+    		doorView.draw(game.getSpriteBatch());
+    	}
+    }
+    
+    private void drawButtons() {
+    	
     }
 }

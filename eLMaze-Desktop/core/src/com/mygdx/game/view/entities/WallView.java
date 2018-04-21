@@ -1,12 +1,8 @@
 package com.mygdx.game.view.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.ELMaze;
-import com.mygdx.game.controller.GameController;
-import com.mygdx.game.model.entities.BallModel;
 import com.mygdx.game.model.entities.EntityModel;
 import com.mygdx.game.model.entities.WallModel;
 import com.mygdx.game.view.GameView;

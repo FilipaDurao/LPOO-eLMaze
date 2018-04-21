@@ -6,7 +6,6 @@ import com.mygdx.game.controller.GameController;
 import com.mygdx.game.model.entities.BallModel;
 import com.mygdx.game.model.entities.ButtonModel;
 import com.mygdx.game.model.entities.DoorModel;
-import com.mygdx.game.model.entities.EntityModel;
 import com.mygdx.game.model.entities.ExitModel;
 import com.mygdx.game.model.entities.WallModel;
 
@@ -28,8 +27,8 @@ public class GameModel {
 	}
 	
 	private GameModel() {
-		ball = new BallModel(GameController.MAP_WIDTH/2, GameController.MAP_HEIGHT/2 + 2f, 0.5f, 0);
-		exit = new ExitModel(3, GameController.MAP_HEIGHT - 2f, 0.5f);
+		ball = new BallModel(1.65f, 1.65f, 0.5f, 0);
+		exit = new ExitModel(GameController.MAP_WIDTH - 1.65f, GameController.MAP_HEIGHT - 1.65f, 0.6f);
 		
 		createButtons();
 		createDoors();
@@ -37,11 +36,11 @@ public class GameModel {
 	}
 	
 	private void createButtons() {
-		buttons.add(new ButtonModel(2, 2));		
+		//buttons.add(new ButtonModel(2, 2));		
 	}
 	
 	private void createDoors() {
-		doors.add(new DoorModel(0.5f, GameController.MAP_HEIGHT/2 - 0.15f, 1.5f, 0.3f));
+		//doors.add(new DoorModel(0.5f, GameController.MAP_HEIGHT/1.35f - 0.15f, 1.5f, 0.3f));
 	}
 	
 	private void createWalls() {
@@ -49,7 +48,10 @@ public class GameModel {
 		walls.add(new WallModel(0, GameController.MAP_HEIGHT - 0.5f, GameController.MAP_WIDTH, 0.5f));	
 		walls.add(new WallModel(0, 0, 0.5f, GameController.MAP_HEIGHT));	
 		walls.add(new WallModel(GameController.MAP_WIDTH - 0.5f, 0, 0.5f, GameController.MAP_HEIGHT));			
-		walls.add(new WallModel(2, GameController.MAP_HEIGHT/2 - 0.25f, GameController.MAP_WIDTH - 4, 0.5f));
+		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*1/5, GameController.MAP_WIDTH - 3, 0.5f));			
+		walls.add(new WallModel(2.5f, (GameController.MAP_HEIGHT-0.25f)*2/5, GameController.MAP_WIDTH - 3, 0.5f));			
+		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*3/5, GameController.MAP_WIDTH - 3, 0.5f));			
+		walls.add(new WallModel(2.5f, (GameController.MAP_HEIGHT-0.25f)*4/5, GameController.MAP_WIDTH - 3, 0.5f));
 	}
 
 	public BallModel getBall() {

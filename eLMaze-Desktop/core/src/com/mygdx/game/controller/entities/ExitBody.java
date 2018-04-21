@@ -10,7 +10,7 @@ import com.mygdx.game.model.entities.ExitModel;
 public class ExitBody extends EntityBody {
 
 	public ExitBody(World world, EntityModel model) {
-		super(world, model, BodyDef.BodyType.KinematicBody);
+		super(world, model, BodyDef.BodyType.StaticBody);
 
         CircleShape circle = new CircleShape();
         circle.setRadius( 
@@ -19,9 +19,7 @@ public class ExitBody extends EntityBody {
         
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circle;
-        fixtureDef.density = 0;
-        fixtureDef.friction = 0;
-        fixtureDef.restitution = 0;
+        fixtureDef.isSensor = true;
         
         body.createFixture(fixtureDef);
         

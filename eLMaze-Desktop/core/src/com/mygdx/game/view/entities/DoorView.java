@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.ELMaze;
 import com.mygdx.game.model.entities.DoorModel;
 import com.mygdx.game.model.entities.EntityModel;
-import com.mygdx.game.model.entities.WallModel;
 import com.mygdx.game.view.GameView;
 
 public class DoorView extends EntityView {
