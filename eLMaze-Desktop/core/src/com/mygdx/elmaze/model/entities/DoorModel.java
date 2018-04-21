@@ -17,9 +17,13 @@ public class DoorModel extends EntityModel {
 	public boolean isOpen() {
 		return isOpen;
 	}
+	
+	public boolean isClosed() {
+		return !isOpen;
+	}
 
-	public void setOpen(boolean isOpen) {
-		this.isOpen = isOpen;
+	public void open() {
+		this.isOpen = true;
 	}
 
 	public float getWidth() {

@@ -12,6 +12,7 @@ import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.controller.GameController;
 import com.mygdx.elmaze.model.GameModel;
 import com.mygdx.elmaze.model.entities.BallModel;
+import com.mygdx.elmaze.model.entities.ButtonModel;
 import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
@@ -23,20 +24,12 @@ public class GameView extends ScreenAdapter {
     public static final float VIEWPORT_WIDTH = 20;
     public static final float SCREEN_RATIO = (float)(Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
     
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = false;;
 	
     private final ELMaze game;
     private final OrthographicCamera camera;
     
-    /**
-     * A renderer used to debug the physical fixtures.
-     */
     private Box2DDebugRenderer debugRenderer;
-
-    /**
-     * The transformation matrix used to transform meters into
-     * pixels in order to show fixtures in their correct places.
-     */
     private Matrix4 debugCamera;
     
     public GameView(ELMaze game) {
@@ -53,7 +46,8 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().load( "background.png" , Texture.class);
         this.game.getAssetManager().load( "exit.png" , Texture.class);
         this.game.getAssetManager().load( "door.png" , Texture.class);
-        //this.game.getAssetManager().load( "button.png" , Texture.class);
+        this.game.getAssetManager().load( "button.png" , Texture.class);
+        this.game.getAssetManager().load( "pressed_button.png" , Texture.class);
 
         this.game.getAssetManager().finishLoading();
     }
@@ -149,13 +143,19 @@ public class GameView extends ScreenAdapter {
     
     private void drawDoors() {
     	for (DoorModel door : GameModel.getInstance().getDoors()) {
-    		DoorView doorView = new DoorView(game, door);
-    		doorView.update(door);
-    		doorView.draw(game.getSpriteBatch());
+    		if (door.isClosed()) {
+        		DoorView doorView = new DoorView(game, door);
+        		doorView.update(door);
+        		doorView.draw(game.getSpriteBatch());
+    		}
     	}
     }
     
     private void drawButtons() {
-    	
+    	for (ButtonModel button: GameModel.getInstance().getButtons()) {
+    		ButtonView buttonView = new ButtonView(game, button);
+    		buttonView.update(button);
+    		buttonView.draw(game.getSpriteBatch());
+    	}
     }
 }

@@ -4,17 +4,17 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.elmaze.model.entities.ButtonModel;
 import com.mygdx.elmaze.model.entities.EntityModel;
-import com.mygdx.elmaze.model.entities.ExitModel;
 
-public class ExitBody extends EntityBody {
+public class ButtonBody extends EntityBody {
 
-	public ExitBody(World world, EntityModel model) {
+	public ButtonBody(World world, EntityModel model) {
 		super(world, model, BodyDef.BodyType.StaticBody);
 
         CircleShape circle = new CircleShape();
         circle.setRadius( 
-        	((ExitModel) model).getRadius()/1000
+        	((ButtonModel) model).getRadius()/100
         );
         
         FixtureDef fixtureDef = new FixtureDef();
@@ -25,5 +25,5 @@ public class ExitBody extends EntityBody {
         
         circle.dispose();
 	}
-	
+
 }

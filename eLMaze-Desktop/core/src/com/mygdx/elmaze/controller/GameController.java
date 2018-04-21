@@ -6,10 +6,12 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.elmaze.controller.entities.BallBody;
+import com.mygdx.elmaze.controller.entities.ButtonBody;
 import com.mygdx.elmaze.controller.entities.DoorBody;
 import com.mygdx.elmaze.controller.entities.ExitBody;
 import com.mygdx.elmaze.controller.entities.WallBody;
 import com.mygdx.elmaze.model.GameModel;
+import com.mygdx.elmaze.model.entities.ButtonModel;
 import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.EntityModel;
 import com.mygdx.elmaze.model.entities.WallModel;
@@ -22,9 +24,6 @@ public class GameController {
 	public static final int MAP_HEIGHT = MAP_WIDTH * Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
 	
 	private BallBody ballBody;
-	private ExitBody exitBody;
-	
-	private boolean isBallNearExit;
 	
 	private final World world;
 	
@@ -44,10 +43,14 @@ public class GameController {
 			new WallBody(world, wallModel);
 		}
 		
-		exitBody = new ExitBody(world, GameModel.getInstance().getExit());
+		new ExitBody(world, GameModel.getInstance().getExit());
 		
 		for (DoorModel doorModel : GameModel.getInstance().getDoors()) {
 			new DoorBody(world, doorModel);
+		}
+		
+		for (ButtonModel buttonModel : GameModel.getInstance().getButtons()) {
+			new ButtonBody(world, buttonModel);
 		}
 		
 		world.setContactListener(new CollisionListener());
@@ -64,28 +67,21 @@ public class GameController {
     public void update(float delta) {
     	world.step(delta, 6, 2);
     	
-    	if (isBallNearExit) {
-    		if (((EntityModel) ballBody.getUserData()).getDistanceTo(
-    			((EntityModel) exitBody.getUserData())) < 0.3f) {
-    			
-    			finishGame();
-    		}
-    	}
-    	
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
 
         for (Body body : bodies) {
             ((EntityModel) body.getUserData()).setPosition(body.getPosition().x, body.getPosition().y);
+            checkOpenDoor(body);
         }
     }
     
-    public void setBallNearExit(boolean isBallNearExit) {
-    	this.isBallNearExit = isBallNearExit;
-    }
-    
-    private void finishGame() {
-    	System.out.println("You win! :D");
-		Gdx.app.exit();
+    private void checkOpenDoor(Body body) {
+    	if (body.getUserData() instanceof DoorModel) {
+        	DoorModel door = (DoorModel) body.getUserData();
+        	if (door.isOpen()) {
+        		body.getWorld().destroyBody(body);
+        	}
+        }
     }
 }

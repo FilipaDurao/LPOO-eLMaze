@@ -22,8 +22,7 @@ public class ELMaze extends Game {
 	private void startElMaze() {
 		GameView view = new GameView(this);
 		
-		NetworkManager networkManager = new NetworkManager();
-		networkManager.startServer();
+		NetworkManager.getInstance().startServer();
 		
         setScreen(view);
     }

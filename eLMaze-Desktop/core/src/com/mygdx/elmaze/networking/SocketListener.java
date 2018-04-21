@@ -27,8 +27,8 @@ public class SocketListener implements Runnable {
 				if (msg != null) {
 					// Update force to ball's center
 					GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(
-							msg.getAccelerometerX(),
-							msg.getAccelerometerY()),
+							msg.getAccelerometerX()/2,
+							msg.getAccelerometerY()/2),
 							true
 					);
 				}
