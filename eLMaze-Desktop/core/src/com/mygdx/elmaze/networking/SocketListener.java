@@ -18,7 +18,6 @@ public class SocketListener implements Runnable {
 	@Override
 	public void run() {
 		try {
-			System.out.println("Handling messages from connected socket...");
 			ObjectInputStream stream = new ObjectInputStream(socket.getInputStream());
 			MessageToServer msg = null;
 			

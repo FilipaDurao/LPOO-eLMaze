@@ -42,4 +42,10 @@ public class EntityModel {
 	public Vector2 getPosition() {
 		return new Vector2(x, y);
 	}
+	
+	public float getDistanceTo(EntityModel other) {
+		Vector2 distanceVector = this.getPosition().sub(other.getPosition());
+		
+		return (float)(Math.sqrt(distanceVector.x*distanceVector.x + distanceVector.y*distanceVector.y));
+	}
 }

@@ -18,11 +18,13 @@ public class GameController {
 	
 	private static GameController instance;
 	
-	private BallBody ballBody;
-
-	
 	public static final int MAP_WIDTH = 20;
 	public static final int MAP_HEIGHT = MAP_WIDTH * Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
+	
+	private BallBody ballBody;
+	private ExitBody exitBody;
+	
+	private boolean isBallNearExit;
 	
 	private final World world;
 	
@@ -42,11 +44,13 @@ public class GameController {
 			new WallBody(world, wallModel);
 		}
 		
-		new ExitBody(world, GameModel.getInstance().getExit());
+		exitBody = new ExitBody(world, GameModel.getInstance().getExit());
 		
 		for (DoorModel doorModel : GameModel.getInstance().getDoors()) {
 			new DoorBody(world, doorModel);
 		}
+		
+		world.setContactListener(new CollisionListener());
 	}
 	
 	public World getWorld() {
@@ -60,6 +64,14 @@ public class GameController {
     public void update(float delta) {
     	world.step(delta, 6, 2);
     	
+    	if (isBallNearExit) {
+    		if (((EntityModel) ballBody.getUserData()).getDistanceTo(
+    			((EntityModel) exitBody.getUserData())) < 0.3f) {
+    			
+    			finishGame();
+    		}
+    	}
+    	
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
 
@@ -67,5 +79,13 @@ public class GameController {
             ((EntityModel) body.getUserData()).setPosition(body.getPosition().x, body.getPosition().y);
         }
     }
-
+    
+    public void setBallNearExit(boolean isBallNearExit) {
+    	this.isBallNearExit = isBallNearExit;
+    }
+    
+    private void finishGame() {
+    	System.out.println("You win! :D");
+		Gdx.app.exit();
+    }
 }

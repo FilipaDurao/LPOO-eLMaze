@@ -16,9 +16,7 @@ public class SocketManager implements Runnable {
 	public void run() {
 		while(true) {
 			try {
-				System.out.println("Waiting for a socket to connect...");
 				Socket clientSocket = serverSocket.accept();
-				System.out.println("Socket connected!");
 				Thread thread = new Thread(new SocketListener(clientSocket));
 				thread.start();
 			} catch (IOException e) {
