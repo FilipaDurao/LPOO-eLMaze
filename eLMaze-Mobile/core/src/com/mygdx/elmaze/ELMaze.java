@@ -35,7 +35,7 @@ public class ELMaze extends ApplicationAdapter {
 	@Override
 	public void create () {
 		try {
-			socket = new Socket("192.168.2.15", 8000);
+			socket = new Socket("192.168.1.69", 8500);
 		}
 		catch(IOException e) {
 			System.out.println("Failed to connect...");
