@@ -1,9 +1,10 @@
-package com.mygdx.game;
+package com.mygdx.elmaze;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.view.GameView;
+import com.mygdx.elmaze.networking.NetworkManager;
+import com.mygdx.elmaze.view.GameView;
 
 public class ELMaze extends Game {
 	
@@ -20,6 +21,9 @@ public class ELMaze extends Game {
 	
 	private void startElMaze() {
 		GameView view = new GameView(this);
+		
+		NetworkManager networkManager = new NetworkManager();
+		networkManager.startServer();
 		
         setScreen(view);
     }

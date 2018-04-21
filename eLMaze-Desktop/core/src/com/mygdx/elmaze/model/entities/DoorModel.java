@@ -1,14 +1,25 @@
-package com.mygdx.game.model.entities;
+package com.mygdx.elmaze.model.entities;
 
-public class WallModel extends EntityModel {
-	
+public class DoorModel extends EntityModel {
+
+	private boolean isOpen;	
 	private float width;
 	private float height;
 	
-	public WallModel(float x, float y, float width, float height) {
+	
+	public DoorModel(float x, float y, float width, float height) {
 		super(x, y);
+		this.isOpen = false;
 		this.width = width;
 		this.height = height;
+	}
+
+	public boolean isOpen() {
+		return isOpen;
+	}
+
+	public void setOpen(boolean isOpen) {
+		this.isOpen = isOpen;
 	}
 
 	public float getWidth() {
@@ -27,8 +38,5 @@ public class WallModel extends EntityModel {
 		this.height = height;
 	}
 	
-	public void resize(float width, float height) {
-		this.width = width;
-		this.height = height;
-	}
+	
 }

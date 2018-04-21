@@ -1,9 +1,9 @@
-package com.mygdx.game.view.entities;
+package com.mygdx.elmaze.view.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.mygdx.game.ELMaze;
-import com.mygdx.game.model.entities.EntityModel;
+import com.mygdx.elmaze.ELMaze;
+import com.mygdx.elmaze.model.entities.EntityModel;
 
 public class ButtonView extends EntityView {
 

@@ -1,4 +1,4 @@
-package com.mygdx.game.view;
+package com.mygdx.elmaze.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -8,14 +8,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.mygdx.game.ELMaze;
-import com.mygdx.game.controller.GameController;
-import com.mygdx.game.model.GameModel;
-import com.mygdx.game.model.entities.BallModel;
-import com.mygdx.game.model.entities.DoorModel;
-import com.mygdx.game.model.entities.ExitModel;
-import com.mygdx.game.model.entities.WallModel;
-import com.mygdx.game.view.entities.*;
+import com.mygdx.elmaze.ELMaze;
+import com.mygdx.elmaze.controller.GameController;
+import com.mygdx.elmaze.model.GameModel;
+import com.mygdx.elmaze.model.entities.BallModel;
+import com.mygdx.elmaze.model.entities.DoorModel;
+import com.mygdx.elmaze.model.entities.ExitModel;
+import com.mygdx.elmaze.model.entities.WallModel;
+import com.mygdx.elmaze.view.entities.*;
 
 public class GameView extends ScreenAdapter {
 	

@@ -1,13 +1,13 @@
-package com.mygdx.game.model;
+package com.mygdx.elmaze.model;
 
 import java.util.ArrayList;
 
-import com.mygdx.game.controller.GameController;
-import com.mygdx.game.model.entities.BallModel;
-import com.mygdx.game.model.entities.ButtonModel;
-import com.mygdx.game.model.entities.DoorModel;
-import com.mygdx.game.model.entities.ExitModel;
-import com.mygdx.game.model.entities.WallModel;
+import com.mygdx.elmaze.controller.GameController;
+import com.mygdx.elmaze.model.entities.BallModel;
+import com.mygdx.elmaze.model.entities.ButtonModel;
+import com.mygdx.elmaze.model.entities.DoorModel;
+import com.mygdx.elmaze.model.entities.ExitModel;
+import com.mygdx.elmaze.model.entities.WallModel;
 
 public class GameModel {
 	

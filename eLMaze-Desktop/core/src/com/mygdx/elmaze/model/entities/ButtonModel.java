@@ -1,4 +1,4 @@
-package com.mygdx.game.model.entities;
+package com.mygdx.elmaze.model.entities;
 
 public class ButtonModel extends EntityModel {
 
