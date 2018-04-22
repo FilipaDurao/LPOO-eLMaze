@@ -19,12 +19,12 @@ public class ELMaze extends ApplicationAdapter {
 	private Socket socket;
 	private ObjectOutputStream o;
 	private MainMenuView mainMenu;
-	private int menuOption;
+	private int currentMenu;
 
 	@Override
 	public void create () {
 
-		menuOption = 0;
+		currentMenu = 0;
 		mainMenu = new MainMenuView();
 		//batch = new SpriteBatch();
 		//img = new Texture("background.png");
@@ -70,18 +70,20 @@ public class ELMaze extends ApplicationAdapter {
 
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		if(menuOption == 0){
+		if(currentMenu == 0){
 			mainMenu.render();
 		}
-		else if (menuOption == 1){
-			//singlePlayerMenu.render();
+		else if (currentMenu == 1){
+			//playMenu.render();
 		}
-		else if (menuOption == 2){
-			//multiPlayerMenu.render();
+		else if (currentMenu == 2){
+			//instructionsMenu.render();
 		}
-		else if (menuOption == 3){
-			//gameScreen.render();
-			//handleInput();
+		else if (currentMenu == 3){
+			//creditsMenu.render();
+		}
+		else if (currentMenu == 4){
+			//ExitTheGame
 		}
 
 		//handleInput();

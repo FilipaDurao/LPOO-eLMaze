@@ -13,24 +13,56 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class MainMenuView extends ApplicationAdapter{
 
+    private int SCREEN_WIDTH = 720; //TODO verificar
+
     private Stage stage;
 
+    // Necessary for Background
     private Texture backgroundTexture;
     private Image backgroundImage;
 
+    // Necessary for Play Button
     private Texture playButtonTextureUp;
     private TextureRegion playButtonTextureRegionUp;
     private TextureRegionDrawable playButtonDrawableUp;
-
     private Texture playButtonTextureDown;
     private TextureRegion playButtonTextureRegionDown;
     private TextureRegionDrawable playButtonDrawableDown;
-
     private ImageButton playButton;
+
+    // Necessary for Instructions Button
+    private Texture instructionsButtonTextureUp;
+    private TextureRegion instructionsButtonTextureRegionUp;
+    private TextureRegionDrawable instructionsButtonDrawableUp;
+    private Texture instructionsButtonTextureDown;
+    private TextureRegion instructionsButtonTextureRegionDown;
+    private TextureRegionDrawable instructionsButtonDrawableDown;
+    private ImageButton instructionsButton;
+
+    // Necessary for Credits Button
+    private Texture creditsButtonTextureUp;
+    private TextureRegion creditsButtonTextureRegionUp;
+    private TextureRegionDrawable creditsButtonDrawableUp;
+    private Texture creditsButtonTextureDown;
+    private TextureRegion creditsButtonTextureRegionDown;
+    private TextureRegionDrawable creditsButtonDrawableDown;
+    private ImageButton creditsButton;
+
+    // Necessary for Exit Button
+    private Texture exitButtonTextureUp;
+    private TextureRegion exitButtonTextureRegionUp;
+    private TextureRegionDrawable exitButtonDrawableUp;
+    private Texture exitButtonTextureDown;
+    private TextureRegion exitButtonTextureRegionDown;
+    private TextureRegionDrawable exitButtonDrawableDown;
+    private ImageButton exitButton;
 
     public MainMenuView() {
         setUpBackground();
         setUpPlayButton();
+        setUpInstructionsButton();
+        setUpCreditsButton();
+        setUpExitButton();
         setUpStage();
     }
 
@@ -56,7 +88,46 @@ public class MainMenuView extends ApplicationAdapter{
         playButtonDrawableDown = new TextureRegionDrawable(playButtonTextureRegionDown);
 
         playButton = new ImageButton(playButtonDrawableUp, playButtonDrawableDown);
-        playButton.setPosition(0, 0, 12);
+        playButton.setPosition(SCREEN_WIDTH/2, 800, 1);
+    }
+
+    private void setUpInstructionsButton(){
+        instructionsButtonTextureUp = new Texture(Gdx.files.internal("genericButtonUp.png"));
+        instructionsButtonTextureRegionUp = new TextureRegion(instructionsButtonTextureUp);
+        instructionsButtonDrawableUp = new TextureRegionDrawable(instructionsButtonTextureRegionUp);
+
+        instructionsButtonTextureDown = new Texture(Gdx.files.internal("genericButtonDown.png"));
+        instructionsButtonTextureRegionDown = new TextureRegion(instructionsButtonTextureDown);
+        instructionsButtonDrawableDown = new TextureRegionDrawable(instructionsButtonTextureRegionDown);
+
+        instructionsButton = new ImageButton(instructionsButtonDrawableUp, instructionsButtonDrawableDown);
+        instructionsButton.setPosition(SCREEN_WIDTH/2, 600, 1);
+    }
+
+    private void setUpCreditsButton(){
+        creditsButtonTextureUp = new Texture(Gdx.files.internal("genericButtonUp.png"));
+        creditsButtonTextureRegionUp = new TextureRegion(creditsButtonTextureUp);
+        creditsButtonDrawableUp = new TextureRegionDrawable(creditsButtonTextureRegionUp);
+
+        creditsButtonTextureDown = new Texture(Gdx.files.internal("genericButtonDown.png"));
+        creditsButtonTextureRegionDown = new TextureRegion(creditsButtonTextureDown);
+        creditsButtonDrawableDown = new TextureRegionDrawable(creditsButtonTextureRegionDown);
+
+        creditsButton = new ImageButton(creditsButtonDrawableUp, creditsButtonDrawableDown);
+        creditsButton.setPosition(SCREEN_WIDTH/2, 400, 1);
+    }
+
+    private void setUpExitButton(){
+        exitButtonTextureUp = new Texture(Gdx.files.internal("genericButtonUp.png"));
+        exitButtonTextureRegionUp = new TextureRegion(exitButtonTextureUp);
+        exitButtonDrawableUp = new TextureRegionDrawable(exitButtonTextureRegionUp);
+
+        exitButtonTextureDown = new Texture(Gdx.files.internal("genericButtonDown.png"));
+        exitButtonTextureRegionDown = new TextureRegion(exitButtonTextureDown);
+        exitButtonDrawableDown = new TextureRegionDrawable(exitButtonTextureRegionDown);
+
+        exitButton = new ImageButton(exitButtonDrawableUp, exitButtonDrawableDown);
+        exitButton.setPosition(SCREEN_WIDTH/2, 200, 1);
     }
 
     private void setUpStage(){
@@ -64,6 +135,9 @@ public class MainMenuView extends ApplicationAdapter{
         Gdx.input.setInputProcessor(stage);
         stage.addActor(backgroundImage);
         stage.addActor(playButton);
+        stage.addActor(instructionsButton);
+        stage.addActor(creditsButton);
+        stage.addActor(exitButton);
     }
 
 }
