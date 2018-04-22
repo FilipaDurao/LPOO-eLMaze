@@ -26,11 +26,11 @@ public class MainMenuView extends ApplicationAdapter{
     private TextureRegion playButtonTextureRegionDown;
     private TextureRegionDrawable playButtonDrawableDown;
 
-    private ImageButton singlePlayerButton;
+    private ImageButton playButton;
 
     public MainMenuView() {
         setUpBackground();
-        setUpSinglePlayerButton();
+        setUpPlayButton();
         setUpStage();
     }
 
@@ -46,7 +46,7 @@ public class MainMenuView extends ApplicationAdapter{
         backgroundImage.setSize(backgroundTexture.getWidth(), backgroundTexture.getHeight());
     }
 
-    private void setUpSinglePlayerButton(){
+    private void setUpPlayButton(){
         playButtonTextureUp = new Texture(Gdx.files.internal("genericButtonUp.png"));
         playButtonTextureRegionUp = new TextureRegion(playButtonTextureUp);
         playButtonDrawableUp = new TextureRegionDrawable(playButtonTextureRegionUp);
@@ -55,15 +55,15 @@ public class MainMenuView extends ApplicationAdapter{
         playButtonTextureRegionDown = new TextureRegion(playButtonTextureDown);
         playButtonDrawableDown = new TextureRegionDrawable(playButtonTextureRegionDown);
 
-        singlePlayerButton = new ImageButton(playButtonDrawableUp, playButtonDrawableDown);
-        singlePlayerButton.setPosition(0, 0, 12);
+        playButton = new ImageButton(playButtonDrawableUp, playButtonDrawableDown);
+        playButton.setPosition(0, 0, 12);
     }
 
     private void setUpStage(){
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         stage.addActor(backgroundImage);
-        stage.addActor(singlePlayerButton);
+        stage.addActor(playButton);
     }
 
 }
