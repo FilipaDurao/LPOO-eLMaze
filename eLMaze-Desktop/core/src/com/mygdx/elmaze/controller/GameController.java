@@ -80,7 +80,7 @@ public class GameController {
     	if (body.getUserData() instanceof DoorModel) {
         	DoorModel door = (DoorModel) body.getUserData();
         	if (door.isOpen()) {
-        		body.getWorld().destroyBody(body);
+        		world.destroyBody(body);
         	}
         }
     }

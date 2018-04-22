@@ -99,7 +99,7 @@ public class GameView extends ScreenAdapter {
     	drawDoors();
     	drawButtons();
     	drawExit();
-    	drawBall();   	
+    	drawBall();
     }
     	
     private void handleInputs() {
@@ -121,21 +121,21 @@ public class GameView extends ScreenAdapter {
     
     private void drawBall() {
     	BallModel ball = GameModel.getInstance().getBall();
-    	BallView ballView = new BallView(game, ball);
+        BallView ballView = (BallView) ViewFactory.makeView(game, ball);
     	ballView.update(ball);
     	ballView.draw(game.getSpriteBatch());
     }
     
     private void drawExit() {
     	ExitModel exit = GameModel.getInstance().getExit();
-    	ExitView exitView = new ExitView(game, exit);
+    	ExitView exitView = (ExitView) ViewFactory.makeView(game, exit);
     	exitView.update(exit);
     	exitView.draw(game.getSpriteBatch());
     }
     
     private void drawWalls() {    	
     	for (WallModel wall : GameModel.getInstance().getWalls()) {
-    		WallView wallView = new WallView(game, wall);
+    		WallView wallView = (WallView) ViewFactory.makeView(game, wall);
     		wallView.update(wall);
     		wallView.draw(game.getSpriteBatch());
     	}
@@ -144,7 +144,7 @@ public class GameView extends ScreenAdapter {
     private void drawDoors() {
     	for (DoorModel door : GameModel.getInstance().getDoors()) {
     		if (door.isClosed()) {
-        		DoorView doorView = new DoorView(game, door);
+    			DoorView doorView = (DoorView) ViewFactory.makeView(game, door);
         		doorView.update(door);
         		doorView.draw(game.getSpriteBatch());
     		}
@@ -153,7 +153,7 @@ public class GameView extends ScreenAdapter {
     
     private void drawButtons() {
     	for (ButtonModel button: GameModel.getInstance().getButtons()) {
-    		ButtonView buttonView = new ButtonView(game, button);
+    		ButtonView buttonView = (ButtonView) ViewFactory.makeView(game, button);
     		buttonView.update(button);
     		buttonView.draw(game.getSpriteBatch());
     	}
