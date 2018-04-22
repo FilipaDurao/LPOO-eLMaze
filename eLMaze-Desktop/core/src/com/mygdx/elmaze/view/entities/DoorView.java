@@ -14,27 +14,26 @@ public class DoorView extends EntityView {
 	}
 
 	@Override
-	public void update(EntityModel model) {	
-		DoorModel door = (DoorModel) model;
-		
-        sprite.setCenter(
-        		(door.getX() + door.getWidth()/2) / GameView.PIXEL_TO_METER, 
-        		(door.getY() + door.getHeight()/2) / GameView.PIXEL_TO_METER
-        );
-    }
+	public void update(EntityModel model) {}
 	
 	@Override
 	public void createSprite(ELMaze game, EntityModel model) {
         Texture texture = game.getAssetManager().get("door.png");
+		DoorModel door = (DoorModel) model;
 
         sprite = new Sprite(texture, 
         					texture.getWidth(), 
         					texture.getHeight());
         
         sprite.setSize(
-    			((DoorModel)model).getWidth()/GameView.PIXEL_TO_METER, 
-    			((DoorModel)model).getHeight()/GameView.PIXEL_TO_METER
-    		);
+    			door.getWidth()/GameView.PIXEL_TO_METER, 
+    			door.getHeight()/GameView.PIXEL_TO_METER
+    	);
+        
+        sprite.setCenter(
+        		(door.getX() + door.getWidth()/2) / GameView.PIXEL_TO_METER, 
+        		(door.getY() + door.getHeight()/2) / GameView.PIXEL_TO_METER
+        );
 	}
 
 }

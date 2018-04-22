@@ -14,25 +14,25 @@ public class WallView extends EntityView {
 	}
 	
 	@Override
-	public void update(EntityModel model) {	
-		WallModel wall = (WallModel) model;
-		
-        sprite.setCenter(
-        		(wall.getX() + wall.getWidth()/2) / GameView.PIXEL_TO_METER, 
-        		(wall.getY() + wall.getHeight()/2) / GameView.PIXEL_TO_METER
-        );
-    }
+	public void update(EntityModel model) {}
 
 	@Override
 	public void createSprite(ELMaze game, EntityModel model) {
+		WallModel wall = (WallModel) model;
+		
         Texture texture = game.getAssetManager().get("wall.png");
 
         sprite = new Sprite(texture, texture.getWidth(), texture.getHeight());
         
 		sprite.setSize(
-			((WallModel)model).getWidth()/GameView.PIXEL_TO_METER, 
-			((WallModel)model).getHeight()/GameView.PIXEL_TO_METER
+			wall.getWidth()/GameView.PIXEL_TO_METER, 
+			wall.getHeight()/GameView.PIXEL_TO_METER
 		);
+		
+		sprite.setCenter(
+        		(wall.getX() + wall.getWidth()/2) / GameView.PIXEL_TO_METER, 
+        		(wall.getY() + wall.getHeight()/2) / GameView.PIXEL_TO_METER
+        );
 	}
 
 }

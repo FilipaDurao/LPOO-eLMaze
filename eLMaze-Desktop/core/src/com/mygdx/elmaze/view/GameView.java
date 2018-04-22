@@ -129,14 +129,12 @@ public class GameView extends ScreenAdapter {
     private void drawExit() {
     	ExitModel exit = GameModel.getInstance().getExit();
     	ExitView exitView = (ExitView) ViewFactory.makeView(game, exit);
-    	exitView.update(exit);
     	exitView.draw(game.getSpriteBatch());
     }
     
     private void drawWalls() {    	
     	for (WallModel wall : GameModel.getInstance().getWalls()) {
     		WallView wallView = (WallView) ViewFactory.makeView(game, wall);
-    		wallView.update(wall);
     		wallView.draw(game.getSpriteBatch());
     	}
     }
@@ -145,7 +143,6 @@ public class GameView extends ScreenAdapter {
     	for (DoorModel door : GameModel.getInstance().getDoors()) {
     		if (door.isClosed()) {
     			DoorView doorView = (DoorView) ViewFactory.makeView(game, door);
-        		doorView.update(door);
         		doorView.draw(game.getSpriteBatch());
     		}
     	}

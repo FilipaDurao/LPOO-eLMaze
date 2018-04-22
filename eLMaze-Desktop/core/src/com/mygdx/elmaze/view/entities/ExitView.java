@@ -12,6 +12,9 @@ public class ExitView extends EntityView {
 	public ExitView(ELMaze game, EntityModel model) {
 		super(game, model);
 	}
+	
+	@Override
+	public void update(EntityModel model) {}
 
 	@Override
 	public void createSprite(ELMaze game, EntityModel model) {
@@ -24,7 +27,9 @@ public class ExitView extends EntityView {
         sprite.setSize(
     			((ExitModel)model).getRadius()*2 / GameView.PIXEL_TO_METER, 
     			((ExitModel)model).getRadius()*2 / GameView.PIXEL_TO_METER
-    		);
+    	);
+        
+        sprite.setCenter(model.getX() / GameView.PIXEL_TO_METER, model.getY() / GameView.PIXEL_TO_METER);
 	}
 
 }
