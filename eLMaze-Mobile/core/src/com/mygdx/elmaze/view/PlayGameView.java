@@ -58,13 +58,16 @@ public class PlayGameView extends ScreenAdapter {
     }
 
     public void connectToHostSocket(){
-        try {
-            socket = new Socket("192.168.1.6", 8500);
-        }
-        catch(IOException e) {
-            System.out.println("Failed to connect...");
-            e.printStackTrace();
-            System.exit(1);
+        while (true) {
+            try {
+                socket = new Socket("192.168.2.15", 8500);
+                break;
+            }
+            catch(IOException e) {
+                //System.out.println("Failed to connect...");
+                //e.printStackTrace();
+                //System.exit(1);
+            }
         }
 
         o = null;
