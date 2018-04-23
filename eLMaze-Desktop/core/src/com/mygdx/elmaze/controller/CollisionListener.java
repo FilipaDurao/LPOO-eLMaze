@@ -12,6 +12,18 @@ import com.mygdx.elmaze.model.entities.ExitModel;
 
 public class CollisionListener implements ContactListener {
 	
+	private static CollisionListener instance;
+	
+	public static CollisionListener getInstance() {
+		if (instance == null) {
+			instance = new CollisionListener();
+		}
+		
+		return instance;
+	}
+	
+	private CollisionListener() {}
+	
 	@Override
 	public void beginContact(Contact contact) {
         Body bodyA = contact.getFixtureA().getBody();
@@ -20,8 +32,7 @@ public class CollisionListener implements ContactListener {
         if (bodyA.getUserData() instanceof BallModel &&
         	bodyB.getUserData() instanceof ExitModel ) {
         	
-        	System.out.println("You win! :D");
-    		Gdx.app.exit();
+        	GameController.getInstance().advanceLevel();
         }
         
         if (bodyA.getUserData() instanceof BallModel &&

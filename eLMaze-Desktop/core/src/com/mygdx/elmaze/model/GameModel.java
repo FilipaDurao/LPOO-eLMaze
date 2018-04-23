@@ -27,18 +27,18 @@ public class GameModel {
 	}
 	
 	private GameModel() {
-		ball = new BallModel(1.65f, 1.65f, 0.5f, 0);
-		exit = new ExitModel(1.65f, GameController.MAP_HEIGHT - 1.65f, 0.6f);
+		ball = new BallModel(2.05f, 2.05f, 0.5f, 0);
+		exit = new ExitModel(GameController.MAP_WIDTH - 2.05f, GameController.MAP_HEIGHT - 2.05f, 0.6f);
 		
 		createButtonsDoors();
 		createWalls();
 	}
 	
 	private void createButtonsDoors() {
-		DoorModel door1 = new DoorModel(GameController.MAP_WIDTH-2.5f, GameController.MAP_HEIGHT*2/5, 2, 0.3f);
+		DoorModel door1 = new DoorModel(GameController.MAP_WIDTH-3.0f, GameController.MAP_HEIGHT*2/4+0.45f, 2.5f, 0.3f);
 		doors.add(door1);	
 		
-		buttons.add(new ButtonModel(1.65f, 4.65f, 0.7f, doors.get(0)));
+		buttons.add(new ButtonModel(2.05f, 5.65f, 0.7f, doors.get(0)));
 	}
 	
 	private void createWalls() {
@@ -46,10 +46,9 @@ public class GameModel {
 		walls.add(new WallModel(0, GameController.MAP_HEIGHT - 0.5f, GameController.MAP_WIDTH, 0.5f));	
 		walls.add(new WallModel(0, 0, 0.5f, GameController.MAP_HEIGHT));	
 		walls.add(new WallModel(GameController.MAP_WIDTH - 0.5f, 0, 0.5f, GameController.MAP_HEIGHT));			
-		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*1/5, GameController.MAP_WIDTH - 3, 0.5f));			
-		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*2/5, GameController.MAP_WIDTH - 3, 0.5f));			
-		walls.add(new WallModel(2.5f, (GameController.MAP_HEIGHT-0.25f)*3/5, GameController.MAP_WIDTH - 3, 0.5f));			
-		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*4/5, GameController.MAP_WIDTH - 3, 0.5f));
+		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*1/4, GameController.MAP_WIDTH - 3.5f, 0.5f));			
+		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*2/4, GameController.MAP_WIDTH - 3.5f, 0.5f));			
+		walls.add(new WallModel(3.0f, (GameController.MAP_HEIGHT-0.25f)*3/4, GameController.MAP_WIDTH - 3.5f, 0.5f));
 	}
 
 	public BallModel getBall() {
