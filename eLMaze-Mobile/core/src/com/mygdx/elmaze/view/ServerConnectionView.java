@@ -1,24 +1,21 @@
 package com.mygdx.elmaze.view;
 
-import com.badlogic.gdx.ScreenAdapter;
 import com.mygdx.elmaze.ELMaze;
 
-public class ServerConnectionView extends ScreenAdapter {
-
-    private final ELMaze game;
+public class ServerConnectionView extends MenuView {
 
     public ServerConnectionView(ELMaze game) {
-        this.game = game;
+        super(game, TYPE.CONNECTION);
     }
 
     @Override
     public void render(float delta) {
         // TODO
 
-        handleInput();
+        handleInputs();
     }
 
-    public void handleInput(){
+    public void handleInputs(){
         // TODO
     }
 

@@ -1,25 +1,19 @@
 package com.mygdx.elmaze.view;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.mygdx.elmaze.view.MenuFactory;
 import com.mygdx.elmaze.ELMaze;
 
+import javax.swing.text.ViewFactory;
 
-public class MainMenuView extends ScreenAdapter {
 
-    private final int SCREEN_WIDTH = Gdx.graphics.getWidth();
-    private final int SCREEN_HEIGHT = Gdx.graphics.getHeight();
-
-    private final ELMaze game;
-    private Stage stage;
+public class MainMenuView extends MenuView {
 
     // Background
     private Image backgroundImage;
@@ -31,7 +25,7 @@ public class MainMenuView extends ScreenAdapter {
     private ImageButton exitButton;
 
     public MainMenuView(ELMaze game) {
-        this.game = game;
+        super(game, TYPE.MAIN);
         setUpBackground();
         setUpPlayButton();
         setUpInstructionsButton();
@@ -58,12 +52,12 @@ public class MainMenuView extends ScreenAdapter {
     private void setUpPlayButton(){
         Texture playButtonTextureUp = new Texture(Gdx.files.internal("genericButtonUp.png"));
         TextureRegion playButtonTextureRegionUp = new TextureRegion(playButtonTextureUp);
-        setupTextureRegion(playButtonTextureRegionUp);
+        setupTextureRegion(playButtonTextureRegionUp, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
         TextureRegionDrawable playButtonDrawableUp = new TextureRegionDrawable(playButtonTextureRegionUp);
 
         Texture playButtonTextureDown = new Texture(Gdx.files.internal("genericButtonDown.png"));
         TextureRegion playButtonTextureRegionDown = new TextureRegion(playButtonTextureDown);
-        setupTextureRegion(playButtonTextureRegionDown);
+        setupTextureRegion(playButtonTextureRegionDown, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
         TextureRegionDrawable playButtonDrawableDown = new TextureRegionDrawable(playButtonTextureRegionDown);
 
         playButton = new ImageButton(playButtonDrawableUp, playButtonDrawableDown);
@@ -73,12 +67,12 @@ public class MainMenuView extends ScreenAdapter {
     private void setUpInstructionsButton(){
         Texture instructionsButtonTextureUp = new Texture(Gdx.files.internal("genericButtonUp.png"));
         TextureRegion instructionsButtonTextureRegionUp = new TextureRegion(instructionsButtonTextureUp);
-        setupTextureRegion(instructionsButtonTextureRegionUp);
+        setupTextureRegion(instructionsButtonTextureRegionUp, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
         TextureRegionDrawable instructionsButtonDrawableUp = new TextureRegionDrawable(instructionsButtonTextureRegionUp);
 
         Texture instructionsButtonTextureDown = new Texture(Gdx.files.internal("genericButtonDown.png"));
         TextureRegion instructionsButtonTextureRegionDown = new TextureRegion(instructionsButtonTextureDown);
-        setupTextureRegion(instructionsButtonTextureRegionDown);
+        setupTextureRegion(instructionsButtonTextureRegionDown, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
         TextureRegionDrawable instructionsButtonDrawableDown = new TextureRegionDrawable(instructionsButtonTextureRegionDown);
 
         instructionsButton = new ImageButton(instructionsButtonDrawableUp, instructionsButtonDrawableDown);
@@ -88,12 +82,12 @@ public class MainMenuView extends ScreenAdapter {
     private void setUpCreditsButton(){
         Texture creditsButtonTextureUp = new Texture(Gdx.files.internal("genericButtonUp.png"));
         TextureRegion creditsButtonTextureRegionUp = new TextureRegion(creditsButtonTextureUp);
-        setupTextureRegion(creditsButtonTextureRegionUp);
+        setupTextureRegion(creditsButtonTextureRegionUp, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
         TextureRegionDrawable creditsButtonDrawableUp = new TextureRegionDrawable(creditsButtonTextureRegionUp);
 
         Texture creditsButtonTextureDown = new Texture(Gdx.files.internal("genericButtonDown.png"));
         TextureRegion creditsButtonTextureRegionDown = new TextureRegion(creditsButtonTextureDown);
-        setupTextureRegion(creditsButtonTextureRegionDown);
+        setupTextureRegion(creditsButtonTextureRegionDown, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
         TextureRegionDrawable creditsButtonDrawableDown = new TextureRegionDrawable(creditsButtonTextureRegionDown);
 
         creditsButton = new ImageButton(creditsButtonDrawableUp, creditsButtonDrawableDown);
@@ -103,22 +97,16 @@ public class MainMenuView extends ScreenAdapter {
     private void setUpExitButton(){
         Texture exitButtonTextureUp = new Texture(Gdx.files.internal("genericButtonUp.png"));
         TextureRegion exitButtonTextureRegionUp = new TextureRegion(exitButtonTextureUp);
-        setupTextureRegion(exitButtonTextureRegionUp);
+        setupTextureRegion(exitButtonTextureRegionUp, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
         TextureRegionDrawable exitButtonDrawableUp = new TextureRegionDrawable(exitButtonTextureRegionUp);
 
         Texture exitButtonTextureDown = new Texture(Gdx.files.internal("genericButtonDown.png"));
         TextureRegion exitButtonTextureRegionDown = new TextureRegion(exitButtonTextureDown);
-        setupTextureRegion(exitButtonTextureRegionDown);
+        setupTextureRegion(exitButtonTextureRegionDown, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
         TextureRegionDrawable exitButtonDrawableDown = new TextureRegionDrawable(exitButtonTextureRegionDown);
 
         exitButton = new ImageButton(exitButtonDrawableUp, exitButtonDrawableDown);
         exitButton.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*1.15f/9, 1);
-    }
-
-    private void setupTextureRegion(TextureRegion textureRegion) {
-        textureRegion.getTexture().setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
-        textureRegion.setRegionHeight((int)(SCREEN_HEIGHT*0.15));
-        textureRegion.setRegionWidth((int)(SCREEN_WIDTH*0.75));
     }
 
     private void setUpStage(){
@@ -128,20 +116,19 @@ public class MainMenuView extends ScreenAdapter {
         stage.addActor(instructionsButton);
         stage.addActor(creditsButton);
         stage.addActor(exitButton);
-        Gdx.input.setInputProcessor(stage);
     }
 
     public void handleInputs() {
         if (playButton.isChecked()) {
-            game.setScreen(new PlayGameView(game));
+            game.activateMenu(MenuFactory.makeMenu(game, TYPE.PLAY));
         }
-        if(instructionsButton.isChecked()){
-            game.setScreen(new InstructionsView(game));
+        if(instructionsButton.isChecked()) {
+            game.activateMenu(MenuFactory.makeMenu(game, TYPE.INSTRUCTIONS));
         }
-        if(creditsButton.isChecked()){
-            game.setScreen(new CreditsView(game));
+        if(creditsButton.isChecked()) {
+            game.activateMenu(MenuFactory.makeMenu(game, TYPE.CREDITS));
         }
-        if (exitButton.isChecked()) {
+        if (exitButton.isPressed()) {
             Gdx.app.exit();
         }
     }

@@ -1,13 +1,11 @@
 package com.mygdx.elmaze.view;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.networking.MessageToServer;
 
@@ -15,22 +13,17 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class PlayGameView extends ScreenAdapter {
-    private final int SCREEN_WIDTH = Gdx.graphics.getWidth();
-    private final int SCREEN_HEIGHT = Gdx.graphics.getHeight();
+public class PlayGameView extends MenuView {
 
     // Networking
     private Socket socket;
     private ObjectOutputStream o;
 
-    private final ELMaze game;
-    private Stage stage;
-
     // Background
     private Image backgroundImage;
 
     public PlayGameView(ELMaze game) {
-        this.game = game;
+        super(game, TYPE.PLAY);
         setUpBackground();
         setUpStage();
         connectToHostSocket();
@@ -38,7 +31,7 @@ public class PlayGameView extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-        handleInput();
+        handleInputs();
 
         stage.act(delta); //Perform ui logic
         stage.draw(); //Draw the UI
@@ -54,13 +47,12 @@ public class PlayGameView extends ScreenAdapter {
     private void setUpStage(){
         stage = new Stage();
         stage.addActor(backgroundImage);
-        Gdx.input.setInputProcessor(stage);
     }
 
     public void connectToHostSocket(){
         while (true) {
             try {
-                socket = new Socket("192.168.2.118", 8500);
+                socket = new Socket("192.168.2.15", 8500);
                 break;
             }
             catch(IOException e) {
@@ -81,7 +73,7 @@ public class PlayGameView extends ScreenAdapter {
         }
     }
 
-    public void handleInput(){
+    public void handleInputs(){
         try {
             o.writeObject(new MessageToServer(
                     Gdx.input.getAccelerometerY(),
@@ -89,8 +81,7 @@ public class PlayGameView extends ScreenAdapter {
             );
         }
         catch (IOException e){
-            System.out.println("Failed to write message...");
-            System.exit(2);
+            game.activateMenu(MenuFactory.makeMenu(game, TYPE.MAIN));
         }
     }
 
