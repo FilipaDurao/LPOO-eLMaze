@@ -135,6 +135,12 @@ public class MainMenuView extends ScreenAdapter {
         if (playButton.isChecked()) {
             game.setScreen(new PlayGameView(game));
         }
+        if(instructionsButton.isChecked()){
+            game.setScreen(new InstructionsView(game));
+        }
+        if(creditsButton.isChecked()){
+            game.setScreen(new CreditsView(game));
+        }
         if (exitButton.isChecked()) {
             Gdx.app.exit();
         }

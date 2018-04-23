@@ -60,7 +60,7 @@ public class PlayGameView extends ScreenAdapter {
     public void connectToHostSocket(){
         while (true) {
             try {
-                socket = new Socket("192.168.2.15", 8500);
+                socket = new Socket("192.168.2.118", 8500);
                 break;
             }
             catch(IOException e) {
