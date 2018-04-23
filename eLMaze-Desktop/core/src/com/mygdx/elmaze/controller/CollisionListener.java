@@ -1,11 +1,11 @@
 package com.mygdx.elmaze.controller;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.mygdx.elmaze.model.GameModel;
 import com.mygdx.elmaze.model.entities.BallModel;
 import com.mygdx.elmaze.model.entities.ButtonModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
@@ -33,6 +33,7 @@ public class CollisionListener implements ContactListener {
         	bodyB.getUserData() instanceof ExitModel ) {
         	
         	GameController.getInstance().advanceLevel();
+        	GameModel.getInstance().advanceLevel();
         }
         
         if (bodyA.getUserData() instanceof BallModel &&

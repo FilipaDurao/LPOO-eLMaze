@@ -6,8 +6,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.elmaze.controller.entities.BallBody;
 import com.mygdx.elmaze.controller.levels.Level;
-import com.mygdx.elmaze.controller.levels.SPLevel1;
 import com.mygdx.elmaze.controller.levels.SinglePlayerLevel;
+import com.mygdx.elmaze.model.GameModel;
+import com.mygdx.elmaze.model.levels.SinglePlayerLevelModel;
 
 public class GameController {
 	
@@ -25,7 +26,8 @@ public class GameController {
 	}
 
 	private GameController() {
-		levels.add(new SPLevel1());
+		levels.add(new SinglePlayerLevel((SinglePlayerLevelModel) GameModel.getInstance().getLevelByIndex(0)));
+		levels.add(new SinglePlayerLevel((SinglePlayerLevelModel) GameModel.getInstance().getLevelByIndex(1)));
 	}
 	
 	public World getWorld() {

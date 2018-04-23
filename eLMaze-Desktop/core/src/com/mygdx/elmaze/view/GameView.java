@@ -16,6 +16,7 @@ import com.mygdx.elmaze.model.entities.ButtonModel;
 import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
+import com.mygdx.elmaze.model.levels.SinglePlayerLevelModel;
 import com.mygdx.elmaze.view.entities.*;
 
 public class GameView extends ScreenAdapter {
@@ -120,27 +121,27 @@ public class GameView extends ScreenAdapter {
     }
     
     private void drawBall() {
-    	BallModel ball = GameModel.getInstance().getBall();
+    	BallModel ball = ((SinglePlayerLevelModel) GameModel.getInstance().getCurrentLevel()).getBall();
         BallView ballView = (BallView) ViewFactory.makeView(game, ball);
     	ballView.update(ball);
     	ballView.draw(game.getSpriteBatch());
     }
     
     private void drawExit() {
-    	ExitModel exit = GameModel.getInstance().getExit();
+    	ExitModel exit = GameModel.getInstance().getCurrentLevel().getExit();
     	ExitView exitView = (ExitView) ViewFactory.makeView(game, exit);
     	exitView.draw(game.getSpriteBatch());
     }
     
     private void drawWalls() {    	
-    	for (WallModel wall : GameModel.getInstance().getWalls()) {
+    	for (WallModel wall : GameModel.getInstance().getCurrentLevel().getWalls()) {
     		WallView wallView = (WallView) ViewFactory.makeView(game, wall);
     		wallView.draw(game.getSpriteBatch());
     	}
     }
     
     private void drawDoors() {
-    	for (DoorModel door : GameModel.getInstance().getDoors()) {
+    	for (DoorModel door : GameModel.getInstance().getCurrentLevel().getDoors()) {
     		if (door.isClosed()) {
     			DoorView doorView = (DoorView) ViewFactory.makeView(game, door);
         		doorView.draw(game.getSpriteBatch());
@@ -149,7 +150,7 @@ public class GameView extends ScreenAdapter {
     }
     
     private void drawButtons() {
-    	for (ButtonModel button: GameModel.getInstance().getButtons()) {
+    	for (ButtonModel button: GameModel.getInstance().getCurrentLevel().getButtons()) {
     		ButtonView buttonView = (ButtonView) ViewFactory.makeView(game, button);
     		buttonView.update(button);
     		buttonView.draw(game.getSpriteBatch());

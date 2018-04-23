@@ -7,6 +7,8 @@ import com.mygdx.elmaze.ELMaze;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.width = 928;
+		config.height = 696;
 		new LwjglApplication(new ELMaze(), config);
 	}
 }
