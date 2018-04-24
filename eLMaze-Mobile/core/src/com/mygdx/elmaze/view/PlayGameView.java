@@ -52,7 +52,7 @@ public class PlayGameView extends MenuView {
     public void connectToHostSocket(){
         while (true) {
             try {
-                socket = new Socket("192.168.2.15", 8500);
+                socket = new Socket("192.168.43.31", 8500);
                 break;
             }
             catch(IOException e) {
