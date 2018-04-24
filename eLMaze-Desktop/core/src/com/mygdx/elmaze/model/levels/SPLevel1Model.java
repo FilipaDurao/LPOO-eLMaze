@@ -18,16 +18,11 @@ public class SPLevel1Model extends SinglePlayerLevelModel {
 
 	@Override
 	protected void createBall() {
-		ball = new BallModel(2.05f, 2.05f, 0.5f, 0);
+		ball = new BallModel(2.05f, GameController.MAP_HEIGHT - 2.05f, 0.5f, 0);
 	}
 
 	@Override
-	protected void createButtonsDoors() {
-		DoorModel door1 = new DoorModel(GameController.MAP_WIDTH-3.0f, GameController.MAP_HEIGHT*2/4+0.45f, 2.5f, 0.3f);
-		doors.add(door1);	
-		
-		buttons.add(new ButtonModel(2.05f, 5.65f, 0.7f, doors.get(0)));
-	}
+	protected void createButtonsDoors() {}
 
 	@Override
 	protected void createWalls() {
@@ -37,12 +32,12 @@ public class SPLevel1Model extends SinglePlayerLevelModel {
 		walls.add(new WallModel(GameController.MAP_WIDTH - 0.5f, 0, 0.5f, GameController.MAP_HEIGHT));			
 		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*1/4, GameController.MAP_WIDTH - 3.5f, 0.5f));			
 		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*2/4, GameController.MAP_WIDTH - 3.5f, 0.5f));			
-		walls.add(new WallModel(3.0f, (GameController.MAP_HEIGHT-0.25f)*3/4, GameController.MAP_WIDTH - 3.5f, 0.5f));
+		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*3/4, GameController.MAP_WIDTH - 3.5f, 0.5f));
 	}
 
 	@Override
 	protected void createExit() {
-		exit = new ExitModel(GameController.MAP_WIDTH - 2.05f, GameController.MAP_HEIGHT - 2.05f, 0.6f);
+		exit = new ExitModel(2.05f, (GameController.MAP_HEIGHT-0.25f)*3/8 + 0.25f, 0.6f);
 	}
 
 }

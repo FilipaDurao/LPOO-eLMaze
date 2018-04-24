@@ -28,6 +28,7 @@ public class GameController {
 	private GameController() {
 		levels.add(new SinglePlayerLevel((SinglePlayerLevelModel) GameModel.getInstance().getLevelByIndex(0)));
 		levels.add(new SinglePlayerLevel((SinglePlayerLevelModel) GameModel.getInstance().getLevelByIndex(1)));
+		levels.add(new SinglePlayerLevel((SinglePlayerLevelModel) GameModel.getInstance().getLevelByIndex(2)));
 	}
 	
 	public World getWorld() {

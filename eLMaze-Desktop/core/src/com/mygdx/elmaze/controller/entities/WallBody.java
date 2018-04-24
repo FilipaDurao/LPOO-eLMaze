@@ -24,7 +24,7 @@ public class WallBody extends EntityBody {
         fixtureDef.shape = rectangle;
         fixtureDef.density = .5f;
         fixtureDef.friction = .5f;
-        fixtureDef.restitution = .5f;
+        fixtureDef.restitution = .3f;
         
         body.createFixture(fixtureDef);
         
