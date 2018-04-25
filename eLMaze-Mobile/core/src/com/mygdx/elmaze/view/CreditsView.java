@@ -20,10 +20,12 @@ public class CreditsView extends MenuView {
 
     public CreditsView(ELMaze game) {
         super(game, TYPE.CREDITS);
-        setUpBackground();
-        setUpTextTable();
-        setUpExitButton();
-        setUpStage();
+        setupTextTable();
+
+        exitButton = ButtonFactory.makeImageButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
+                SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
+
+        setupStage();
     }
 
     @Override
@@ -36,19 +38,11 @@ public class CreditsView extends MenuView {
 
     public void handleInputs(){
         if (exitButton.isChecked()) {
-            exitButton.setDisabled(true);
             game.activateMenu(MenuFactory.makeMenu(game, TYPE.MAIN));
         }
     }
 
-    private void setUpBackground(){
-        Texture backgroundTexture = new Texture("background.png");
-        backgroundImage = new Image(backgroundTexture);
-        backgroundImage.setDrawable(new TextureRegionDrawable(new TextureRegion(backgroundTexture)));
-        backgroundImage.setSize(backgroundTexture.getWidth(), backgroundTexture.getHeight());
-    }
-
-    private void setUpTextTable(){
+    private void setupTextTable(){
         Texture textTableTexture = new Texture("textTable.png");
         TextureRegion textTableTextureRegion = new TextureRegion(textTableTexture);
         setupTextureRegion(textTableTextureRegion, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.60));
@@ -56,26 +50,15 @@ public class CreditsView extends MenuView {
         textTableImage.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*3/5, 1);
     }
 
-    private void setUpExitButton(){
-        Texture exitButtonTextureUp = new Texture(Gdx.files.internal("genericButtonUp.png"));
-        TextureRegion exitButtonTextureRegionUp = new TextureRegion(exitButtonTextureUp);
-        setupTextureRegion(exitButtonTextureRegionUp, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
-        TextureRegionDrawable exitButtonDrawableUp = new TextureRegionDrawable(exitButtonTextureRegionUp);
-
-        Texture exitButtonTextureDown = new Texture(Gdx.files.internal("genericButtonDown.png"));
-        TextureRegion exitButtonTextureRegionDown = new TextureRegion(exitButtonTextureDown);
-        setupTextureRegion(exitButtonTextureRegionDown, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
-        TextureRegionDrawable exitButtonDrawableDown = new TextureRegionDrawable(exitButtonTextureRegionDown);
-
-        exitButton = new ImageButton(exitButtonDrawableUp, exitButtonDrawableDown);
-        exitButton.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*1.15f/9, 1);
-    }
-
-    private void setUpStage(){
-        stage = new Stage();
-        stage.addActor(backgroundImage);
+    private void setupStage(){
         stage.addActor(textTableImage);
         stage.addActor(exitButton);
+    }
+
+    private static void setupTextureRegion(TextureRegion textureRegion, int width, int height) {
+        textureRegion.getTexture().setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
+        textureRegion.setRegionHeight(height);
+        textureRegion.setRegionWidth(width);
     }
 
 }

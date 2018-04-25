@@ -24,8 +24,7 @@ public class PlayGameView extends MenuView {
 
     public PlayGameView(ELMaze game) {
         super(game, TYPE.PLAY);
-        setUpBackground();
-        setUpStage();
+        setupStage();
         connectToHostSocket();
     }
 
@@ -37,16 +36,8 @@ public class PlayGameView extends MenuView {
         stage.draw(); //Draw the UI
     }
 
-    private void setUpBackground(){
-        Texture backgroundTexture = new Texture("background.png");
-        backgroundImage = new Image(backgroundTexture);
-        backgroundImage.setDrawable(new TextureRegionDrawable(new TextureRegion(backgroundTexture)));
-        backgroundImage.setSize(backgroundTexture.getWidth(), backgroundTexture.getHeight());
-    }
+    private void setupStage(){
 
-    private void setUpStage(){
-        stage = new Stage();
-        stage.addActor(backgroundImage);
     }
 
     public void connectToHostSocket(){
