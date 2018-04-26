@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.networking.MessageToServer;
+import com.mygdx.elmaze.networking.NetworkManager;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -18,7 +19,6 @@ public class PlayGameView extends MenuView {
     public PlayGameView(ELMaze game) {
         super(game, TYPE.PLAY);
         setupStage();
-        connectToHostSocket();
     }
 
     @Override
@@ -33,39 +33,14 @@ public class PlayGameView extends MenuView {
 
     }
 
-    public void connectToHostSocket(){
-        while (true) {
-            try {
-                socket = new Socket("172.30.10.12", 8500);
-                break;
-            }
-            catch(IOException e) {
-                //System.out.println("Failed to connect...");
-                //e.printStackTrace();
-                //System.exit(1);
-            }
-        }
+    protected void handleInputs(){
+        boolean broadcastSuccess = NetworkManager.getInstance().broadcastMessage( new MessageToServer(
+                Gdx.input.getAccelerometerY(),
+                -Gdx.input.getAccelerometerX())
+        );
 
-        o = null;
-
-        try {
-            o = new ObjectOutputStream(socket.getOutputStream());
-        }
-        catch(IOException e) {
-            System.out.println("Failed to create stream...");
-            System.exit(2);
-        }
-    }
-
-    public void handleInputs(){
-        try {
-            o.writeObject(new MessageToServer(
-                    Gdx.input.getAccelerometerY(),
-                    -Gdx.input.getAccelerometerX())
-            );
-        }
-        catch (IOException e){
-            game.activateMenu(MenuFactory.makeMenu(game, TYPE.MAIN));
+        if(!broadcastSuccess) {
+            game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.MAIN));
         }
     }
 

@@ -1,16 +1,14 @@
 package com.mygdx.elmaze.view;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
+import com.mygdx.elmaze.networking.Utilities;
+import com.mygdx.elmaze.networking.NetworkManager;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -105,7 +103,7 @@ public class ServerConnectionView extends MenuView {
         }
     }
 
-    private void setupStage(){
+    private void setupStage() {
         stage.addActor(startButton);
         stage.addActor(backspaceButton);
         stage.addActor(inputArea);
@@ -122,7 +120,6 @@ public class ServerConnectionView extends MenuView {
     }
 
     private void createButtonListeners() {
-
         for (int i=0 ; i<keypadButtons.size() ; i++) {
             final int myIndex = i;
             keypadButtons.get(i).addListener(new ClickListener() {
@@ -147,12 +144,42 @@ public class ServerConnectionView extends MenuView {
                 }
             }
         });
+
+        startButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                connectToServer();
+            }
+        });
     }
 
-    public void handleInputs(){
-        if (startButton.isChecked()) {
-            game.activateMenu(MenuFactory.makeMenu(game, TYPE.PLAY));
+    private void connectToServer() {
+        if (keyCode.size() == 8) {
+            boolean connectionSuccessful = false;
+
+            for (int i=0 ; i<10 ; i++) {
+                if (NetworkManager.getInstance().establishConnection(Utilities.parse(keyCode))) {
+                    connectionSuccessful = true;
+                    break;
+                }
+            }
+
+            if (connectionSuccessful) {
+                game.activateMenu(MenuFactory.makeMenu(game, TYPE.PLAY));
+            }
+            else {
+                clearKeyCode();
+            }
         }
     }
+
+    private void clearKeyCode() {
+        while (!keyCode.isEmpty()) {
+            keyCode.pop();
+            keyCodeImages.get(keyCode.size()).setDrawable(null);
+        }
+    }
+
+    protected void handleInputs() {}
 
 }

@@ -38,6 +38,6 @@ public abstract class MenuView extends ScreenAdapter {
         backgroundImage.setDrawable(new TextureRegionDrawable(new TextureRegion(backgroundTexture)));
     }
 
-    public abstract void handleInputs();
+    protected abstract void handleInputs();
 
 }

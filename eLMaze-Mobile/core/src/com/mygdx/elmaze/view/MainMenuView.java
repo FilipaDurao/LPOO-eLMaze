@@ -36,19 +36,19 @@ public class MainMenuView extends MenuView {
 
     private void setupButtons() {
         exitButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
-                SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
+                SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
         creditsButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
-                SCREEN_HEIGHT*2.85f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
+                SCREEN_HEIGHT*2.70f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
         instructionsButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
-                SCREEN_HEIGHT*4.55f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
+                SCREEN_HEIGHT*4.25f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
         playButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
-                SCREEN_HEIGHT*6.25f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
+                SCREEN_HEIGHT*5.80f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
     }
 
     private void setupTitle(){
-        Texture texture = ImageFactory.makeSizedTexture("eLMazeTitle.png", SCREEN_WIDTH*8/10);
+        Texture texture = ImageFactory.makeSizedTexture("eLMazeTitle.png", SCREEN_WIDTH*82/100);
         title = new Image(texture);
-        title.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*8/9, 1);
+        title.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*7.7f/9, 1);
         title.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
     }
 
@@ -60,7 +60,7 @@ public class MainMenuView extends MenuView {
         stage.addActor(exitButton);
     }
 
-    public void handleInputs() {
+    protected void handleInputs() {
         if (playButton.isChecked()) {
             game.activateMenu(MenuFactory.makeMenu(game, TYPE.CONNECTION));
         }

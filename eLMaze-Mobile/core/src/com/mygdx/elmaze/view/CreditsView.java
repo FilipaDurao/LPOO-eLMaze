@@ -20,7 +20,7 @@ public class CreditsView extends MenuView {
         setupTextTable();
 
         exitButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
-                SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
+                SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
 
         setupStage();
     }
@@ -33,7 +33,7 @@ public class CreditsView extends MenuView {
         handleInputs();
     }
 
-    public void handleInputs(){
+    protected void handleInputs(){
         if (exitButton.isChecked()) {
             game.activateMenu(MenuFactory.makeMenu(game, TYPE.MAIN));
         }

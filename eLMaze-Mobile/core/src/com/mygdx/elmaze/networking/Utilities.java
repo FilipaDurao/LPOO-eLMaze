@@ -1,4 +1,4 @@
-package com.mygdx.elmaze.Utilities;
+package com.mygdx.elmaze.networking;
 
 import java.util.LinkedList;
 
