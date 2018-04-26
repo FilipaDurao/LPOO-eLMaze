@@ -15,9 +15,6 @@ public class PlayGameView extends MenuView {
     private Socket socket;
     private ObjectOutputStream o;
 
-    // Background
-    private Image backgroundImage;
-
     public PlayGameView(ELMaze game) {
         super(game, TYPE.PLAY);
         setupStage();
