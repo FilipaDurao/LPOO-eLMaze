@@ -1,17 +1,9 @@
 package com.mygdx.elmaze.view;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.mygdx.elmaze.view.MenuFactory;
 import com.mygdx.elmaze.ELMaze;
-
-import javax.swing.text.ViewFactory;
-
 
 public class MainMenuView extends MenuView {
 
@@ -19,10 +11,10 @@ public class MainMenuView extends MenuView {
     private Image backgroundImage;
 
     // Buttons
-    private ImageButton playButton;
-    private ImageButton instructionsButton;
-    private ImageButton creditsButton;
-    private ImageButton exitButton;
+    private Button playButton;
+    private Button instructionsButton;
+    private Button creditsButton;
+    private Button exitButton;
 
     public MainMenuView(ELMaze game) {
         super(game, TYPE.MAIN);
@@ -39,13 +31,13 @@ public class MainMenuView extends MenuView {
     }
 
     private void setupButtons() {
-        exitButton = ButtonFactory.makeImageButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
+        exitButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
-        creditsButton = ButtonFactory.makeImageButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
+        creditsButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*2.85f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
-        instructionsButton = ButtonFactory.makeImageButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
+        instructionsButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*4.55f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
-        playButton = ButtonFactory.makeImageButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
+        playButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*6.25f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.15));
     }
 

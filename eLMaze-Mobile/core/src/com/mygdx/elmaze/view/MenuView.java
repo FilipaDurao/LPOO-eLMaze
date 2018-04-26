@@ -28,10 +28,6 @@ public abstract class MenuView extends ScreenAdapter {
         stage.addActor(backgroundImage);
     }
 
-    public TYPE getType() {
-        return type;
-    }
-
     public void activate() {
         Gdx.input.setInputProcessor(stage);
     }
@@ -40,7 +36,6 @@ public abstract class MenuView extends ScreenAdapter {
         Texture backgroundTexture = new Texture("background.png");
         backgroundImage = new Image(backgroundTexture);
         backgroundImage.setDrawable(new TextureRegionDrawable(new TextureRegion(backgroundTexture)));
-        //backgroundImage.setSize(backgroundTexture.getWidth(), backgroundTexture.getHeight());
     }
 
     public abstract void handleInputs();
