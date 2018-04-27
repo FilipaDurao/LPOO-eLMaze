@@ -11,7 +11,7 @@ public class InstructionsView extends MenuView {
     public InstructionsView(ELMaze game) {
         super(game, TYPE.INSTRUCTIONS);
 
-        exitButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
+        exitButton = ButtonFactory.makeButton( "exitButtonUp.png","exitButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
 
         setupStage();

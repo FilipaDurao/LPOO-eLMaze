@@ -63,8 +63,8 @@ public class ServerConnectionView extends MenuView {
 
     private void setupButtons() {
         int buttonSize = (int)(SCREEN_WIDTH*0.15);
-        startButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*1/8, (int)(0.55*SCREEN_WIDTH), buttonSize);
-        backspaceButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*1/8, buttonSize, buttonSize);
+        startButton = ButtonFactory.makeButton( "startButtonUp.png","startButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*1/8, (int)(0.55*SCREEN_WIDTH), buttonSize);
+        backspaceButton = ButtonFactory.makeButton( "backspaceButtonUp.png","backspaceButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*1/8, buttonSize, buttonSize);
         keypadButtons.add(ButtonFactory.makeButton( "alphaButtonUp.png","alphaButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*5/8, buttonSize, buttonSize));
         keypadButtons.add(ButtonFactory.makeButton( "betaButtonUp.png","betaButtonDown.png",SCREEN_WIDTH*2/5,SCREEN_HEIGHT*5/8, buttonSize, buttonSize));
         keypadButtons.add(ButtonFactory.makeButton( "chiButtonUp.png","chiButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*5/8, buttonSize, buttonSize));

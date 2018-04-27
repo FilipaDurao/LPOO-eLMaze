@@ -35,13 +35,13 @@ public class MainMenuView extends MenuView {
     }
 
     private void setupButtons() {
-        exitButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
+        exitButton = ButtonFactory.makeButton( "exitButtonUp.png","exitButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
-        creditsButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
+        creditsButton = ButtonFactory.makeButton( "creditsButtonUp.png","creditsButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*2.70f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
-        instructionsButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
+        instructionsButton = ButtonFactory.makeButton( "instructionsButtonUp.png","instructionsButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*4.25f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
-        playButton = ButtonFactory.makeButton( "genericButtonUp.png","genericButtonDown.png",SCREEN_WIDTH/2,
+        playButton = ButtonFactory.makeButton( "playButtonUp.png","playButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*5.80f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
     }
 
