@@ -1,5 +1,6 @@
 package com.mygdx.elmaze.view;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -14,6 +15,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class ServerConnectionView extends MenuView {
+
+    // Title
+    private Image title;
 
     // Background
     private Image inputArea;
@@ -32,7 +36,7 @@ public class ServerConnectionView extends MenuView {
     public ServerConnectionView(ELMaze game) {
         super(game, TYPE.CONNECTION);
         //setUpTextTable();   // To show the code the user is writing
-
+        setupTitle();
         setupButtons();
         setupImages();
         setupSymbols();
@@ -103,7 +107,15 @@ public class ServerConnectionView extends MenuView {
         }
     }
 
+    private void setupTitle(){
+        Texture texture = ImageFactory.makeSizedTexture("passcode.png", SCREEN_WIDTH*82/100);
+        title = new Image(texture);
+        title.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*8f/9, 1);
+        title.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
+    }
+
     private void setupStage() {
+        stage.addActor(title);
         stage.addActor(startButton);
         stage.addActor(backspaceButton);
         stage.addActor(inputArea);
