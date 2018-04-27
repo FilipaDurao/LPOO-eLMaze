@@ -2,11 +2,13 @@ package com.mygdx.elmaze.networking;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class NetworkManager {
 
     private static NetworkManager instance;
+    private static final int SERVER_PORT = 8500;
 
     private ObjectOutputStream oStream;
     private Socket socket;
@@ -20,29 +22,18 @@ public class NetworkManager {
     }
 
     private NetworkManager() {
-        socket = null;
+        socket = new Socket();
     }
 
-    public boolean establishConnection(String serverAddress, int numRetries)  {
-        System.out.println("Trying to connect to server in address " + serverAddress);
-        for (int i=0 ; i<numRetries ; i++) {
-            try {
-                System.out.println("Trying to create socket.");
-                socket = new Socket(serverAddress, 8500);
-                System.out.println("Created socket!");
-                System.out.println("Trying to create stream");
-                createOutputStream();
-                System.out.println("Created Stream!");
-                System.out.println("Successfully connected to server!");
-                return true;
-            }
-            catch(Exception e) {
-                System.out.println("Failed to create socket. Let's retry.");
-            }
+    public boolean establishConnection(String serverAddress, int timeout)  {
+        try {
+            socket.connect(new InetSocketAddress(serverAddress, SERVER_PORT), timeout);
+            createOutputStream();
+            return true;
         }
-        System.out.println("Failed to connect to server.");
-
-        return false;
+        catch(Exception e) {
+            return false;
+        }
     }
 
     public boolean broadcastMessage(MessageToServer msg) {

@@ -166,14 +166,13 @@ public class ServerConnectionView extends MenuView {
     }
 
     private void connectToServer() {
-        System.out.println("In 'connectToServer'");
         if (keyCode.size() == 8 &&
-            NetworkManager.getInstance().establishConnection(Utilities.parse(keyCode), 10)) {
-            System.out.println("Connection established.");
+            NetworkManager.getInstance().establishConnection(Utilities.parse(keyCode), 1000)) {
             game.activateMenu(MenuFactory.makeMenu(game, TYPE.PLAY));
+            System.out.println("Connected.");
         }
         else {
-            System.out.println("Nope.");
+            System.out.println("Failed Connection.");
             clearKeyCode();
         }
     }

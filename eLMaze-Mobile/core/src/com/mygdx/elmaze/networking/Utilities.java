@@ -15,6 +15,8 @@ public class Utilities {
             parsedIP += (16*rawIP.get(i)+rawIP.get(i+1)) + (i != 6 ? "." : "");
         }
 
+        System.out.println("IP: |" + rawIP + "|");
+        System.out.println("IP: |" + parsedIP + "|");
         return parsedIP;
     }
 
