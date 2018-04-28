@@ -2,8 +2,6 @@ package com.mygdx.elmaze.model.levels;
 
 import com.mygdx.elmaze.controller.GameController;
 import com.mygdx.elmaze.model.entities.BallModel;
-import com.mygdx.elmaze.model.entities.ButtonModel;
-import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
 
