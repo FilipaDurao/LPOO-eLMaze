@@ -21,8 +21,16 @@ public class ELMaze extends Game {
 	
 	private void startElMaze() {
 		GameView view = new GameView(this);
-		
-		NetworkManager.getInstance().startServer();
+
+		// TODO: This is temporary!!!!
+		if (NetworkManager.getInstance().startServer()) {
+			String[] symbols = {"alpha", "beta", "chi", "delta", "epsilon", "eta", "gama", "lamba",
+								"mu", "omega", "phi", "pi", "psi", "rho", "sigma", "tau"};
+			
+			for (Integer num : NetworkManager.getInstance().parse()) {
+				System.out.println(num + " - " + symbols[num]);
+			}
+		}
 		
         setScreen(view);
     }
