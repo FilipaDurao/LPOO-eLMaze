@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import com.mygdx.elmaze.model.levels.LevelModel;
 import com.mygdx.elmaze.model.levels.MPLevel1Model;
+import com.mygdx.elmaze.model.levels.MPLevel2Model;
 import com.mygdx.elmaze.model.levels.SPLevel1Model;
 import com.mygdx.elmaze.model.levels.SPLevel2Model;
 import com.mygdx.elmaze.model.levels.SPLevel3Model;
@@ -33,10 +34,6 @@ public class GameModel {
 		return levels;
 	}
 	
-	public LevelModel getLevelByIndex(int index) {
-		return levels.get(index);
-	}
-	
 	public void advanceLevel() {
 		if (currentLevelIndex < levels.size()-1) {
 			currentLevelIndex++;
@@ -54,5 +51,7 @@ public class GameModel {
 	public void setMultiPlayerMode() {
 		levels.clear();
 		levels.add(new MPLevel1Model());
+		levels.add(new MPLevel2Model());
 	}
+	
 }
