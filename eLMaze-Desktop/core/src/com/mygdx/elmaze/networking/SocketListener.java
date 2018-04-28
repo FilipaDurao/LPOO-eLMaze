@@ -10,9 +10,11 @@ import com.mygdx.elmaze.controller.GameController;
 public class SocketListener implements Runnable {
 	
 	private final Socket socket;
+	private final int connectionID;
 
-	public SocketListener(Socket socket) {
+	public SocketListener(Socket socket, int connectionID) {
 		this.socket = socket;
+		this.connectionID = connectionID;
 	}
 
 	@Override
@@ -26,7 +28,7 @@ public class SocketListener implements Runnable {
 				
 				if (msg != null) {
 					// Update force to ball's center
-					GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(
+					GameController.getInstance().updateBall(connectionID, new Vector2(
 							msg.getAccelerometerX()/2,
 							msg.getAccelerometerY()/2),
 							true
@@ -35,8 +37,13 @@ public class SocketListener implements Runnable {
 			}
 		} 
 		catch (IOException e) {
-			System.out.println("Failed to parse message...");
-			System.exit(3);
+			try {
+				socket.close();
+				SocketManager.removeConnection();
+			} catch (IOException e1) {
+				System.out.println("Failed to close socket...");
+				System.exit(3);
+			}
 		} 
 		catch (ClassNotFoundException e) {
 			System.out.println("Tried to read to an invalid class...");
