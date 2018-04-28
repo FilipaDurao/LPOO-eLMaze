@@ -3,6 +3,7 @@ package com.mygdx.elmaze.model;
 import java.util.LinkedList;
 
 import com.mygdx.elmaze.model.levels.LevelModel;
+import com.mygdx.elmaze.model.levels.MPLevel1Model;
 import com.mygdx.elmaze.model.levels.SPLevel1Model;
 import com.mygdx.elmaze.model.levels.SPLevel2Model;
 import com.mygdx.elmaze.model.levels.SPLevel3Model;
@@ -22,15 +23,14 @@ public class GameModel {
 		return instance;
 	}
 	
-	private GameModel() {
-		levels.add(new SPLevel1Model());
-		levels.add(new SPLevel2Model());
-		levels.add(new SPLevel3Model());
-		levels.add(new SPLevel4Model());
-	}
+	private GameModel() {}
 
 	public LevelModel getCurrentLevel() {
 		return levels.get(currentLevelIndex);
+	}
+	
+	public LinkedList<LevelModel> getLevels() {
+		return levels;
 	}
 	
 	public LevelModel getLevelByIndex(int index) {
@@ -41,5 +41,18 @@ public class GameModel {
 		if (currentLevelIndex < levels.size()-1) {
 			currentLevelIndex++;
 		}
+	}
+	
+	public void setSinglePlayerMode() {
+		levels.clear();
+		levels.add(new SPLevel1Model());
+		levels.add(new SPLevel2Model());
+		levels.add(new SPLevel3Model());
+		levels.add(new SPLevel4Model());
+	}
+	
+	public void setMultiPlayerMode() {
+		levels.clear();
+		levels.add(new MPLevel1Model());
 	}
 }

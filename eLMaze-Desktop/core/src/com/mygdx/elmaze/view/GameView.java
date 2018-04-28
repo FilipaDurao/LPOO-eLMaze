@@ -16,6 +16,7 @@ import com.mygdx.elmaze.model.entities.ButtonModel;
 import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
+import com.mygdx.elmaze.model.levels.MultiPlayerLevelModel;
 import com.mygdx.elmaze.model.levels.SinglePlayerLevelModel;
 import com.mygdx.elmaze.view.entities.*;
 
@@ -25,7 +26,8 @@ public class GameView extends ScreenAdapter {
     public static final float VIEWPORT_WIDTH = 20;
     public static final float SCREEN_RATIO = (float)(Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
     
-    private static final boolean DEBUG = false;;
+    private static final boolean DEBUG = false;
+    private final boolean isSinglePlayer;
 	
     private final ELMaze game;
     private final OrthographicCamera camera;
@@ -33,8 +35,9 @@ public class GameView extends ScreenAdapter {
     private Box2DDebugRenderer debugRenderer;
     private Matrix4 debugCamera;
     
-    public GameView(ELMaze game) {
+    public GameView(ELMaze game, boolean isSinglePlayer) {
     	this.game = game;
+    	this.isSinglePlayer = isSinglePlayer;
     	
     	loadAssets();
     	
@@ -107,24 +110,48 @@ public class GameView extends ScreenAdapter {
     	float speed = 5;
     	
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-		    GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(-speed, 0), true);
+			GameController.getInstance().updateBall(0, new Vector2(-speed, 0), true);
 		}
 		else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-		    GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(speed, 0), true);
+			GameController.getInstance().updateBall(0, new Vector2(speed, 0), true);
 		}
 		else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-		    GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(0, speed), true);
+			GameController.getInstance().updateBall(0, new Vector2(0, speed), true);
 		}
 		else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-		    GameController.getInstance().getBallBody().applyForceToCenter(new Vector2(0, -speed), true);
+			GameController.getInstance().updateBall(0, new Vector2(0, -speed), true);
+		}
+		else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+			GameController.getInstance().updateBall(1, new Vector2(-speed, 0), true);
+		}
+		else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+			GameController.getInstance().updateBall(1, new Vector2(speed, 0), true);
+		}
+		else if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+			GameController.getInstance().updateBall(1, new Vector2(0, speed), true);
+		}
+		else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+			GameController.getInstance().updateBall(1, new Vector2(0, -speed), true);
 		}
     }
     
     private void drawBall() {
-    	BallModel ball = ((SinglePlayerLevelModel) GameModel.getInstance().getCurrentLevel()).getBall();
-        BallView ballView = (BallView) ViewFactory.makeView(game, ball);
-    	ballView.update(ball);
-    	ballView.draw(game.getSpriteBatch());
+    	if (isSinglePlayer) {
+        	BallModel ball = ((SinglePlayerLevelModel) GameModel.getInstance().getCurrentLevel()).getBall();
+            BallView ballView = (BallView) ViewFactory.makeView(game, ball);
+        	ballView.update(ball);
+        	ballView.draw(game.getSpriteBatch());
+    	}
+    	else {
+        	BallModel ball1 = ((MultiPlayerLevelModel) GameModel.getInstance().getCurrentLevel()).getBall1();
+        	BallModel ball2 = ((MultiPlayerLevelModel) GameModel.getInstance().getCurrentLevel()).getBall2();
+            BallView ball1View = (BallView) ViewFactory.makeView(game, ball1);
+            BallView ball2View = (BallView) ViewFactory.makeView(game, ball2);
+        	ball1View.update(ball1);
+        	ball2View.update(ball2);
+        	ball1View.draw(game.getSpriteBatch());
+        	ball2View.draw(game.getSpriteBatch());
+    	}
     }
     
     private void drawExit() {

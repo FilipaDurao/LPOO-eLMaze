@@ -3,6 +3,8 @@ package com.mygdx.elmaze;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.elmaze.controller.GameController;
+import com.mygdx.elmaze.model.GameModel;
 import com.mygdx.elmaze.networking.NetworkManager;
 import com.mygdx.elmaze.view.GameView;
 
@@ -20,7 +22,9 @@ public class ELMaze extends Game {
 	}
 	
 	private void startElMaze() {
-		GameView view = new GameView(this);
+		GameModel.getInstance().setMultiPlayerMode();
+		GameController.getInstance().setMultiPlayerMode();
+		GameView view = new GameView(this, false);
 
 		// TODO: This is temporary!!!!
 		if (NetworkManager.getInstance().startServer()) {

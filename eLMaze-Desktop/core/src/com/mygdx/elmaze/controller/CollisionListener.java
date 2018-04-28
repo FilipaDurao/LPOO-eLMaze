@@ -29,17 +29,21 @@ public class CollisionListener implements ContactListener {
         Body bodyA = contact.getFixtureA().getBody();
         Body bodyB = contact.getFixtureB().getBody();
         
-        if (bodyA.getUserData() instanceof BallModel &&
-        	bodyB.getUserData() instanceof ExitModel ) {
+        if ((bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof ExitModel) || 
+        	(bodyA.getUserData() instanceof ExitModel && bodyB.getUserData() instanceof BallModel)) {
         	
         	GameController.getInstance().advanceLevel();
         	GameModel.getInstance().advanceLevel();
         }
         
-        if (bodyA.getUserData() instanceof BallModel &&
-        	bodyB.getUserData() instanceof ButtonModel ) {
+        if ((bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof ButtonModel) ||
+        	(bodyA.getUserData() instanceof ButtonModel && bodyB.getUserData() instanceof BallModel)) {
         	
-        	((ButtonModel) bodyB.getUserData()).press();
+        	if (bodyA.getUserData() instanceof ButtonModel) {
+            	((ButtonModel) bodyA.getUserData()).press();
+        	} else {
+            	((ButtonModel) bodyB.getUserData()).press();
+        	}
         }
 	}
 
