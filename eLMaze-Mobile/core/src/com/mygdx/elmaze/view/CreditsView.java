@@ -38,23 +38,15 @@ public class CreditsView extends MenuView {
     }
 
     private void setupTextTable(){
-        Texture textTableTexture = new Texture("textTable.png");
-        TextureRegion textTableTextureRegion = new TextureRegion(textTableTexture);
-        setupTextureRegion(textTableTextureRegion, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.60));
-        textTableImage = new Image(textTableTextureRegion);
-        textTableImage.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*3/5, 1);
+        Texture texture = ImageFactory.makeSizedTexture("creditsTable.png", SCREEN_WIDTH*82/100);
+        textTableImage = new Image(texture);
+        textTableImage.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
+        textTableImage.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*8f/9, 1);
     }
 
     private void setupStage(){
         stage.addActor(textTableImage);
         stage.addActor(exitButton);
     }
-
-    private static void setupTextureRegion(TextureRegion textureRegion, int width, int height) {
-        textureRegion.getTexture().setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
-        textureRegion.setRegionHeight(height);
-        textureRegion.setRegionWidth(width);
-    }
-
 
 }
