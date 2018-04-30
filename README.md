@@ -8,4 +8,4 @@ LPOO Second Project using libGDX
 * **Project's Collaborators:** Rui Alves (<u>xRuiAlves</u>) and Filipa Durão (<u>FilipaDurao</u>)
 
 ### Intermediate Check-Point Delivery
-All deliverables regarding the final project intermediate check-point delivery (UML diagrams, GUI mockups, Design choices and patters, ...) can be found under the folder "<b>Intermediate Check-Point Deliverables</b>".
+All deliverables regarding the final project intermediate check-point delivery (UML diagrams, GUI mockups, Design choices and patterns, ...) can be found under the folder "<b>Intermediate Check-Point Deliverables</b>".
