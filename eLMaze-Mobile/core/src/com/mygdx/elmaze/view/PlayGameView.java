@@ -33,7 +33,7 @@ public class PlayGameView extends MenuView {
 
     }
 
-    protected void handleInputs(){
+    private void handleInputs(){
         boolean broadcastSuccess = NetworkManager.getInstance().broadcastMessage( new MessageToServer(
                 Gdx.input.getAccelerometerY(),
                 -Gdx.input.getAccelerometerX())

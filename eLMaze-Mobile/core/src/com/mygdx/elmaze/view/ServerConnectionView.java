@@ -48,7 +48,6 @@ public class ServerConnectionView extends MenuView {
     public void render(float delta) {
         stage.act(delta); //Perform ui logic
         stage.draw(); //Draw the UI
-        handleInputs();
     }
 
     private void setupImages() {
@@ -183,7 +182,5 @@ public class ServerConnectionView extends MenuView {
             keyCodeImages.get(keyCode.size()).setDrawable(null);
         }
     }
-
-    protected void handleInputs() {}
 
 }

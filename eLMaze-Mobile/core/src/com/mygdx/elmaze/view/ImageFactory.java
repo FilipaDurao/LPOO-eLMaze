@@ -38,7 +38,7 @@ public class ImageFactory {
     public static Texture makeSizedTexture(String fileName, int width) {
         Pixmap originalSizePMap = new Pixmap(Gdx.files.internal(fileName));
 
-        float ratio = originalSizePMap.getWidth()/originalSizePMap.getHeight();
+        float ratio = (float)originalSizePMap.getWidth()/(float)originalSizePMap.getHeight();
 
         Pixmap newSizePMap = new Pixmap(
                 width,

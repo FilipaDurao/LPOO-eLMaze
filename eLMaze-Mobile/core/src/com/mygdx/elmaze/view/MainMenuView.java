@@ -3,8 +3,10 @@ package com.mygdx.elmaze.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
 
@@ -30,8 +32,6 @@ public class MainMenuView extends MenuView {
     public void render(float delta) {
         stage.act(delta); //Perform ui logic
         stage.draw(); //Draw the UI
-
-        handleInputs();
     }
 
     private void setupButtons() {
@@ -43,6 +43,38 @@ public class MainMenuView extends MenuView {
                 SCREEN_HEIGHT*4.25f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
         playButton = ButtonFactory.makeButton( "playButtonUp.png","playButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*5.80f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
+
+        addButtonListeners();
+    }
+
+    private void addButtonListeners() {
+        playButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.activateMenu(MenuFactory.makeMenu(game, TYPE.CONNECTION));
+            }
+        });
+
+        instructionsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.activateMenu(MenuFactory.makeMenu(game, TYPE.INSTRUCTIONS));
+            }
+        });
+
+        creditsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.activateMenu(MenuFactory.makeMenu(game, TYPE.CREDITS));
+            }
+        });
+
+        exitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
     }
 
     private void setupTitle(){
@@ -58,21 +90,6 @@ public class MainMenuView extends MenuView {
         stage.addActor(instructionsButton);
         stage.addActor(creditsButton);
         stage.addActor(exitButton);
-    }
-
-    protected void handleInputs() {
-        if (playButton.isChecked()) {
-            game.activateMenu(MenuFactory.makeMenu(game, TYPE.CONNECTION));
-        }
-        if(instructionsButton.isChecked()) {
-            game.activateMenu(MenuFactory.makeMenu(game, TYPE.INSTRUCTIONS));
-        }
-        if(creditsButton.isChecked()) {
-            game.activateMenu(MenuFactory.makeMenu(game, TYPE.CREDITS));
-        }
-        if (exitButton.isPressed()) {
-            Gdx.app.exit();
-        }
     }
 
 }
