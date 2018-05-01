@@ -48,6 +48,8 @@ public class ServerConnectionView extends MenuView {
     public void render(float delta) {
         stage.act(delta); //Perform ui logic
         stage.draw(); //Draw the UI
+
+        System.out.println(keyCode);
     }
 
     private void setupImages() {
@@ -150,7 +152,7 @@ public class ServerConnectionView extends MenuView {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!keyCode.isEmpty()) {
-                    keyCode.pop();
+                    keyCode.removeLast();
                     keyCodeImages.get(keyCode.size()).setDrawable(null);
                 }
             }
@@ -178,7 +180,7 @@ public class ServerConnectionView extends MenuView {
 
     private void clearKeyCode() {
         while (!keyCode.isEmpty()) {
-            keyCode.pop();
+            keyCode.removeLast();
             keyCodeImages.get(keyCode.size()).setDrawable(null);
         }
     }
