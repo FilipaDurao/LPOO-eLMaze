@@ -112,25 +112,25 @@ public class GameView extends ScreenAdapter {
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
 			GameController.getInstance().updateBall(0, new Vector2(-speed, 0), true);
 		}
-		else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
 			GameController.getInstance().updateBall(0, new Vector2(speed, 0), true);
 		}
-		else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
 			GameController.getInstance().updateBall(0, new Vector2(0, speed), true);
 		}
-		else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 			GameController.getInstance().updateBall(0, new Vector2(0, -speed), true);
 		}
-		else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.A)) {
 			GameController.getInstance().updateBall(1, new Vector2(-speed, 0), true);
 		}
-		else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.D)) {
 			GameController.getInstance().updateBall(1, new Vector2(speed, 0), true);
 		}
-		else if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.W)) {
 			GameController.getInstance().updateBall(1, new Vector2(0, speed), true);
 		}
-		else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.S)) {
 			GameController.getInstance().updateBall(1, new Vector2(0, -speed), true);
 		}
     }
