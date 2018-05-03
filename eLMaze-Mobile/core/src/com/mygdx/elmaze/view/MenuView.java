@@ -32,6 +32,10 @@ public abstract class MenuView extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
     }
 
+    public TYPE getType() {
+        return type;
+    }
+
     private void setupBackground(){
         Texture backgroundTexture = new Texture("background.png");
         backgroundImage = new Image(backgroundTexture);

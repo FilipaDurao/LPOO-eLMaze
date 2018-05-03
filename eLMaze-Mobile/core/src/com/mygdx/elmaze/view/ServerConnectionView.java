@@ -35,7 +35,6 @@ public class ServerConnectionView extends MenuView {
 
     public ServerConnectionView(ELMaze game) {
         super(game, TYPE.CONNECTION);
-        //setUpTextTable();   // To show the code the user is writing
         setupTitle();
         setupButtons();
         setupImages();

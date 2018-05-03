@@ -29,9 +29,7 @@ public class PlayGameView extends MenuView {
         stage.draw(); //Draw the UI
     }
 
-    private void setupStage(){
-
-    }
+    private void setupStage() {}
 
     private void handleInputs(){
         boolean broadcastSuccess = NetworkManager.getInstance().broadcastMessage( new MessageToServer(
