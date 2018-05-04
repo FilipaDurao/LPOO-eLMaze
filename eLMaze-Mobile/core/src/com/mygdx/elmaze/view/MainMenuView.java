@@ -23,7 +23,7 @@ public class MainMenuView extends MenuView {
 
     public MainMenuView(ELMaze game) {
         super(game, TYPE.MAIN);
-        setupTitle();
+
         setupButtons();
         setupStage();
     }
@@ -77,14 +77,9 @@ public class MainMenuView extends MenuView {
         });
     }
 
-    private void setupTitle(){
-        Texture texture = ImageFactory.makeSizedTexture("eLMazeTitle.png", SCREEN_WIDTH*82/100);
-        title = new Image(texture);
-        title.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*7.7f/9, 1);
-        title.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
-    }
-
     private void setupStage() {
+        title = ImageFactory.makeImage("eLMazeTitle.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*7.7f/9,SCREEN_WIDTH*82/100);
+
         stage.addActor(title);
         stage.addActor(playButton);
         stage.addActor(instructionsButton);

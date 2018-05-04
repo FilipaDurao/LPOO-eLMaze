@@ -35,7 +35,7 @@ public class ServerConnectionView extends MenuView {
 
     public ServerConnectionView(ELMaze game) {
         super(game, TYPE.CONNECTION);
-        setupTitle();
+
         setupButtons();
         setupImages();
         setupSymbols();
@@ -54,8 +54,8 @@ public class ServerConnectionView extends MenuView {
     private void setupImages() {
         inputArea = ImageFactory.makeImage(
                 "genericButtonUp.png",
-                SCREEN_WIDTH*1/10,
-                SCREEN_HEIGHT*35/48,
+                SCREEN_WIDTH/2,
+                SCREEN_HEIGHT*887/1200,
                 (int)(SCREEN_WIDTH*0.8),
                 (int)(SCREEN_WIDTH*0.1)
         );
@@ -102,19 +102,14 @@ public class ServerConnectionView extends MenuView {
         symbolFileNames.add("tauSymbol.png");
 
         for (int i=0 ; i<8 ; i++) {
-            keyCodeImages.add(ImageFactory.makeImage("empty.png", SCREEN_WIDTH*(11.5f/100+(float)0.1*i),
+            keyCodeImages.add(ImageFactory.makeImage("empty.png", SCREEN_WIDTH*(11f/100+(float)0.1*i) + keyCodeImgSize/2,
                     SCREEN_HEIGHT*887/1200, keyCodeImgSize, keyCodeImgSize));
         }
     }
 
-    private void setupTitle(){
-        Texture texture = ImageFactory.makeSizedTexture("passcode.png", SCREEN_WIDTH*82/100);
-        title = new Image(texture);
-        title.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*8f/9, 1);
-        title.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
-    }
-
     private void setupStage() {
+        title = ImageFactory.makeImage("passcode.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*8f/9,SCREEN_WIDTH*82/100);
+
         stage.addActor(title);
         stage.addActor(startButton);
         stage.addActor(backspaceButton);
@@ -138,9 +133,8 @@ public class ServerConnectionView extends MenuView {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     if (keyCode.size() < 8) {
-                        keyCodeImages.get(keyCode.size()).setDrawable(new TextureRegionDrawable(new TextureRegion(
-                                ImageFactory.makeSizedTexture(symbolFileNames.get(myIndex), keyCodeImgSize, keyCodeImgSize)
-                                )));
+                        keyCodeImages.get(keyCode.size()).setDrawable(new TextureRegionDrawable(
+                                new TextureRegion(new Texture(symbolFileNames.get(myIndex)))));
                         keyCode.add(myIndex);
                     }
                 }

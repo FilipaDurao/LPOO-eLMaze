@@ -1,12 +1,9 @@
 package com.mygdx.elmaze.view;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
 
 public class CreditsView extends MenuView {
@@ -18,7 +15,6 @@ public class CreditsView extends MenuView {
     public CreditsView(ELMaze game) {
         super(game, TYPE.CREDITS);
 
-        setupTextTable();
         setupExitButton();
         setupStage();
     }
@@ -41,14 +37,9 @@ public class CreditsView extends MenuView {
         });
     }
 
-    private void setupTextTable() {
-        Texture texture = ImageFactory.makeSizedTexture("creditsTable.png", SCREEN_WIDTH*90/100);
-        textTableImage = new Image(texture);
-        textTableImage.setPosition(SCREEN_WIDTH*5/100, SCREEN_HEIGHT*25/100);
-        textTableImage.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
-    }
-
     private void setupStage() {
+        textTableImage = ImageFactory.makeImage("creditsTable.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*6/10,SCREEN_WIDTH*90/100);
+
         stage.addActor(textTableImage);
         stage.addActor(exitButton);
     }

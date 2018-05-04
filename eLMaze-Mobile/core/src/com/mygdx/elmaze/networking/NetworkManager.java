@@ -36,6 +36,13 @@ public class NetworkManager {
         }
     }
 
+    public void closeConnection() {
+        try {
+            socket.close();
+            oStream.close();
+        } catch (Exception e) { }
+    }
+
     public boolean broadcastMessage(MessageToServer msg) {
         try {
             oStream.writeObject(msg);
