@@ -24,6 +24,7 @@ public class MainMenuView extends MenuView {
     public MainMenuView(ELMaze game) {
         super(game, TYPE.MAIN);
 
+        loadAssets();
         setupButtons();
         setupStage();
     }
@@ -35,14 +36,14 @@ public class MainMenuView extends MenuView {
     }
 
     private void setupButtons() {
-        exitButton = ButtonFactory.makeButton( "exitButtonUp.png","exitButtonDown.png",SCREEN_WIDTH/2,
-                SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
-        creditsButton = ButtonFactory.makeButton( "creditsButtonUp.png","creditsButtonDown.png",SCREEN_WIDTH/2,
-                SCREEN_HEIGHT*2.70f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
-        instructionsButton = ButtonFactory.makeButton( "instructionsButtonUp.png","instructionsButtonDown.png",SCREEN_WIDTH/2,
-                SCREEN_HEIGHT*4.25f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
-        playButton = ButtonFactory.makeButton( "playButtonUp.png","playButtonDown.png",SCREEN_WIDTH/2,
-                SCREEN_HEIGHT*5.80f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
+        exitButton = ButtonFactory.makeButton(game,"exitButtonUp.png","exitButtonDown.png",
+                SCREEN_WIDTH/2, SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
+        creditsButton = ButtonFactory.makeButton(game,"creditsButtonUp.png","creditsButtonDown.png",
+                SCREEN_WIDTH/2, SCREEN_HEIGHT*2.70f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
+        instructionsButton = ButtonFactory.makeButton(game,"instructionsButtonUp.png","instructionsButtonDown.png",
+                SCREEN_WIDTH/2, SCREEN_HEIGHT*4.25f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
+        playButton = ButtonFactory.makeButton(game, "playButtonUp.png","playButtonDown.png",
+                SCREEN_WIDTH/2, SCREEN_HEIGHT*5.80f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
 
         addButtonListeners();
     }
@@ -78,13 +79,26 @@ public class MainMenuView extends MenuView {
     }
 
     private void setupStage() {
-        title = ImageFactory.makeImage("eLMazeTitle.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*7.7f/9,SCREEN_WIDTH*82/100);
+        title = ImageFactory.makeImage(game,"eLMazeTitle.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*7.7f/9,SCREEN_WIDTH*82/100);
 
         stage.addActor(title);
         stage.addActor(playButton);
         stage.addActor(instructionsButton);
         stage.addActor(creditsButton);
         stage.addActor(exitButton);
+    }
+
+    protected void loadAssets() {
+        this.game.getAssetManager().load("eLMazeTitle.png" , Texture.class);
+        this.game.getAssetManager().load("exitButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("exitButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("creditsButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("creditsButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("instructionsButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("instructionsButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("playButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("playButtonDown.png" , Texture.class);
+        this.game.getAssetManager().finishLoading();
     }
 
 }

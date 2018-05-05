@@ -32,28 +32,4 @@ public class MenuFactory {
 
         return menuCache.get(menuType);
     }
-
-    public static void initMenu(ELMaze game, MenuView.TYPE menuType) {
-
-        if (!menuCache.containsKey(menuType)) {
-            switch (menuType) {
-                case MAIN:
-                    menuCache.put(menuType, new MainMenuView(game));
-                    break;
-                case CREDITS:
-                    menuCache.put(menuType, new CreditsView(game));
-                    break;
-                case INSTRUCTIONS:
-                    menuCache.put(menuType, new InstructionsView(game));
-                    break;
-                case PLAY:
-                    menuCache.put(menuType, new PlayGameView(game));
-                    break;
-                case CONNECTION:
-                    menuCache.put(menuType, new ServerConnectionView(game));
-                    break;
-            }
-        }
-
-    }
 }

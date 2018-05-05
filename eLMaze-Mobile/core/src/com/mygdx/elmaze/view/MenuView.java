@@ -23,7 +23,9 @@ public abstract class MenuView extends ScreenAdapter {
     public MenuView(ELMaze game, TYPE type) {
         this.game = game;
         this.type = type;
+
         setupBackground();
+
         stage = new Stage();
         stage.addActor(backgroundImage);
     }
@@ -36,8 +38,12 @@ public abstract class MenuView extends ScreenAdapter {
         return type;
     }
 
+    protected abstract void loadAssets();
+
     private void setupBackground(){
-        Texture backgroundTexture = new Texture("background.png");
+        this.game.getAssetManager().load( "background.png" , Texture.class);
+        this.game.getAssetManager().finishLoading();
+        Texture backgroundTexture = game.getAssetManager().get("background.png");
         backgroundImage = new Image(backgroundTexture);
         backgroundImage.setDrawable(new TextureRegionDrawable(new TextureRegion(backgroundTexture)));
     }

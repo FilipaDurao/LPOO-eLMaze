@@ -36,9 +36,10 @@ public class ServerConnectionView extends MenuView {
     public ServerConnectionView(ELMaze game) {
         super(game, TYPE.CONNECTION);
 
+        setupSymbolNames();
+        loadAssets();
         setupButtons();
         setupImages();
-        setupSymbols();
         setupStage();
         createButtonListeners();
     }
@@ -53,7 +54,8 @@ public class ServerConnectionView extends MenuView {
 
     private void setupImages() {
         inputArea = ImageFactory.makeImage(
-                "genericButtonUp.png",
+                game,
+                "wood.png",
                 SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*887/1200,
                 (int)(SCREEN_WIDTH*0.8),
@@ -63,27 +65,32 @@ public class ServerConnectionView extends MenuView {
 
     private void setupButtons() {
         int buttonSize = (int)(SCREEN_WIDTH*0.15);
-        startButton = ButtonFactory.makeButton( "startButtonUp.png","startButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*1/8, (int)(0.55*SCREEN_WIDTH), buttonSize);
-        backspaceButton = ButtonFactory.makeButton( "backspaceButtonUp.png","backspaceButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*1/8, buttonSize, buttonSize);
-        keypadButtons.add(ButtonFactory.makeButton( "alphaButtonUp.png","alphaButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*5/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "betaButtonUp.png","betaButtonDown.png",SCREEN_WIDTH*2/5,SCREEN_HEIGHT*5/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "chiButtonUp.png","chiButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*5/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "deltaButtonUp.png","deltaButtonDown.png",SCREEN_WIDTH*4/5,SCREEN_HEIGHT*5/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "epsilonButtonUp.png","epsilonButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*4/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "etaButtonUp.png","etaButtonDown.png",SCREEN_WIDTH*2/5,SCREEN_HEIGHT*4/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "gamaButtonUp.png","gamaButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*4/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "lambdaButtonUp.png","lambdaButtonDown.png",SCREEN_WIDTH*4/5,SCREEN_HEIGHT*4/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "muButtonUp.png","muButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*3/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "omegaButtonUp.png","omegaButtonDown.png",SCREEN_WIDTH*2/5,SCREEN_HEIGHT*3/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "phiButtonUp.png","phiButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*3/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "piButtonUp.png","piButtonDown.png",SCREEN_WIDTH*4/5,SCREEN_HEIGHT*3/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "psiButtonUp.png","psiButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*2/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "rhoButtonUp.png","rhoButtonDown.png",SCREEN_WIDTH*2/5,SCREEN_HEIGHT*2/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "sigmaButtonUp.png","sigmaButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*2/8, buttonSize, buttonSize));
-        keypadButtons.add(ButtonFactory.makeButton( "tauButtonUp.png","tauButtonDown.png",SCREEN_WIDTH*4/5,SCREEN_HEIGHT*2/8, buttonSize, buttonSize));
+        startButton = ButtonFactory.makeButton(game,"startButtonUp.png","startButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*1/8, (int)(0.55*SCREEN_WIDTH), buttonSize);
+        backspaceButton = ButtonFactory.makeButton(game,"backspaceButtonUp.png","backspaceButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*1/8, buttonSize, buttonSize);
+        keypadButtons.add(ButtonFactory.makeButton(game,"alphaButtonUp.png","alphaButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*5/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"betaButtonUp.png","betaButtonDown.png",SCREEN_WIDTH*2/5,SCREEN_HEIGHT*5/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"chiButtonUp.png","chiButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*5/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"deltaButtonUp.png","deltaButtonDown.png",SCREEN_WIDTH*4/5,SCREEN_HEIGHT*5/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"epsilonButtonUp.png","epsilonButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*4/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"etaButtonUp.png","etaButtonDown.png",SCREEN_WIDTH*2/5,SCREEN_HEIGHT*4/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"gamaButtonUp.png","gamaButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*4/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"lambdaButtonUp.png","lambdaButtonDown.png",SCREEN_WIDTH*4/5,SCREEN_HEIGHT*4/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"muButtonUp.png","muButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*3/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"omegaButtonUp.png","omegaButtonDown.png",SCREEN_WIDTH*2/5,SCREEN_HEIGHT*3/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"phiButtonUp.png","phiButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*3/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"piButtonUp.png","piButtonDown.png",SCREEN_WIDTH*4/5,SCREEN_HEIGHT*3/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"psiButtonUp.png","psiButtonDown.png",SCREEN_WIDTH*1/5,SCREEN_HEIGHT*2/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"rhoButtonUp.png","rhoButtonDown.png",SCREEN_WIDTH*2/5,SCREEN_HEIGHT*2/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"sigmaButtonUp.png","sigmaButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*2/8, buttonSize, buttonSize));
+        keypadButtons.add(ButtonFactory.makeButton(game,"tauButtonUp.png","tauButtonDown.png",SCREEN_WIDTH*4/5,SCREEN_HEIGHT*2/8, buttonSize, buttonSize));
+
+        for (int i=0 ; i<8 ; i++) {
+            keyCodeImages.add(ImageFactory.makeImage(game,"empty.png", SCREEN_WIDTH*(11f/100+(float)0.1*i) + keyCodeImgSize/2,
+                    SCREEN_HEIGHT*887/1200, keyCodeImgSize, keyCodeImgSize));
+        }
     }
 
-    private void setupSymbols() {
+    private void setupSymbolNames() {
         symbolFileNames.add("alphaSymbol.png");
         symbolFileNames.add("betaSymbol.png");
         symbolFileNames.add("chiSymbol.png");
@@ -100,15 +107,10 @@ public class ServerConnectionView extends MenuView {
         symbolFileNames.add("rhoSymbol.png");
         symbolFileNames.add("sigmaSymbol.png");
         symbolFileNames.add("tauSymbol.png");
-
-        for (int i=0 ; i<8 ; i++) {
-            keyCodeImages.add(ImageFactory.makeImage("empty.png", SCREEN_WIDTH*(11f/100+(float)0.1*i) + keyCodeImgSize/2,
-                    SCREEN_HEIGHT*887/1200, keyCodeImgSize, keyCodeImgSize));
-        }
     }
 
     private void setupStage() {
-        title = ImageFactory.makeImage("passcode.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*8f/9,SCREEN_WIDTH*82/100);
+        title = ImageFactory.makeImage(game, "passcode.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*8f/9,SCREEN_WIDTH*82/100);
 
         stage.addActor(title);
         stage.addActor(startButton);
@@ -175,6 +177,59 @@ public class ServerConnectionView extends MenuView {
         while (!keyCode.isEmpty()) {
             keyCode.removeLast();
             keyCodeImages.get(keyCode.size()).setDrawable(null);
+        }
+    }
+
+    protected void loadAssets() {
+        this.game.getAssetManager().load("passcode.png" , Texture.class);
+        this.game.getAssetManager().load("wood.png" , Texture.class);
+        this.game.getAssetManager().load("empty.png" , Texture.class);
+        this.game.getAssetManager().load("startButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("startButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("backspaceButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("backspaceButtonDown.png" , Texture.class);
+
+        loadSymbolAssets();
+
+        this.game.getAssetManager().finishLoading();
+    }
+
+    private void loadSymbolAssets() {
+        this.game.getAssetManager().load("alphaButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("alphaButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("betaButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("betaButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("chiButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("chiButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("deltaButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("deltaButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("epsilonButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("epsilonButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("etaButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("etaButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("gamaButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("gamaButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("lambdaButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("lambdaButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("muButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("muButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("omegaButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("omegaButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("phiButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("phiButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("piButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("piButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("psiButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("psiButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("rhoButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("rhoButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("sigmaButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("sigmaButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("tauButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("tauButtonDown.png" , Texture.class);
+
+        for (String fileName : symbolFileNames) {
+            this.game.getAssetManager().load(fileName , Texture.class);
         }
     }
 

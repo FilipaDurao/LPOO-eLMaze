@@ -22,6 +22,8 @@ public class PlayGameView extends MenuView {
 
     public PlayGameView(ELMaze game) {
         super(game, TYPE.PLAY);
+
+        loadAssets();
         setupTextImage();
         setupBallImage();
         setupStage();
@@ -37,7 +39,7 @@ public class PlayGameView extends MenuView {
 
     private void setupStage() {
         stage.addActor(textImage);
-        stage.addActor(ballImage);
+        //stage.addActor(ballImage);
     }
 
     private void setupTextImage() {
@@ -48,10 +50,11 @@ public class PlayGameView extends MenuView {
         //textImage.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
 
 
-        //Texture texture = ImageFactory.makeSizedTexture("eLMazeTitle.png", SCREEN_WIDTH*82/100);
-        //textImage = new Image(texture);
+        //textImage = ImageFactory.makeImage("eLMazeTitle.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*7.7f/9,SCREEN_WIDTH*82/100);
+        //textImage = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("eLMazeTitle.png"))));
+        //textImage.setBounds(SCREEN_WIDTH/2, SCREEN_HEIGHT*7.7f/9, );
         //textImage.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*7.7f/9, 1);
-        //textImage.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
+        //textImage.setDrawable(;
     }
 
     private void setupBallImage() {
@@ -68,6 +71,10 @@ public class PlayGameView extends MenuView {
             NetworkManager.getInstance().closeConnection();
             game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.MAIN));
         }
+    }
+
+    protected void loadAssets() {
+        this.game.getAssetManager().finishLoading();
     }
 
 }
