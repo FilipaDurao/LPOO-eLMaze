@@ -30,9 +30,9 @@ public class ELMaze extends Game {
 	
 	private void startElMaze() {
 		MainMenuView mainMenuView = new MainMenuView(this);
-		GameView view = new GameView(this, false);
-		GameModel.getInstance().setMultiPlayerMode();
-		GameController.getInstance().setMultiPlayerMode();
+		GameView view = new GameView(this, true);
+		GameModel.getInstance().setSinglePlayerMode();
+		GameController.getInstance().setSinglePlayerMode();
 
 		// TODO: This is temporary!!!!
 		if (NetworkManager.getInstance().startServer()) {
@@ -44,7 +44,7 @@ public class ELMaze extends Game {
 			}
 		}
 		
-        setScreen(mainMenuView);
+        setScreen(view);
     }
 
     @Override
