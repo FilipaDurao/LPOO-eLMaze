@@ -24,41 +24,23 @@ public class PlayGameView extends MenuView {
         super(game, TYPE.PLAY);
 
         loadAssets();
-        setupTextImage();
-        setupBallImage();
         setupStage();
     }
 
     @Override
     public void render(float delta) {
-        //handleInputs();
+        handleInputs();
 
         stage.act(delta); //Perform ui logic
         stage.draw(); //Draw the UI
     }
 
     private void setupStage() {
+        textImage = ImageFactory.makeImage(game,"playText.png", SCREEN_WIDTH*5/7, SCREEN_HEIGHT/2,SCREEN_WIDTH*3/10);
+        ballImage = ImageFactory.makeImage(game,"ball.png", SCREEN_WIDTH*7/28, SCREEN_HEIGHT/2,SCREEN_WIDTH*3/10);
+
         stage.addActor(textImage);
-        //stage.addActor(ballImage);
-    }
-
-    private void setupTextImage() {
-        //Texture texture = ImageFactory.makeSizedTexture("playText.png", SCREEN_WIDTH*90/100);
-        //textImage.rotateBy(90);
-        //textImage = new Image(texture);
-        //textImage.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*8/10);
-        //textImage.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
-
-
-        //textImage = ImageFactory.makeImage("eLMazeTitle.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*7.7f/9,SCREEN_WIDTH*82/100);
-        //textImage = new Image(new TextureRegionDrawable(new TextureRegion(new Texture("eLMazeTitle.png"))));
-        //textImage.setBounds(SCREEN_WIDTH/2, SCREEN_HEIGHT*7.7f/9, );
-        //textImage.setPosition(SCREEN_WIDTH/2, SCREEN_HEIGHT*7.7f/9, 1);
-        //textImage.setDrawable(;
-    }
-
-    private void setupBallImage() {
-
+        stage.addActor(ballImage);
     }
 
     private void handleInputs(){
@@ -74,6 +56,8 @@ public class PlayGameView extends MenuView {
     }
 
     protected void loadAssets() {
+        this.game.getAssetManager().load("playText.png" , Texture.class);
+        this.game.getAssetManager().load("ball.png" , Texture.class);
         this.game.getAssetManager().finishLoading();
     }
 
