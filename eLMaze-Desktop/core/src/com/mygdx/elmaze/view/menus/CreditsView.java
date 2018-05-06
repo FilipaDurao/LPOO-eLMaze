@@ -34,8 +34,8 @@ public class CreditsView extends MenuView{
     
     @Override
     public void render(float delta) {
-        stage.act(delta); //Perform ui logic
-        stage.draw(); //Draw the UI
+        stage.act(delta);
+        stage.draw();
     }
 
 	private void createExitButton() {

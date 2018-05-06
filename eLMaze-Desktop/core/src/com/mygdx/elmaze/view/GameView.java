@@ -27,7 +27,6 @@ public class GameView extends ScreenAdapter {
     public static final float SCREEN_RATIO = (float)(Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth());
     
     private static final boolean DEBUG = false;
-    private final boolean isSinglePlayer;
 	
     private final ELMaze game;
     private final OrthographicCamera camera;
@@ -35,9 +34,8 @@ public class GameView extends ScreenAdapter {
     private Box2DDebugRenderer debugRenderer;
     private Matrix4 debugCamera;
     
-    public GameView(ELMaze game, boolean isSinglePlayer) {
+    public GameView(ELMaze game) {
     	this.game = game;
-    	this.isSinglePlayer = isSinglePlayer;
     	
     	loadAssets();
     	
@@ -73,7 +71,9 @@ public class GameView extends ScreenAdapter {
     
     @Override
     public void render(float delta) {
-        handleInputs();
+    	if (game.getPlatform() == ELMaze.PLATFORM.KEYBOARD) {
+            handleInputs();
+    	}
 
         GameController.getInstance().update(delta);
 
@@ -136,7 +136,7 @@ public class GameView extends ScreenAdapter {
     }
     
     private void drawBall() {
-    	if (isSinglePlayer) {
+    	if (game.getPlayMode() == ELMaze.PLAY_MODE.SINGLEPLAYER) {
         	BallModel ball = ((SinglePlayerLevelModel) GameModel.getInstance().getCurrentLevel()).getBall();
             BallView ballView = (BallView) ViewFactory.makeView(game, ball);
         	ballView.update(ball);

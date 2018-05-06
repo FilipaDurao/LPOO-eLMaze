@@ -7,11 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
-import com.mygdx.elmaze.ELMaze.NUM_PLAYERS;
 import com.mygdx.elmaze.ELMaze.PLATFORM;
-import com.mygdx.elmaze.controller.GameController;
-import com.mygdx.elmaze.model.GameModel;
-import com.mygdx.elmaze.view.GameView;
 
 public class PlatformChoiceMenu extends MenuView {
 
@@ -46,10 +42,7 @@ public class PlatformChoiceMenu extends MenuView {
 	
 	@Override
     public void render(float delta) {
-        //handleInputs();
-        GameController.getInstance().update(delta);
-
-        stage.act(delta); //Perform ui logic
+        stage.act(delta);
         stage.draw();
     }
 	
@@ -81,8 +74,7 @@ public class PlatformChoiceMenu extends MenuView {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	game.setPlatform(PLATFORM.PHONE);
-                //game.activateMenu(MenuFactory.makeMenu(game, TYPE.PLAY));
-            	//TODO: Add variable to save whether is one or two players
+            	game.startGame();
             }
         });
 
@@ -90,8 +82,7 @@ public class PlatformChoiceMenu extends MenuView {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	game.setPlatform(PLATFORM.KEYBOARD);
-              //game.activateMenu(MenuFactory.makeMenu(game, TYPE.PLAY));
-              //TODO: Add variable to save whether is one or two players
+            	game.startGame();
             }
         });
     }

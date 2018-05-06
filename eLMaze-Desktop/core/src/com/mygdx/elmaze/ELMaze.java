@@ -8,16 +8,17 @@ import com.mygdx.elmaze.model.GameModel;
 import com.mygdx.elmaze.networking.NetworkManager;
 import com.mygdx.elmaze.view.GameView;
 import com.mygdx.elmaze.view.menus.MainMenuView;
+import com.mygdx.elmaze.view.menus.MenuFactory;
 import com.mygdx.elmaze.view.menus.MenuView;
 
 public class ELMaze extends Game {
 	
-	public enum NUM_PLAYERS { SINGLE_PLAYER, MULTIPLAYER }
+	public enum PLAY_MODE { SINGLEPLAYER, MULTIPLAYER }
 	public enum PLATFORM { PHONE, KEYBOARD }
 	
 	private SpriteBatch spriteBatch;
 	private AssetManager assetManager;
-	private NUM_PLAYERS numPlayers;
+	private PLAY_MODE playMode;
 	private PLATFORM platform;
 
 	@Override
@@ -29,10 +30,7 @@ public class ELMaze extends Game {
 	}
 	
 	private void startElMaze() {
-		MainMenuView mainMenuView = new MainMenuView(this);
-		GameView view = new GameView(this, true);
-		GameModel.getInstance().setSinglePlayerMode();
-		GameController.getInstance().setSinglePlayerMode();
+		MenuView mainMenuView = MenuFactory.makeMenu(this, MenuView.TYPE.MAIN);
 
 		// TODO: This is temporary!!!!
 		if (NetworkManager.getInstance().startServer()) {
@@ -44,7 +42,7 @@ public class ELMaze extends Game {
 			}
 		}
 		
-        setScreen(view);
+        setScreen(mainMenuView);
     }
 
     @Override
@@ -66,12 +64,12 @@ public class ELMaze extends Game {
         setScreen(menu);
 	}
 
-	public NUM_PLAYERS getNumPlayers() {
-		return numPlayers;
+	public PLAY_MODE getPlayMode() {
+		return playMode;
 	}
 
-	public void setNumPlayers(NUM_PLAYERS numPlayers) {
-		this.numPlayers = numPlayers;
+	public void setNumPlayers(PLAY_MODE playMode) {
+		this.playMode = playMode;
 	}
 
 	public PLATFORM getPlatform() {
@@ -80,6 +78,19 @@ public class ELMaze extends Game {
 
 	public void setPlatform(PLATFORM platform) {
 		this.platform = platform;
+	}
+	
+	public void startGame() {
+		if (playMode == PLAY_MODE.SINGLEPLAYER) {
+			GameModel.getInstance().setSinglePlayerMode();
+			GameController.getInstance().setSinglePlayerMode();
+		} 
+		else {
+			GameModel.getInstance().setMultiPlayerMode();
+			GameController.getInstance().setMultiPlayerMode();
+		}
+		
+        setScreen(new GameView(this));
 	}
 	
 }

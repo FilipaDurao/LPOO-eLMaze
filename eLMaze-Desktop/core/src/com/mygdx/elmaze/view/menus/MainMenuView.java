@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
-import com.mygdx.elmaze.controller.GameController;
 
 public class MainMenuView extends MenuView {
 
@@ -50,10 +49,7 @@ public class MainMenuView extends MenuView {
 	
 	@Override
     public void render(float delta) {
-        //handleInputs();
-        GameController.getInstance().update(delta);
-
-        stage.act(delta); //Perform ui logic
+        stage.act(delta);
         stage.draw();
     }
 	

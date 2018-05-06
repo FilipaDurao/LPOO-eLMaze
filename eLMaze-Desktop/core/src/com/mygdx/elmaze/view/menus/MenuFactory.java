@@ -27,12 +27,6 @@ public class MenuFactory {
                 case PLATFORMCHOICE:
                     menuCache.put(menuType, new PlatformChoiceMenu(game));
                     break;
-                /*case PLAY:
-                    menuCache.put(menuType, new PlayGameView(game));
-                    break;
-                case CONNECTION:
-                    menuCache.put(menuType, new ServerConnectionView(game));
-                    break;*/
             }
         }
 
