@@ -7,7 +7,6 @@ import com.mygdx.elmaze.controller.GameController;
 import com.mygdx.elmaze.model.GameModel;
 import com.mygdx.elmaze.networking.NetworkManager;
 import com.mygdx.elmaze.view.GameView;
-import com.mygdx.elmaze.view.menus.MainMenuView;
 import com.mygdx.elmaze.view.menus.MenuFactory;
 import com.mygdx.elmaze.view.menus.MenuView;
 
@@ -90,7 +89,8 @@ public class ELMaze extends Game {
 			GameController.getInstance().setMultiPlayerMode();
 		}
 		
-        setScreen(new GameView(this));
+		GameView.getInstance().setGameReference(this);
+        setScreen(GameView.getInstance());
 	}
 	
 }

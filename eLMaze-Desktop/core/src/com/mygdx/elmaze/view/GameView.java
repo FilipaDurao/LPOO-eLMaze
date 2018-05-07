@@ -21,6 +21,8 @@ import com.mygdx.elmaze.model.levels.SinglePlayerLevelModel;
 import com.mygdx.elmaze.view.entities.*;
 
 public class GameView extends ScreenAdapter {
+
+	private static GameView instance;
 	
     public static final float PIXEL_TO_METER = .05f;
     public static final float VIEWPORT_WIDTH = 20;
@@ -28,18 +30,26 @@ public class GameView extends ScreenAdapter {
     
     private static final boolean DEBUG = false;
 	
-    private final ELMaze game;
+    private ELMaze game;
     private final OrthographicCamera camera;
     
     private Box2DDebugRenderer debugRenderer;
     private Matrix4 debugCamera;
     
-    public GameView(ELMaze game) {
-    	this.game = game;
-    	
-    	loadAssets();
-    	
+    public static GameView getInstance() {
+    	if (instance == null) {
+    		instance = new GameView();
+    	}
+    	return instance;
+    }
+    
+    private GameView() {
     	camera = initCamera();
+    }
+    
+    public void setGameReference(ELMaze game) {
+    	this.game = game;
+    	loadAssets();	
     }
     
     private void loadAssets() {
