@@ -42,7 +42,7 @@ public class NetworkManager {
 		}
 	}
 	
-	public boolean startServer() {
+	public boolean startServer(int maxNumClients) {
 		if (serverSocket == null) {
 			// Find IP address
 			IPAddress = findLocalAddress();
@@ -53,7 +53,7 @@ public class NetworkManager {
 			
 			try {
 				serverSocket = new ServerSocket(PORT);
-				Thread thread = new Thread(new SocketManager(serverSocket));
+				Thread thread = new Thread(new SocketManager(serverSocket, maxNumClients));
 				thread.start();
 				return true;
 			} catch (IOException e) {

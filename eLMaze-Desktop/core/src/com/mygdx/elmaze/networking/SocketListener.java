@@ -41,12 +41,12 @@ public class SocketListener implements Runnable {
 				socket.close();
 				SocketManager.removeConnection();
 			} catch (IOException e1) {
-				System.out.println("Failed to close socket...");
+				System.out.println("Failed to close socket ...");
 				System.exit(3);
 			}
 		} 
 		catch (ClassNotFoundException e) {
-			System.out.println("Tried to read to an invalid class...");
+			System.out.println("Tried to read to an invalid class object ...");
 			System.exit(4);
 		}
 	}

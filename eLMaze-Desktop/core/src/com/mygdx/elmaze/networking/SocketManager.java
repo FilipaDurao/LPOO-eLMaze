@@ -7,20 +7,23 @@ import java.net.Socket;
 public class SocketManager implements Runnable {
 	
 	private final ServerSocket serverSocket;
+	private final int maxNumConnections;
 	private static int numConnections = 0;
 	
-	public SocketManager (ServerSocket serverSocket) {
+	
+	public SocketManager (ServerSocket serverSocket, int maxNumConnections) {
+		this.maxNumConnections = maxNumConnections;
 		this.serverSocket = serverSocket;
 	}
 
 	@Override
 	public void run() {
 		while(true) {
-			if (numConnections < 2) {
+			if (numConnections < maxNumConnections) {
 				try {
 					Socket clientSocket = serverSocket.accept();
-					numConnections += 1;
-					int connectionID = numConnections - 1;
+					int connectionID = numConnections;
+					addConnection();
 					Thread thread = new Thread(new SocketListener(clientSocket, connectionID));
 					thread.start();
 				} catch (IOException e) {
