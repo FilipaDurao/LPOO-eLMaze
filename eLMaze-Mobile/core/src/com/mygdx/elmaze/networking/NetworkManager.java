@@ -1,6 +1,7 @@
 package com.mygdx.elmaze.networking;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -25,10 +26,17 @@ public class NetworkManager {
     private NetworkManager() {}
 
     public boolean establishConnection(String serverAddress, int timeout)  {
-        createSocket();
         try {
+            // Connect to server
+            createSocket();
             socket.connect(new InetSocketAddress(serverAddress, SERVER_PORT), timeout);
+
+            // Write to server
             createOutputStream();
+
+            // Listen from server
+            Thread thread = new Thread(new ServerListener(socket));
+            thread.start();
             return true;
         }
         catch(Exception e) {
@@ -54,23 +62,21 @@ public class NetworkManager {
         }
     }
 
-    private void createSocket() {
+    private void createSocket() throws Exception {
         try {
             socket = new Socket();
             socket.setTcpNoDelay(true);
         } catch (SocketException e) {
-            System.out.println("Failed to create socket.");
-            System.exit(1);
+            throw new Exception();
         }
     }
 
-    private void createOutputStream() {
+    private void createOutputStream() throws IOException {
         try {
             oStream = new ObjectOutputStream(socket.getOutputStream());
         }
         catch(IOException e) {
-            System.out.println("Failed to create stream...");
-            System.exit(2);
+            throw e;
         }
     }
 
