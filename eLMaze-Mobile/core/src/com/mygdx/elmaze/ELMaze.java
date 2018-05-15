@@ -2,6 +2,7 @@ package com.mygdx.elmaze;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
+import com.mygdx.elmaze.controller.GameController;
 import com.mygdx.elmaze.view.MenuFactory;
 import com.mygdx.elmaze.view.MenuView;
 
@@ -11,6 +12,7 @@ public class ELMaze extends Game {
 
 	@Override
 	public void create () {
+	    GameController.getInstance().setGameReference(this);
         assetManager = new AssetManager();
         MenuView mainMenu = MenuFactory.makeMenu(this, MenuView.TYPE.MAIN);
         mainMenu.activate();

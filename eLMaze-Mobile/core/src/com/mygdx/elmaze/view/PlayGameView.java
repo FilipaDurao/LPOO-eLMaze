@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
+import com.mygdx.elmaze.controller.GameController;
 import com.mygdx.elmaze.networking.MessageToServer;
 import com.mygdx.elmaze.networking.NetworkManager;
 
@@ -44,15 +45,10 @@ public class PlayGameView extends MenuView {
     }
 
     private void handleInputs(){
-        boolean broadcastSuccess = NetworkManager.getInstance().broadcastMessage( new MessageToServer(
-                Gdx.input.getAccelerometerY(),
-                -Gdx.input.getAccelerometerX())
+        GameController.getInstance().moveBall(
+            Gdx.input.getAccelerometerY(),
+            -Gdx.input.getAccelerometerX()
         );
-
-        if(!broadcastSuccess) {
-            NetworkManager.getInstance().closeConnection();
-            game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.MAIN));
-        }
     }
 
     protected void loadAssets() {
