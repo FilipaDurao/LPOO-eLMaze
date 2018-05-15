@@ -80,7 +80,7 @@ public class PlatformChoiceMenuView extends MenuView {
             		game.activateMenu(MenuFactory.makeMenu(game, TYPE.SPMOBILE));
             	}
             	else {
-            		//game.activateMenu(MenuFactory.makeMenu(game, TYPE.MPMOBILE));
+            		game.activateMenu(MenuFactory.makeMenu(game, TYPE.MPMOBILE));
             	}
             }
         });

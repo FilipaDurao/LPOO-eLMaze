@@ -30,6 +30,9 @@ public class MenuFactory {
                 case SPMOBILE:
                     menuCache.put(menuType, new SPMobileMenuView(game));
                     break;
+                case MPMOBILE:
+                    menuCache.put(menuType, new MPMobileMenuView(game));
+                    break;
             }
         }
 

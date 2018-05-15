@@ -122,7 +122,7 @@ public class SPMobileMenuView extends MenuView {
 	private void createBackAndPlayButtons() {
 		playButton = ButtonFactory.makeButton(game.getAssetManager().get("playButtonUp.png", Texture.class),
 				  game.getAssetManager().get("playButtonDown.png", Texture.class), 
-				  SCREEN_WIDTH*30/100, 
+				  SCREEN_WIDTH*70/100, 
 				  SCREEN_HEIGHT*20/100, 
 				  (int)(SCREEN_WIDTH*30/100), 
 				  (int)(SCREEN_HEIGHT*14/100));
@@ -131,7 +131,7 @@ public class SPMobileMenuView extends MenuView {
 
 		backButton = ButtonFactory.makeButton(game.getAssetManager().get("backButtonUp.png", Texture.class),
 				  game.getAssetManager().get("backButtonDown.png", Texture.class), 
-				  SCREEN_WIDTH*70/100, 
+				  SCREEN_WIDTH*30/100, 
 				  SCREEN_HEIGHT*20/100, 
 				  (int)(SCREEN_WIDTH*30/100), 
 				  (int)(SCREEN_HEIGHT*14/100));
