@@ -9,14 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.ELMaze.PLAY_MODE;
 
-public class PlayerChoiceMenu extends MenuView {
+public class PlayerChoiceMenuView extends MenuView {
 
 
 	private Button onePlayerButton;
     private Button twoPlayersButton;
     private Image title;
 	
-	public PlayerChoiceMenu(ELMaze game) {
+	public PlayerChoiceMenuView(ELMaze game) {
 		super(game, TYPE.NUMPLAYERCHOICE);
 		
 		Gdx.input.setInputProcessor(stage);

@@ -8,15 +8,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.ELMaze.PLATFORM;
+import com.mygdx.elmaze.ELMaze.PLAY_MODE;
+import com.mygdx.elmaze.view.menus.MenuView.TYPE;
 
-public class PlatformChoiceMenu extends MenuView {
-
+public class PlatformChoiceMenuView extends MenuView {
 
 	private Button phoneButton;
     private Button keyboardButton;
     private Image title;
 	
-	public PlatformChoiceMenu(ELMaze game) {
+	public PlatformChoiceMenuView(ELMaze game) {
 		super(game, TYPE.PLATFORMCHOICE);
 		
 		Gdx.input.setInputProcessor(stage);
@@ -74,7 +75,13 @@ public class PlatformChoiceMenu extends MenuView {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	game.setPlatform(PLATFORM.PHONE);
-            	game.startGame();
+            	
+            	if(game.getPlayMode() == PLAY_MODE.SINGLEPLAYER) {
+            		game.activateMenu(MenuFactory.makeMenu(game, TYPE.SPMOBILE));
+            	}
+            	else {
+            		//game.activateMenu(MenuFactory.makeMenu(game, TYPE.MPMOBILE));
+            	}
             }
         });
 
@@ -82,7 +89,13 @@ public class PlatformChoiceMenu extends MenuView {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	game.setPlatform(PLATFORM.KEYBOARD);
-            	game.startGame();
+            	
+            	if(game.getPlayMode() == PLAY_MODE.SINGLEPLAYER) {
+            		//game.activateMenu(MenuFactory.makeMenu(game, TYPE.SPKEYBOARD));
+            	}
+            	else {
+            		//game.activateMenu(MenuFactory.makeMenu(game, TYPE.MPKEYBOARD));
+            	}
             }
         });
     }

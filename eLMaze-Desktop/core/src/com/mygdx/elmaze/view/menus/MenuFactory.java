@@ -22,10 +22,13 @@ public class MenuFactory {
                     menuCache.put(menuType, new InstructionsView(game));
                     break;
                 case NUMPLAYERCHOICE:
-                    menuCache.put(menuType, new PlayerChoiceMenu(game));
+                    menuCache.put(menuType, new PlayerChoiceMenuView(game));
                     break;
                 case PLATFORMCHOICE:
-                    menuCache.put(menuType, new PlatformChoiceMenu(game));
+                    menuCache.put(menuType, new PlatformChoiceMenuView(game));
+                    break;
+                case SPMOBILE:
+                    menuCache.put(menuType, new SPMobileMenuView(game));
                     break;
             }
         }

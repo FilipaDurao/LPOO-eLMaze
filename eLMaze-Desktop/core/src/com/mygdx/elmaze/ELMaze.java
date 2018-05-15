@@ -29,7 +29,7 @@ public class ELMaze extends Game {
 	}
 	
 	private void startElMaze() {
-		MenuView mainMenuView = MenuFactory.makeMenu(this, MenuView.TYPE.MAIN);
+		MenuView mainMenuView = MenuFactory.makeMenu(this, MenuView.TYPE.MAIN);	//TODO PUT MAIN MENU BACK
 
 		// TODO: This is temporary!!!!
 		if (NetworkManager.getInstance().startServer()) {
