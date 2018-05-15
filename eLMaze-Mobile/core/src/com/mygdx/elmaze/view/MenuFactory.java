@@ -27,6 +27,12 @@ public class MenuFactory {
                 case CONNECTION:
                     menuCache.put(menuType, new ServerConnectionView(game));
                     break;
+                case SERVER_WAIT:
+                    menuCache.put(menuType, new ServerWaitingView(game));
+                    break;
+                case SERVER_DC:
+                    menuCache.put(menuType, new ServerDisconnectView(game));
+                    break;
             }
         }
 

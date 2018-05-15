@@ -11,7 +11,7 @@ import com.mygdx.elmaze.ELMaze;
 
 public abstract class MenuView extends ScreenAdapter {
 
-    public enum TYPE { MAIN, CREDITS, INSTRUCTIONS, PLAY, CONNECTION };
+    public enum TYPE { MAIN, CREDITS, INSTRUCTIONS, PLAY, CONNECTION , SERVER_WAIT , SERVER_DC};
 
     public static final int SCREEN_WIDTH = Gdx.graphics.getWidth();
     public static final int SCREEN_HEIGHT = Gdx.graphics.getHeight();
