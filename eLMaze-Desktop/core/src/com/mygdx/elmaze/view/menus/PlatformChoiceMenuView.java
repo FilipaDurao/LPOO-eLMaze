@@ -91,10 +91,10 @@ public class PlatformChoiceMenuView extends MenuView {
             	game.setPlatform(PLATFORM.KEYBOARD);
             	
             	if(game.getPlayMode() == PLAY_MODE.SINGLEPLAYER) {
-            		//game.activateMenu(MenuFactory.makeMenu(game, TYPE.SPKEYBOARD));
+            		game.activateMenu(MenuFactory.makeMenu(game, TYPE.SPKEYBOARD));
             	}
             	else {
-            		//game.activateMenu(MenuFactory.makeMenu(game, TYPE.MPKEYBOARD));
+            		game.activateMenu(MenuFactory.makeMenu(game, TYPE.MPKEYBOARD));
             	}
             }
         });

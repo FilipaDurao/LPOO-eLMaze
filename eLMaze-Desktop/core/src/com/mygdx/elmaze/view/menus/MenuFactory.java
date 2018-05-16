@@ -33,6 +33,12 @@ public class MenuFactory {
                 case MPMOBILE:
                     menuCache.put(menuType, new MPMobileMenuView(game));
                     break;
+                case SPKEYBOARD:
+                    menuCache.put(menuType, new SPKeyboardMenuView(game));
+                    break;
+                case MPKEYBOARD:
+                    menuCache.put(menuType, new MPKeyboardMenuView(game));
+                    break;
             }
         }
 
