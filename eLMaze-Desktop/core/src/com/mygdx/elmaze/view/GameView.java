@@ -54,6 +54,10 @@ public class GameView extends ScreenAdapter {
     
     private void loadAssets() {
         this.game.getAssetManager().load( "ball.png" , Texture.class);
+        this.game.getAssetManager().load( "jade_ball.png" , Texture.class);
+        this.game.getAssetManager().load( "obsidian_ball.png" , Texture.class);
+        this.game.getAssetManager().load( "ocean_ball.png" , Texture.class);
+        this.game.getAssetManager().load( "ruby_ball.png" , Texture.class);
         this.game.getAssetManager().load( "wall.png" , Texture.class);
         this.game.getAssetManager().load( "background.png" , Texture.class);
         this.game.getAssetManager().load( "exit.png" , Texture.class);
