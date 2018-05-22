@@ -12,6 +12,7 @@ public class NetworkManager {
 	private final int PORT = 8500;
 	
 	private ServerSocket serverSocket;
+	private SocketManager socketManager;
 	private String IPAddress;
 	
 	public static NetworkManager getInstance() {
@@ -34,6 +35,7 @@ public class NetworkManager {
 		try {
 			Socket s = new Socket("google.com", 80);
 			String ipAddress = s.getLocalAddress().getHostAddress();
+			System.out.println(ipAddress);
 			s.close();
 			return ipAddress;
 		} 
@@ -53,7 +55,8 @@ public class NetworkManager {
 			
 			try {
 				serverSocket = new ServerSocket(PORT);
-				Thread thread = new Thread(new SocketManager(serverSocket, maxNumClients));
+				socketManager = new SocketManager(serverSocket, maxNumClients);
+				Thread thread = new Thread(socketManager);
 				thread.start();
 				return true;
 			} catch (IOException e) {
@@ -63,6 +66,15 @@ public class NetworkManager {
 		}
 		
 		return true;
+	}
+	
+	public void closeServer() {
+		try {
+			serverSocket.close();
+		} catch (IOException e) {
+			System.out.println("Failed to close server socket.");
+			System.exit(2);
+		}
 	}
 	
 	// TODO: This is temporary!!
@@ -78,5 +90,9 @@ public class NetworkManager {
 		
 		return parsedIP;
     }
+	
+	public SocketManager getSocketManager() {
+		return socketManager;
+	}
 
 }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.elmaze.controller.GameController;
 import com.mygdx.elmaze.model.GameModel;
+import com.mygdx.elmaze.networking.MessageToClient;
 import com.mygdx.elmaze.networking.NetworkManager;
 import com.mygdx.elmaze.view.GameView;
 import com.mygdx.elmaze.view.menus.MenuFactory;
@@ -79,16 +80,15 @@ public class ELMaze extends Game {
 			GameController.getInstance().setMultiPlayerMode();
 		}
 		
-		if (platform == PLATFORM.PHONE) {
-			startServer();
-		}
-			
+//		if (platform == PLATFORM.PHONE) {
+//			startServer();
+//		}
 		
 		GameView.getInstance().setGameReference(this);
         setScreen(GameView.getInstance());
 	}
 	
-	private void startServer() {
+	public void startServer() {
 		int numPlayers = (playMode == PLAY_MODE.SINGLEPLAYER ? 1 : 2);
 		
 		if (NetworkManager.getInstance().startServer(numPlayers)) {
@@ -98,6 +98,8 @@ public class ELMaze extends Game {
 			for (Integer num : NetworkManager.getInstance().parse()) {
 				System.out.println(num + " - " + symbols[num]);
 			}
+			
+			NetworkManager.getInstance().getSocketManager().broadcastMessage(new MessageToClient(MessageToClient.CONTENT.GAME_START));
 		}
 		else {
 			// TODO ///////////////////////

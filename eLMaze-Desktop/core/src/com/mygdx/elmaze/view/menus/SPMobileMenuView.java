@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
+import com.mygdx.elmaze.networking.NetworkManager;
 import com.mygdx.elmaze.view.entities.BallView;
 
 public class SPMobileMenuView extends MenuView {
@@ -42,7 +43,7 @@ public class SPMobileMenuView extends MenuView {
 		addButtonListeners();
 		
 		setUpTitles();
-	
+		game.startServer();	
 	}
 
 	protected void loadAssets() {
