@@ -28,7 +28,7 @@ public class CreditsView extends MenuView {
     }
 
     private void setupExitButton() {
-        exitButton = ButtonFactory.makeButton(game,"exitButtonUp.png","exitButtonDown.png",SCREEN_WIDTH/2,
+        exitButton = ButtonFactory.makeButton(game,"backButtonUp.png","backButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
 
         exitButton.addListener(new ClickListener() {
