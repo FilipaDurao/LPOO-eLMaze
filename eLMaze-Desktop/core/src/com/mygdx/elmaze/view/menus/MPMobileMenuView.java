@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
+import com.mygdx.elmaze.view.entities.BallView;
 
 public class MPMobileMenuView extends MenuView {
 
@@ -193,20 +194,10 @@ public class MPMobileMenuView extends MenuView {
     	backArrowButton1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	if(currentBallSpriteIndex1 == 0) {
-            		currentBallSpriteIndex1 = balls.size()-1;
-            	}
-            	else {
-            		currentBallSpriteIndex1--;
-            	}
+            	currentBallSpriteIndex1 = currentBallSpriteIndex1 == 0 ? balls.size()-1 : currentBallSpriteIndex1 - 1;
             	
             	if(currentBallSpriteIndex1 == currentBallSpriteIndex2) {
-            		if(currentBallSpriteIndex1 == 0) {
-                		currentBallSpriteIndex1 = balls.size()-1;
-                	}
-                	else {
-                		currentBallSpriteIndex1--;
-                	}
+            		currentBallSpriteIndex1 = currentBallSpriteIndex1 == 0 ? balls.size()-1 : currentBallSpriteIndex1 - 1;
             	}
             	
             	ballImage1.setDrawable(new TextureRegionDrawable(new TextureRegion(
@@ -231,20 +222,10 @@ public class MPMobileMenuView extends MenuView {
     	backArrowButton2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	if(currentBallSpriteIndex2 == 0) {
-            		currentBallSpriteIndex2 = balls.size()-1;
-            	}
-            	else {
-            		currentBallSpriteIndex2--;
-            	}
+            	currentBallSpriteIndex2 = currentBallSpriteIndex2 == 0 ? balls.size()-1 : currentBallSpriteIndex2 - 1;
             	
             	if(currentBallSpriteIndex2 == currentBallSpriteIndex1) {
-            		if(currentBallSpriteIndex2 == 0) {
-                		currentBallSpriteIndex2 = balls.size()-1;
-                	}
-                	else {
-                		currentBallSpriteIndex2--;
-                	}
+            		currentBallSpriteIndex2 = currentBallSpriteIndex2 == 0 ? balls.size()-1 : currentBallSpriteIndex2 - 1;
             	}
             	
             	ballImage2.setDrawable(new TextureRegionDrawable(new TextureRegion(
@@ -255,6 +236,8 @@ public class MPMobileMenuView extends MenuView {
     	playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	BallView.setPlayer1SpriteName(balls.get(currentBallSpriteIndex1));
+            	BallView.setPlayer2SpriteName(balls.get(currentBallSpriteIndex2));
             	game.startGame();
             }
         });

@@ -11,8 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
-import com.mygdx.elmaze.ELMaze.PLATFORM;
-import com.mygdx.elmaze.view.menus.MenuView.TYPE;
+import com.mygdx.elmaze.view.entities.BallView;
 
 public class SPMobileMenuView extends MenuView {
 
@@ -152,13 +151,7 @@ public class SPMobileMenuView extends MenuView {
     	backArrowButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	if(currentBallSpriteIndex == 0) {
-            		currentBallSpriteIndex = balls.size()-1;
-            	}
-            	else {
-            		currentBallSpriteIndex--;
-            	}
-            	
+            	currentBallSpriteIndex = currentBallSpriteIndex == 0 ? balls.size()-1 : currentBallSpriteIndex-1;
             	ballImage.setDrawable(new TextureRegionDrawable(new TextureRegion(
             			(Texture) game.getAssetManager().get(balls.get(currentBallSpriteIndex)))));
             }
@@ -167,6 +160,7 @@ public class SPMobileMenuView extends MenuView {
     	playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	BallView.setPlayer1SpriteName(balls.get(currentBallSpriteIndex));
             	game.startGame();
             }
         });

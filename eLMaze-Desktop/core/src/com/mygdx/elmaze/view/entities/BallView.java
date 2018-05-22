@@ -8,6 +8,9 @@ import com.mygdx.elmaze.model.entities.EntityModel;
 import com.mygdx.elmaze.view.GameView;
 
 public class BallView extends EntityView {
+	
+	private static String player1SpriteName;
+	private static String player2SpriteName;
 
 	public BallView(ELMaze game, BallModel model) {
 		super(game, model);
@@ -15,7 +18,9 @@ public class BallView extends EntityView {
 
 	@Override
 	public void createSprite(ELMaze game, EntityModel model) {
-        Texture texture = game.getAssetManager().get("ball.png");
+        Texture texture = game.getAssetManager().get(
+        		((BallModel) model).getPlayerNum() == 0 ? player1SpriteName : player2SpriteName
+        );
         
         sprite = new Sprite(texture, 
         		texture.getWidth(), 
@@ -25,6 +30,14 @@ public class BallView extends EntityView {
 			((BallModel)model).getRadius()*2 / GameView.PIXEL_TO_METER, 
 			((BallModel)model).getRadius()*2 / GameView.PIXEL_TO_METER
 		);
+	}
+	
+	public static void setPlayer1SpriteName(String spriteName) {
+		player1SpriteName = spriteName;
+	}
+	
+	public static void setPlayer2SpriteName(String spriteName) {
+		player2SpriteName = spriteName;
 	}
 
 }

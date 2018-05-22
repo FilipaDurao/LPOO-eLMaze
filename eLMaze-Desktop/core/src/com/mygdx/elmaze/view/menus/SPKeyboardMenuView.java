@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
-import com.mygdx.elmaze.view.menus.MenuView.TYPE;
+import com.mygdx.elmaze.view.entities.BallView;
 
 public class SPKeyboardMenuView extends MenuView {
 
@@ -20,8 +20,6 @@ public class SPKeyboardMenuView extends MenuView {
     private Button playButton;
     private Button backButton;
     private Image title;
-    private Image gameCodeTitle;
-    private Image gameCodeBar;
     private ArrayList<String> balls = new ArrayList<String>(5);
     private Integer currentBallSpriteIndex;
     private Image ballImage;
@@ -143,13 +141,7 @@ public class SPKeyboardMenuView extends MenuView {
     	backArrowButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	if(currentBallSpriteIndex == 0) {
-            		currentBallSpriteIndex = balls.size()-1;
-            	}
-            	else {
-            		currentBallSpriteIndex--;
-            	}
-            	
+            	currentBallSpriteIndex = currentBallSpriteIndex == 0 ? balls.size()-1 : currentBallSpriteIndex-1;
             	ballImage.setDrawable(new TextureRegionDrawable(new TextureRegion(
             			(Texture) game.getAssetManager().get(balls.get(currentBallSpriteIndex)))));
             }
@@ -158,6 +150,7 @@ public class SPKeyboardMenuView extends MenuView {
     	playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	BallView.setPlayer1SpriteName(balls.get(currentBallSpriteIndex));
             	game.startGame();
             }
         });

@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.ELMaze.PLATFORM;
 import com.mygdx.elmaze.ELMaze.PLAY_MODE;
-import com.mygdx.elmaze.view.menus.MenuView.TYPE;
 
 public class PlatformChoiceMenuView extends MenuView {
 

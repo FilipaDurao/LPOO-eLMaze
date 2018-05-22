@@ -19,7 +19,7 @@ public class MPLevel1Model extends MultiPlayerLevelModel {
 	@Override
 	protected void createBalls() {
 		ball1 = new BallModel(1.5f, 1.5f, 0.5f, 0);
-		ball2 = new BallModel(GameController.MAP_WIDTH - 1.5f, 1.5f, 0.5f, 0);
+		ball2 = new BallModel(GameController.MAP_WIDTH - 1.5f, 1.5f, 0.5f, 1);
 	}
 
 	@Override
