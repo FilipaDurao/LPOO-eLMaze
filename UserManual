@@ -1,0 +1,12 @@
+Introdução
+ELMaze é um jogo de labirintos, em que o objetivo é controlar uma pequena bola até à saída do labirinto, passando por pequenos obstáculos.
+O Jogo conta com níveis para um só jogador e também com níveis para dois jogadores, em que é necessárias a cooperação dos mesmos para conseguir vencer.
+ 
+Como Jogar
+É possível controlar a bola de duas formas diferentes. Uma delas é utilizando as teclas W, A, S e D (para o primeiro jogador) e as teclas UP, LEFT, DOWN e RIGHT (para o segundo jogador). A outra, é utilizando o telemóvel como controlo remoto, conectando-se ao computador através de um socket. Para controlar a bola, é necessário apenas virar o telemóvel na direção de movimento pretendida.
+
+Como Jogar Remotamente
+Para poder utilizar o telemóvel como controlo remoto, é necessário escolher a opção de 'Phone' como controlador antes de iniciar o jogo (escolhendo o menu apropriado). Após esta opção ser escolhida, é inicializado um servidor no computador e é mostrado ao utilizador um código de jogo. Este código de jogo deve ser então inserido no telemóvel a fim de realizar a conexão.
+
+Como Resolver os Níveis
+A fim de concluir um nível e progredir no jogo, o utilizador deve mover a bola pelo labirinto até chegar à saída. A saída está muitas vezes impedida por portas, que podem ser abertas carregando nos respetivos botões. Nos níveis para dois jogadores, é necessária a cooperação na abertura das portas para conseguir concluir os níveis com sucesso.
