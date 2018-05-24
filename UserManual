@@ -1,12 +1,12 @@
-Introdução
-ELMaze é um jogo de labirintos, em que o objetivo é controlar uma pequena bola até à saída do labirinto, passando por pequenos obstáculos.
-O Jogo conta com níveis para um só jogador e também com níveis para dois jogadores, em que é necessárias a cooperação dos mesmos para conseguir vencer.
+Introduction
+ELMaze is a maze game, in which the main goal is to guide a small ball through the end of various mazes, passing through small obstacles.
+The game offers a set of both single player and multi player levels, which need the cooperation of both players in order to be solved.
  
-Como Jogar
-É possível controlar a bola de duas formas diferentes. Uma delas é utilizando as teclas W, A, S e D (para o primeiro jogador) e as teclas UP, LEFT, DOWN e RIGHT (para o segundo jogador). A outra, é utilizando o telemóvel como controlo remoto, conectando-se ao computador através de um socket. Para controlar a bola, é necessário apenas virar o telemóvel na direção de movimento pretendida.
+How to Play
+It is possible to controll the ball in two different ways. The first way, is by using the keyboard W, A, S and D keys (for player one) and the keys UP, LEFT, DOWN and RIGHT (for player two). The other one, is by using the mobile phone as a remote control, connecting to the computer through a socket. To control the ball, the player needs only to tilt the phone in the direction in which he intends to move. Before starting the game, the user can choose the appearence of the ball.
 
-Como Jogar Remotamente
-Para poder utilizar o telemóvel como controlo remoto, é necessário escolher a opção de 'Phone' como controlador antes de iniciar o jogo (escolhendo o menu apropriado). Após esta opção ser escolhida, é inicializado um servidor no computador e é mostrado ao utilizador um código de jogo. Este código de jogo deve ser então inserido no telemóvel a fim de realizar a conexão.
+How to Connect Remotely
+In order to play by using the mobile phone as a remote control, the user must chose the 'Phone' option as the ball controller before initializing the game (chosing the appropriate menu). After this option is chosen, a server is initialized in the computer and a game code is displayed to the user. This game code must then be inserted in the mobile phone in order to make the connection.
 
-Como Resolver os Níveis
-A fim de concluir um nível e progredir no jogo, o utilizador deve mover a bola pelo labirinto até chegar à saída. A saída está muitas vezes impedida por portas, que podem ser abertas carregando nos respetivos botões. Nos níveis para dois jogadores, é necessária a cooperação na abertura das portas para conseguir concluir os níveis com sucesso.
+How to Solve the Levels
+In order to finished the levels and beat the game, the user must move the ball throughout the maze to reach the exit. The exit is often blocked by a set of doors, which can be open by pressing the respective buttons, which are placed around the maze. In the multi players levels, the cooperation of both players is necessary to open the doors and to finish the levels with success.
