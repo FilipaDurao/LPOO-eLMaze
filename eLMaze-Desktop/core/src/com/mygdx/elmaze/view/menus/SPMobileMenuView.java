@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
+import com.mygdx.elmaze.networking.NetworkManager;
 import com.mygdx.elmaze.view.entities.BallView;
 
 public class SPMobileMenuView extends MenuView {
@@ -22,6 +23,7 @@ public class SPMobileMenuView extends MenuView {
     private Image title;
     private Image gameCodeTitle;
     private Image gameCodeBar;
+    private Image errorMessage;
     private ArrayList<String> balls = new ArrayList<String>(5);
     private Integer currentBallSpriteIndex;
     private Image ballImage;
@@ -38,6 +40,7 @@ public class SPMobileMenuView extends MenuView {
 		createFrontArrowButton();
 		createBackArrowButton();
 		createBackAndPlayButtons();
+		createErrorMessage();
 		
 		addButtonListeners();
 		
@@ -63,6 +66,8 @@ public class SPMobileMenuView extends MenuView {
         this.game.getAssetManager().load( "obsidian_ball.png" , Texture.class);
         this.game.getAssetManager().load( "ocean_ball.png" , Texture.class);
         this.game.getAssetManager().load( "ruby_ball.png" , Texture.class);
+        this.game.getAssetManager().load( "empty.png" , Texture.class);
+        this.game.getAssetManager().load( "playerNotConnectedError.png" , Texture.class);
         this.game.getAssetManager().finishLoading();
 	}
 	
@@ -91,9 +96,14 @@ public class SPMobileMenuView extends MenuView {
 		balls.add("ruby_ball.png");
 	}
 	
-	private void createBallImage(){
+	private void createBallImage() {
 		ballImage = ImageFactory.makeImage("ball.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*3/4, SCREEN_WIDTH*12/100);
 		stage.addActor(ballImage);
+	}
+	
+	private void createErrorMessage() {
+		errorMessage = ImageFactory.makeImage("empty.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*1/20, SCREEN_WIDTH*45/100, SCREEN_HEIGHT*4/100);
+		stage.addActor(errorMessage);
 	}
 	
 	private void createFrontArrowButton() {
@@ -160,8 +170,13 @@ public class SPMobileMenuView extends MenuView {
     	playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	BallView.setPlayer1SpriteName(balls.get(currentBallSpriteIndex));
-            	game.startGame();
+            	if (NetworkManager.getInstance().getSocketManager().getNumConnections() != 1) {
+            		errorMessage.setDrawable(new TextureRegionDrawable(new TextureRegion(
+            				game.getAssetManager().get("playerNotConnectedError.png", Texture.class))));
+            	} else {
+                	BallView.setPlayer1SpriteName(balls.get(currentBallSpriteIndex));
+                	game.startGame();
+            	}
             }
         });
     	

@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
+import com.mygdx.elmaze.networking.NetworkManager;
 import com.mygdx.elmaze.view.entities.BallView;
 
 public class MPMobileMenuView extends MenuView {
@@ -25,6 +26,7 @@ public class MPMobileMenuView extends MenuView {
     private Image title2;
     private Image gameCodeTitle;
     private Image gameCodeBar;
+    private Image errorMessage;
     private ArrayList<String> balls = new ArrayList<String>(5);
     private Integer currentBallSpriteIndex1;
     private Integer currentBallSpriteIndex2;
@@ -47,6 +49,7 @@ public class MPMobileMenuView extends MenuView {
 		createFrontArrowButton2();
 		createBackArrowButton2();
 		createBackAndPlayButtons();
+		createErrorMessage();
 		
 		addButtonListeners();
 		
@@ -73,6 +76,8 @@ public class MPMobileMenuView extends MenuView {
         this.game.getAssetManager().load( "obsidian_ball.png" , Texture.class);
         this.game.getAssetManager().load( "ocean_ball.png" , Texture.class);
         this.game.getAssetManager().load( "ruby_ball.png" , Texture.class);
+        this.game.getAssetManager().load( "empty.png" , Texture.class);
+        this.game.getAssetManager().load( "notAllPlayersConnectedError.png" , Texture.class);
         this.game.getAssetManager().finishLoading();
 	}
 	
@@ -110,6 +115,11 @@ public class MPMobileMenuView extends MenuView {
 		
 		ballImage2 = ImageFactory.makeImage("ruby_ball.png", SCREEN_WIDTH*76/100, SCREEN_HEIGHT*3/4, SCREEN_WIDTH*8/100);
 		stage.addActor(ballImage2);
+	}
+	
+	private void createErrorMessage() {
+		errorMessage = ImageFactory.makeImage("empty.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*1/20, SCREEN_WIDTH*45/100, SCREEN_HEIGHT*4/100);
+		stage.addActor(errorMessage);
 	}
 	
 	private void createFrontArrowButton1() {
@@ -236,9 +246,14 @@ public class MPMobileMenuView extends MenuView {
     	playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	BallView.setPlayer1SpriteName(balls.get(currentBallSpriteIndex1));
-            	BallView.setPlayer2SpriteName(balls.get(currentBallSpriteIndex2));
-            	game.startGame();
+            	if (NetworkManager.getInstance().getSocketManager().getNumConnections() != 2) {
+            		errorMessage.setDrawable(new TextureRegionDrawable(new TextureRegion(
+            				game.getAssetManager().get("notAllPlayersConnectedError.png", Texture.class))));
+            	} else {
+                	BallView.setPlayer1SpriteName(balls.get(currentBallSpriteIndex1));
+                	BallView.setPlayer2SpriteName(balls.get(currentBallSpriteIndex2));
+                	game.startGame();
+            	}
             }
         });
     	
