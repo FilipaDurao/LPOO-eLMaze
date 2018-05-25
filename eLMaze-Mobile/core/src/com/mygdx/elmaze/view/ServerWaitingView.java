@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
+import com.mygdx.elmaze.controller.GameController;
 import com.mygdx.elmaze.networking.NetworkManager;
 
 public class ServerWaitingView extends MenuView {
@@ -26,6 +27,11 @@ public class ServerWaitingView extends MenuView {
     public void render(float delta) {
         stage.act(delta); //Perform ui logic
         stage.draw(); //Draw the UI
+
+        // Poll for server message for starting game
+        if (GameController.getInstance().isGameRunning()) {
+            game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.PLAY));
+        }
     }
 
     private void setupExitButton() {

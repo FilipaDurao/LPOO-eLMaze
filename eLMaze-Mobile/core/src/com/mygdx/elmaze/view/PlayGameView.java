@@ -1,5 +1,6 @@
 package com.mygdx.elmaze.view;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -24,6 +25,11 @@ public class PlayGameView extends MenuView {
 
         stage.act(delta); //Perform ui logic
         stage.draw(); //Draw the UI
+
+        // Poll for server message for finished game
+        if (!GameController.getInstance().isGameRunning()) {
+            game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.SERVER_DC));
+        }
     }
 
     private void setupStage() {

@@ -11,6 +11,7 @@ public class GameController {
 
     private static GameController instance;
     private ELMaze game;
+    private boolean isGameRunning = false;
 
     public static GameController getInstance() {
         if (instance == null) {
@@ -27,11 +28,11 @@ public class GameController {
     }
 
     public void startGame() {
-        game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.PLAY));
+        isGameRunning = true;
     }
 
     public void disconnectGame() {
-        game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.SERVER_DC));
+        isGameRunning = false;
     }
 
     public void moveBall(float accelerometerX, float accelerometerY) {
@@ -44,6 +45,10 @@ public class GameController {
             NetworkManager.getInstance().closeConnection();
             game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.MAIN));
         }
+    }
+
+    public boolean isGameRunning() {
+        return isGameRunning;
     }
 
 }

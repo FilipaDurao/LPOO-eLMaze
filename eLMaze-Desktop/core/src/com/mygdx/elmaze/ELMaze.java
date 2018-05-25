@@ -80,9 +80,10 @@ public class ELMaze extends Game {
 			GameController.getInstance().setMultiPlayerMode();
 		}
 		
-//		if (platform == PLATFORM.PHONE) {
-//			startServer();
-//		}
+		if (platform == PLATFORM.PHONE) {
+			NetworkManager.getInstance().getSocketManager().
+				broadcastMessage(new MessageToClient(MessageToClient.CONTENT.GAME_START));
+		}
 		
 		GameView.getInstance().setGameReference(this);
         setScreen(GameView.getInstance());
@@ -99,7 +100,6 @@ public class ELMaze extends Game {
 				System.out.println(num + " - " + symbols[num]);
 			}
 			
-			NetworkManager.getInstance().getSocketManager().broadcastMessage(new MessageToClient(MessageToClient.CONTENT.GAME_START));
 		}
 		else {
 			// TODO ///////////////////////

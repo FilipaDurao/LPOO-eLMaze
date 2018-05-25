@@ -11,12 +11,14 @@ public class SocketManager implements Runnable {
 	private final int maxNumConnections;
 	private static int numConnections = 0;
 	private final Socket[] sockets;
+	private final SocketListener[] socketListeners;
 	
 	
 	public SocketManager (ServerSocket serverSocket, int maxNumConnections) {
 		this.maxNumConnections = maxNumConnections;
 		this.serverSocket = serverSocket;
 		this.sockets = new Socket[maxNumConnections];
+		this.socketListeners = new SocketListener[maxNumConnections];
 	}
 
 	@Override
@@ -24,10 +26,11 @@ public class SocketManager implements Runnable {
 		while(true) {
 			if (numConnections < maxNumConnections) {
 				try {
-					Socket clientSocket = serverSocket.accept();
 					int connectionID = numConnections;
-					addConnection(clientSocket);
-					Thread thread = new Thread(new SocketListener(clientSocket, connectionID));
+					Socket clientSocket = serverSocket.accept();
+					SocketListener clientSocketListener = new SocketListener(clientSocket, connectionID);
+					addConnection(clientSocket, clientSocketListener);
+					Thread thread = new Thread(clientSocketListener);
 					thread.start();
 				} catch (IOException e) {
 					System.out.println("Failed to attend client socket...");
@@ -37,14 +40,16 @@ public class SocketManager implements Runnable {
 		}
 	}
 	
-	public void addConnection(Socket socket) {
+	public void addConnection(Socket socket, SocketListener socketListener) {
 		sockets[numConnections] = socket;
+		socketListeners[numConnections] = socketListener;
 		numConnections++;
 	}
 	
 	public void removeConnection(int connectionID) {
 		numConnections--;
 		sockets[numConnections] = null;
+		socketListeners[numConnections] = null;
 	}
 	
 	public int getNumConnections() {
@@ -52,17 +57,9 @@ public class SocketManager implements Runnable {
 	}
 	
 	public void broadcastMessage(MessageToClient msg) {
-		for (Socket socket : sockets) {
-			if (socket != null) {
-	            try {
-					ObjectOutputStream oStream = new ObjectOutputStream(socket.getOutputStream());
-		            oStream.writeObject(msg);
-		            oStream.reset();
-		            oStream.close();				
-				} catch (IOException e) {
-					System.out.println("Failed to broadcast message ...");
-					continue;
-				}
+		for (SocketListener socketListener : socketListeners) {
+			if (socketListener != null) {
+				socketListener.broadcastMessage(msg);
 			}
 		}
 	}
