@@ -72,10 +72,8 @@ public class ServerListener implements Runnable {
         }
         catch (Exception e) {
             e.printStackTrace();
-            for (int i=0 ; i<5 ; i++) {
-                System.out.println("Failed to start server listener");
-            }
             NetworkManager.getInstance().closeConnection();
+            GameController.getInstance().disconnectGame();
         }
     }
 }

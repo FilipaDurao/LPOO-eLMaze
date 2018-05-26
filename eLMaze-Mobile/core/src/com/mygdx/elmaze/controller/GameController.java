@@ -29,10 +29,16 @@ public class GameController {
 
     public void startGame() {
         isGameRunning = true;
+        for (int i=0 ; i<10 ; i++) {
+            System.out.println("Game Running set to TRUE");
+        }
     }
 
     public void disconnectGame() {
         isGameRunning = false;
+        for (int i=0 ; i<10 ; i++) {
+            System.out.println("Game Running set to FALSE");
+        }
     }
 
     public void moveBall(float accelerometerX, float accelerometerY) {
