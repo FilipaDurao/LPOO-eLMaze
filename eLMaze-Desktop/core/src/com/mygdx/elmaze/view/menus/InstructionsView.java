@@ -15,12 +15,12 @@ public class InstructionsView extends MenuView {
     private Button backButton;
     private Button nextArrowButton;
     private Button previousArrowButton;
-    private int instructionsSlide = 0;
 	
 	public InstructionsView(ELMaze game) {
 		super(game, TYPE.INSTRUCTIONS);
         
-        instructions = ImageFactory.makeImage("desktopInstructions1.png", SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH, SCREEN_HEIGHT);
+        instructions = ImageFactory.makeImage("desktopInstructions1.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*65/100, 
+        		SCREEN_WIDTH*92/100);
         stage.addActor(instructions);
         
 		createBackButton();
@@ -45,20 +45,7 @@ public class InstructionsView extends MenuView {
 	}
     
     @Override
-    public void render(float delta) {
-    	
-    	instructions.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-    	
-    	if(instructionsSlide == 0) {
-			instructions.setDrawable(new TextureRegionDrawable(new TextureRegion(
-					game.getAssetManager().get("desktopInstructions1.png", Texture.class))));
-		}
-		
-		else {
-			instructions.setDrawable(new TextureRegionDrawable(new TextureRegion(
-					game.getAssetManager().get("desktopInstructions2.jpg", Texture.class))));
-		}
-    	
+    public void render(float delta) {    	
         stage.act(delta);
         stage.draw();
     }
@@ -78,7 +65,7 @@ public class InstructionsView extends MenuView {
 		nextArrowButton = ButtonFactory.makeButton(game.getAssetManager().get("nextArrowButtonUp.png", Texture.class),
 												   game.getAssetManager().get("nextArrowButtonDown.png", Texture.class),
 												   SCREEN_WIDTH*97/100, 
-												   SCREEN_HEIGHT/3, 
+												   SCREEN_HEIGHT*37/100, 
 												   (int)(SCREEN_WIDTH*4/100), 
 												   (int)(SCREEN_HEIGHT*8/100));
 
@@ -89,7 +76,7 @@ public class InstructionsView extends MenuView {
 		previousArrowButton = ButtonFactory.makeButton(game.getAssetManager().get("previousArrowButtonUp.png", Texture.class),
 													   game.getAssetManager().get("previousArrowButtonDown.png", Texture.class), 
 													   SCREEN_WIDTH*3/100, 
-													   SCREEN_HEIGHT/3, 
+													   SCREEN_HEIGHT*37/100, 
 													   (int)(SCREEN_WIDTH*4/100), 
 													   (int)(SCREEN_HEIGHT*8/100));
 
@@ -108,14 +95,22 @@ public class InstructionsView extends MenuView {
         nextArrowButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	instructionsSlide = 1;
+            	instructions.setDrawable(new TextureRegionDrawable(new TextureRegion(
+    					game.getAssetManager().get("desktopInstructions2.jpg", Texture.class))));
+            	instructions.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             }
         });
         
        previousArrowButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	instructionsSlide = 0;
+            	Texture instructionsTex = game.getAssetManager().get("desktopInstructions1.png", Texture.class);
+            	float texRatio = (float)instructionsTex.getWidth()/(float)instructionsTex.getHeight();
+            	instructions.setDrawable(new TextureRegionDrawable(new TextureRegion(instructionsTex)));
+            	
+            	int imgWidth = SCREEN_WIDTH*92/100;
+            	int imgHeight = (int)(imgWidth/texRatio);
+            	instructions.setBounds(SCREEN_WIDTH*4/100, SCREEN_HEIGHT/2, imgWidth, imgHeight);
             }
         });
 	}

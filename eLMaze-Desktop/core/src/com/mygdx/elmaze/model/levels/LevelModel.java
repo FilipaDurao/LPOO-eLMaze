@@ -14,9 +14,7 @@ public abstract class LevelModel {
 	protected ArrayList<WallModel> walls = new ArrayList<WallModel>();
 	protected ExitModel exit;
 
-	public LevelModel() {
-		// TODO Auto-generated constructor stub
-	}
+	public LevelModel() {}
 
 	public ArrayList<DoorModel> getDoors() {
 		return doors;

@@ -11,7 +11,7 @@ import com.mygdx.elmaze.model.entities.EntityModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
 
-public class ModelTest {
+public class ModelEntitiesTest {
 
 	@Test 
 	public void EntityModelPositionTest() {
