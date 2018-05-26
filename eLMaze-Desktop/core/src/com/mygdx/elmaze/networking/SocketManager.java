@@ -23,18 +23,22 @@ public class SocketManager implements Runnable {
 	@Override
 	public void run() {
 		while(true) {
-			if (numConnections < maxNumConnections) {
-				try {
-					int connectionID = numConnections;
-					Socket clientSocket = serverSocket.accept();
-					SocketListener clientSocketListener = new SocketListener(clientSocket, connectionID);
-					addConnection(clientSocket, clientSocketListener);
-					Thread thread = new Thread(clientSocketListener);
-					thread.start();
-				} catch (IOException e) {
-					System.out.println("Failed to attend client socket...");
-					System.exit(2);
+			try {
+				Socket clientSocket = serverSocket.accept();
+
+				if (numConnections >= maxNumConnections) {
+					System.out.println("New client cannot be attended - Server is Full");
+					continue;
 				}
+
+				int connectionID = numConnections;
+				SocketListener clientSocketListener = new SocketListener(clientSocket, connectionID);
+				addConnection(clientSocket, clientSocketListener);
+				Thread thread = new Thread(clientSocketListener);
+				thread.start();
+			} catch (IOException e) {
+				System.out.println("Failed to attend client socket...");
+				System.exit(2);
 			}
 		}
 	}
@@ -47,8 +51,8 @@ public class SocketManager implements Runnable {
 	
 	public void removeConnection(int connectionID) {
 		numConnections--;
-		sockets[numConnections] = null;
-		socketListeners[numConnections] = null;
+		sockets[connectionID] = null;
+		socketListeners[connectionID] = null;
 	}
 	
 	public int getNumConnections() {

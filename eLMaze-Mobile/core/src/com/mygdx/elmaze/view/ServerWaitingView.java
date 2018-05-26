@@ -30,7 +30,16 @@ public class ServerWaitingView extends MenuView {
 
         // Poll for server message for starting game
         if (GameController.getInstance().isGameRunning()) {
+            for (int i=0 ; i<10 ; i++) {
+                System.out.println("Game is supostamente running");
+            }
+
             game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.PLAY));
+        }
+        else {
+            for (int i=0 ; i<10 ; i++) {
+                System.out.println("Game is not running");
+            }
         }
     }
 

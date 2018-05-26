@@ -40,6 +40,7 @@ public class SocketListener implements Runnable {
 			}
 		} 
 		catch (IOException e) {
+			System.out.println("Client " + connectionID + " disconnected.");
 			try {
 				socket.close();
 				NetworkManager.getInstance().getSocketManager().removeConnection(connectionID);
