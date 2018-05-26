@@ -10,12 +10,12 @@ import com.mygdx.elmaze.ELMaze;
 public class CreditsView extends MenuView{
 
     private Image textTableImage;
-    private Button exitButton;
+    private Button backButton;
 
     public CreditsView(ELMaze game) {
         super(game, TYPE.CREDITS);
 
-        createExitButton();
+        createBackButton();
         addButtonListeners();
         
         textTableImage = ImageFactory.makeImage("creditsTableDesktop.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*55/100,SCREEN_WIDTH*80/100);
@@ -25,8 +25,8 @@ public class CreditsView extends MenuView{
 	@Override
 	protected void loadAssets() {
 		this.game.getAssetManager().load( "creditsTableDesktop.png" , Texture.class);
-        this.game.getAssetManager().load( "exitButtonUp.png" , Texture.class);
-        this.game.getAssetManager().load( "exitButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load( "backButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load( "backButtonDown.png" , Texture.class);
 
         this.game.getAssetManager().finishLoading();
 		
@@ -38,19 +38,19 @@ public class CreditsView extends MenuView{
         stage.draw();
     }
 
-	private void createExitButton() {
-		exitButton = ButtonFactory.makeButton(game.getAssetManager().get("exitButtonUp.png", Texture.class),
-			  	 							  game.getAssetManager().get("exitButtonDown.png", Texture.class), 
+	private void createBackButton() {
+		backButton = ButtonFactory.makeButton(game.getAssetManager().get("backButtonUp.png", Texture.class),
+			  	 							  game.getAssetManager().get("backButtonDown.png", Texture.class), 
 			  	 							  SCREEN_WIDTH/2, 
 			  	 							  SCREEN_HEIGHT/7, 
 			  	 							  (int)(SCREEN_WIDTH*3/10), 
 											  (int)(SCREEN_HEIGHT/8));
 		
-		stage.addActor(exitButton);
+		stage.addActor(backButton);
 	}
 	
 	private void addButtonListeners() {
-        exitButton.addListener(new ClickListener() {
+        backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.MAIN));
