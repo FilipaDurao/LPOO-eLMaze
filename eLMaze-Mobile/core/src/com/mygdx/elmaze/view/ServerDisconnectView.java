@@ -41,7 +41,7 @@ public class ServerDisconnectView extends MenuView {
     }
 
     private void setupStage(){
-        textImage = ImageFactory.makeImage(game,"lostConnectionText.png", SCREEN_WIDTH*5/7, SCREEN_HEIGHT/2,SCREEN_WIDTH*3/10);
+        textImage = ImageFactory.makeImage(game,"lostConnectionText.png", SCREEN_WIDTH*50/100, SCREEN_HEIGHT*60/100,SCREEN_WIDTH*85/100);
 
         stage.addActor(textImage);
         stage.addActor(exitButton);
