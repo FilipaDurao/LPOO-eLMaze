@@ -1,6 +1,7 @@
 package com.mygdx.elmaze.view.menus;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -28,6 +29,7 @@ public class MPMobileMenuView extends MenuView {
     private Image gameCodeBar;
     private Image errorMessage;
     private ArrayList<String> balls = new ArrayList<String>(5);
+    private ArrayList<String> symbolFileNames = new ArrayList<String>();
     private Integer currentBallSpriteIndex1;
     private Integer currentBallSpriteIndex2;
     private Image ballImage1;
@@ -50,10 +52,11 @@ public class MPMobileMenuView extends MenuView {
 		createBackArrowButton2();
 		createBackAndPlayButtons();
 		createErrorMessage();
+		setUpTitles();
+		setupSymbolNames();
+		createKeyCode();
 		
 		addButtonListeners();
-		
-		setUpTitles();
 	}
 
 	protected void loadAssets() {
@@ -77,7 +80,28 @@ public class MPMobileMenuView extends MenuView {
         this.game.getAssetManager().load( "ruby_ball.png" , Texture.class);
         this.game.getAssetManager().load( "empty.png" , Texture.class);
         this.game.getAssetManager().load( "notAllPlayersConnectedError.png" , Texture.class);
+        loadSymbolAssets();
+        
         this.game.getAssetManager().finishLoading();
+	}
+	
+	private void loadSymbolAssets() {
+		this.game.getAssetManager().load("alphaSymbol.png", Texture.class);
+		this.game.getAssetManager().load("betaSymbol.png", Texture.class);
+		this.game.getAssetManager().load("chiSymbol.png", Texture.class);
+		this.game.getAssetManager().load("deltaSymbol.png", Texture.class);
+		this.game.getAssetManager().load("epsilonSymbol.png", Texture.class);
+		this.game.getAssetManager().load("etaSymbol.png", Texture.class);
+		this.game.getAssetManager().load("gamaSymbol.png", Texture.class);
+		this.game.getAssetManager().load("lambdaSymbol.png", Texture.class);
+		this.game.getAssetManager().load("muSymbol.png", Texture.class);
+		this.game.getAssetManager().load("omegaSymbol.png", Texture.class);
+		this.game.getAssetManager().load("phiSymbol.png", Texture.class);
+		this.game.getAssetManager().load("piSymbol.png", Texture.class);
+		this.game.getAssetManager().load("psiSymbol.png", Texture.class);;
+		this.game.getAssetManager().load("rhoSymbol.png", Texture.class);
+		this.game.getAssetManager().load("sigmaSymbol.png", Texture.class);
+		this.game.getAssetManager().load("tauSymbol.png", Texture.class);
 	}
 	
 	@Override
@@ -86,6 +110,34 @@ public class MPMobileMenuView extends MenuView {
         stage.draw();
     }
 	
+	private void setupSymbolNames() {
+		symbolFileNames.add("alphaSymbol.png");
+	    symbolFileNames.add("betaSymbol.png");
+	    symbolFileNames.add("chiSymbol.png");
+	    symbolFileNames.add("deltaSymbol.png");
+	    symbolFileNames.add("epsilonSymbol.png");
+	    symbolFileNames.add("etaSymbol.png");
+	    symbolFileNames.add("gamaSymbol.png");
+	    symbolFileNames.add("lambdaSymbol.png");
+	    symbolFileNames.add("muSymbol.png");
+	    symbolFileNames.add("omegaSymbol.png");
+	    symbolFileNames.add("phiSymbol.png");
+	    symbolFileNames.add("piSymbol.png");
+	    symbolFileNames.add("psiSymbol.png");
+	    symbolFileNames.add("rhoSymbol.png");
+	    symbolFileNames.add("sigmaSymbol.png");
+	    symbolFileNames.add("tauSymbol.png");
+	}
+	
+	private void createKeyCode() {
+		int symbolSize = (int)(SCREEN_WIDTH*3.5/100);
+		LinkedList<Integer> parsedIP = NetworkManager.getInstance().getParsedIP();
+		for (int i=0 ; i<parsedIP.size() ; i++) {
+			stage.addActor(ImageFactory.makeImage(symbolFileNames.get(parsedIP.get(i)), (int)(SCREEN_WIDTH*31.5/100+1.4*i*symbolSize+symbolSize/2), 
+					SCREEN_HEIGHT*42/100, symbolSize, symbolSize));
+		}
+	}
+	
 	private void setUpTitles() {
 		title1 = ImageFactory.makeImage("player1Title.png", SCREEN_WIDTH/4, SCREEN_HEIGHT*9/10,SCREEN_WIDTH/3);
 		stage.addActor(title1);
@@ -93,10 +145,10 @@ public class MPMobileMenuView extends MenuView {
 		title2 = ImageFactory.makeImage("player2Title.png", SCREEN_WIDTH*3/4, SCREEN_HEIGHT*9/10,SCREEN_WIDTH/3);
 		stage.addActor(title2);
 		
-		gameCodeTitle = ImageFactory.makeImage("gameCodeTitle.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*55/100,SCREEN_WIDTH*40/100);
+		gameCodeTitle = ImageFactory.makeImage("gameCodeTitle.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*55/100,SCREEN_WIDTH*35/100);
 		stage.addActor(gameCodeTitle);
 		
-		gameCodeBar = ImageFactory.makeImage("gameCodeBar.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*42/100,SCREEN_WIDTH*75/100);
+		gameCodeBar = ImageFactory.makeImage("gameCodeBar.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*42/100, SCREEN_WIDTH*42/100, SCREEN_WIDTH*5/100);
 		stage.addActor(gameCodeBar);
 	}
 	
@@ -117,7 +169,7 @@ public class MPMobileMenuView extends MenuView {
 	}
 	
 	private void createErrorMessage() {
-		errorMessage = ImageFactory.makeImage("empty.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*1/20, SCREEN_WIDTH*45/100, SCREEN_HEIGHT*4/100);
+		errorMessage = ImageFactory.makeImage("empty.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*1/20, SCREEN_WIDTH*53/100, SCREEN_HEIGHT*4/100);
 		stage.addActor(errorMessage);
 	}
 	

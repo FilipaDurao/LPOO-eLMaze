@@ -56,7 +56,6 @@ public class SocketListener implements Runnable {
 	
 	public void broadcastMessage(MessageToClient msg) {
 		if (socket != null) {
-			System.out.println("Broadcasting a message to a specific socket");
             try {
 	            oStream.writeObject(msg);
 	            oStream.reset();	

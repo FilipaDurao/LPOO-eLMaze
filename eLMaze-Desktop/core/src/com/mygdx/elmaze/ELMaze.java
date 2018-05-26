@@ -30,8 +30,7 @@ public class ELMaze extends Game {
 	}
 	
 	private void startElMaze() {
-		MenuView mainMenuView = MenuFactory.makeMenu(this, MenuView.TYPE.MAIN);	//TODO PUT MAIN MENU BACK
-
+		MenuView mainMenuView = MenuFactory.makeMenu(this, MenuView.TYPE.MAIN);
         setScreen(mainMenuView);
     }
 
@@ -91,21 +90,7 @@ public class ELMaze extends Game {
 	
 	public boolean startServer() {
 		int numPlayers = (playMode == PLAY_MODE.SINGLEPLAYER ? 1 : 2);
-		
-		if (NetworkManager.getInstance().startServer(numPlayers)) {
-			String[] symbols = {"alpha", "beta", "chi", "delta", "epsilon", "eta", "gama", "lamba",
-								"mu", "omega", "phi", "pi", "psi", "rho", "sigma", "tau"};
-			
-			for (Integer num : NetworkManager.getInstance().parse()) {
-				System.out.println(num + " - " + symbols[num]);
-			}
-			
-			return true;
-			
-		}
-		else {
-			return false;
-		}
+		return NetworkManager.getInstance().startServer(numPlayers);
 	}
 	
 }
