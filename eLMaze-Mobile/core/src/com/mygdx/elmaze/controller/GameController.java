@@ -43,7 +43,7 @@ public class GameController {
 
         if(!broadcastSuccess) {
             NetworkManager.getInstance().closeConnection();
-            game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.MAIN));
+            game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.SERVER_DC));
         }
     }
 

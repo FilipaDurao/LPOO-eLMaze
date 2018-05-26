@@ -35,13 +35,14 @@ public class ServerWaitingView extends MenuView {
     }
 
     private void setupExitButton() {
-        exitButton = ButtonFactory.makeButton(game,"exitButtonUp.png","exitButtonDown.png",SCREEN_WIDTH/2,
+        exitButton = ButtonFactory.makeButton(game,"backButtonUp.png","backButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
 
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 NetworkManager.getInstance().closeConnection();
+                GameController.getInstance().disconnectGame();
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.MAIN));
             }
         });
@@ -56,8 +57,8 @@ public class ServerWaitingView extends MenuView {
 
     protected void loadAssets() {
         this.game.getAssetManager().load("waitingForServerText.png" , Texture.class);
-        this.game.getAssetManager().load("exitButtonUp.png" , Texture.class);
-        this.game.getAssetManager().load("exitButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("backButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("backButtonDown.png" , Texture.class);
         this.game.getAssetManager().finishLoading();
     }
 }

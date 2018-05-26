@@ -48,8 +48,8 @@ public class CreditsView extends MenuView {
 
     protected void loadAssets() {
         this.game.getAssetManager().load("creditsTable.png" , Texture.class);
-        this.game.getAssetManager().load("exitButtonDown.png" , Texture.class);
-        this.game.getAssetManager().load("exitButtonUp.png" , Texture.class);
+        this.game.getAssetManager().load("backButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load("backButtonUp.png" , Texture.class);
         this.game.getAssetManager().finishLoading();
     }
 

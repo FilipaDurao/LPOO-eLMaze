@@ -40,7 +40,6 @@ public class InstructionsView extends MenuView {
     }
 
     private void setupStage(){
-
         instructionsTable = ImageFactory.makeImage(game,"instructionsTable.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*6/10,SCREEN_WIDTH*90/100);
 
         stage.addActor(instructionsTable);
