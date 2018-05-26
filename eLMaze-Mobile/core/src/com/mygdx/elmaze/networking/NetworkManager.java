@@ -28,33 +28,15 @@ public class NetworkManager {
     public boolean establishConnection(String serverAddress, int timeout)  {
         try {
             // Connect to server
-            for (int i=0 ; i<10 ; i++) {
-                System.out.println("Creating socket.");
-            }
             createSocket();
             socket.connect(new InetSocketAddress(serverAddress, SERVER_PORT), timeout);
-
-
-            for (int i=0 ; i<10 ; i++) {
-                System.out.println("Connected to server.");
-            }
 
             // Write to server
             createOutputStream();
 
-            for (int i=0 ; i<10 ; i++) {
-                System.out.println("Created OUTPUT stream.");
-            }
-
-
             // Listen from server
             Thread thread = new Thread(new ServerListener(socket));
             thread.start();
-
-
-            for (int i=0 ; i<10 ; i++) {
-                System.out.println("Started Listener.");
-            }
 
             return true;
         }
