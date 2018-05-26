@@ -33,6 +33,9 @@ public class MenuFactory {
                 case SERVER_DC:
                     menuCache.put(menuType, new ServerDisconnectView(game));
                     break;
+                case WIN:
+                    menuCache.put(menuType, new WinningView(game));
+                    break;
             }
         }
 
