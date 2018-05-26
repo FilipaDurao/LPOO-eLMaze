@@ -35,7 +35,6 @@ public class NetworkManager {
 		try {
 			Socket s = new Socket("google.com", 80);
 			String ipAddress = s.getLocalAddress().getHostAddress();
-			System.out.println(ipAddress);
 			s.close();
 			return ipAddress;
 		} 
@@ -77,8 +76,7 @@ public class NetworkManager {
 		}
 	}
 	
-	// TODO: This is temporary!!
-	public LinkedList<Integer> parse() {
+	public LinkedList<Integer> getParsedIP() {
 		LinkedList<Integer> parsedIP = new LinkedList<Integer>();
 		
 		int num;
