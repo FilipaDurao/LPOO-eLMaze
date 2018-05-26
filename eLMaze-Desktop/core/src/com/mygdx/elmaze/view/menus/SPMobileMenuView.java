@@ -45,7 +45,6 @@ public class SPMobileMenuView extends MenuView {
 		addButtonListeners();
 		
 		setUpTitles();
-		game.startServer();	
 	}
 
 	protected void loadAssets() {
@@ -174,6 +173,8 @@ public class SPMobileMenuView extends MenuView {
             		errorMessage.setDrawable(new TextureRegionDrawable(new TextureRegion(
             				game.getAssetManager().get("playerNotConnectedError.png", Texture.class))));
             	} else {
+            		errorMessage.setDrawable(new TextureRegionDrawable(new TextureRegion(
+            				game.getAssetManager().get("empty.png", Texture.class))));
                 	BallView.setPlayer1SpriteName(balls.get(currentBallSpriteIndex));
                 	game.startGame();
             	}

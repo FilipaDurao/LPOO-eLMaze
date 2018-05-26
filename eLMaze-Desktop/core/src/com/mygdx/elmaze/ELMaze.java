@@ -89,7 +89,7 @@ public class ELMaze extends Game {
         setScreen(GameView.getInstance());
 	}
 	
-	public void startServer() {
+	public boolean startServer() {
 		int numPlayers = (playMode == PLAY_MODE.SINGLEPLAYER ? 1 : 2);
 		
 		if (NetworkManager.getInstance().startServer(numPlayers)) {
@@ -100,11 +100,11 @@ public class ELMaze extends Game {
 				System.out.println(num + " - " + symbols[num]);
 			}
 			
+			return true;
+			
 		}
 		else {
-			// TODO ///////////////////////
-			// Deal with error!!!!  ///////
-			///////////////////////////////
+			return false;
 		}
 	}
 	

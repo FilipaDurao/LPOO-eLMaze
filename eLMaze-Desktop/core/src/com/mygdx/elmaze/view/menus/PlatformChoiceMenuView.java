@@ -2,10 +2,12 @@ package com.mygdx.elmaze.view.menus;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.ELMaze.PLATFORM;
 import com.mygdx.elmaze.ELMaze.PLAY_MODE;
@@ -14,6 +16,7 @@ public class PlatformChoiceMenuView extends MenuView {
 
 	private Button phoneButton;
     private Button keyboardButton;
+    private Image errorMessage;
     private Image title;
 	
 	public PlatformChoiceMenuView(ELMaze game) {
@@ -23,6 +26,7 @@ public class PlatformChoiceMenuView extends MenuView {
 		
 		createPhoneButton();
 		createKeyboardButton();
+		createErrorMessage();
 		
 		addButtonListeners();
 		
@@ -37,6 +41,8 @@ public class PlatformChoiceMenuView extends MenuView {
         this.game.getAssetManager().load( "phoneButtonDown.png" , Texture.class);
         this.game.getAssetManager().load( "keyboardButtonUp.png" , Texture.class);
         this.game.getAssetManager().load( "keyboardButtonDown.png" , Texture.class);
+        this.game.getAssetManager().load( "serverCreationError.png" , Texture.class);
+        this.game.getAssetManager().load( "empty.png" , Texture.class);
         this.game.getAssetManager().finishLoading();
 	}
 	
@@ -45,6 +51,11 @@ public class PlatformChoiceMenuView extends MenuView {
         stage.act(delta);
         stage.draw();
     }
+	
+	private void createErrorMessage() {
+		errorMessage = ImageFactory.makeImage("empty.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*1/20, SCREEN_WIDTH*50/100, SCREEN_HEIGHT*7/100);
+		stage.addActor(errorMessage);
+	}
 	
 	private void createPhoneButton() {
 		phoneButton = ButtonFactory.makeButton(game.getAssetManager().get("phoneButtonUp.png", Texture.class),
@@ -75,6 +86,16 @@ public class PlatformChoiceMenuView extends MenuView {
             public void clicked(InputEvent event, float x, float y) {
             	game.setPlatform(PLATFORM.PHONE);
             	
+            	// Try to start the server
+        		if(!game.startServer()) {
+            		errorMessage.setDrawable(new TextureRegionDrawable(new TextureRegion(
+            				game.getAssetManager().get("serverCreationError.png", Texture.class))));
+            		return;
+        		} else {
+            		errorMessage.setDrawable(new TextureRegionDrawable(new TextureRegion(
+            				game.getAssetManager().get("empty.png", Texture.class))));
+        		}
+            	
             	if(game.getPlayMode() == PLAY_MODE.SINGLEPLAYER) {
             		game.activateMenu(MenuFactory.makeMenu(game, TYPE.SPMOBILE));
             	}
@@ -88,6 +109,9 @@ public class PlatformChoiceMenuView extends MenuView {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	game.setPlatform(PLATFORM.KEYBOARD);
+
+        		errorMessage.setDrawable(new TextureRegionDrawable(new TextureRegion(
+        				game.getAssetManager().get("empty.png", Texture.class))));
             	
             	if(game.getPlayMode() == PLAY_MODE.SINGLEPLAYER) {
             		game.activateMenu(MenuFactory.makeMenu(game, TYPE.SPKEYBOARD));

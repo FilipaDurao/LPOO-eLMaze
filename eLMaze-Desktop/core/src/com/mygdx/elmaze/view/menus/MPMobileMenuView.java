@@ -54,7 +54,6 @@ public class MPMobileMenuView extends MenuView {
 		addButtonListeners();
 		
 		setUpTitles();
-	
 	}
 
 	protected void loadAssets() {
@@ -250,6 +249,8 @@ public class MPMobileMenuView extends MenuView {
             		errorMessage.setDrawable(new TextureRegionDrawable(new TextureRegion(
             				game.getAssetManager().get("notAllPlayersConnectedError.png", Texture.class))));
             	} else {
+            		errorMessage.setDrawable(new TextureRegionDrawable(new TextureRegion(
+            				game.getAssetManager().get("empty.png", Texture.class))));
                 	BallView.setPlayer1SpriteName(balls.get(currentBallSpriteIndex1));
                 	BallView.setPlayer2SpriteName(balls.get(currentBallSpriteIndex2));
                 	game.startGame();
