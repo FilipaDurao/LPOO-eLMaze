@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import com.mygdx.elmaze.model.levels.LevelModel;
 import com.mygdx.elmaze.model.levels.MPLevel1Model;
+import com.mygdx.elmaze.model.levels.MPLevel3Model;
 import com.mygdx.elmaze.model.levels.MPLevel2Model;
 import com.mygdx.elmaze.model.levels.SPLevel1Model;
 import com.mygdx.elmaze.model.levels.SPLevel2Model;
@@ -52,6 +53,7 @@ public class GameModel {
 		levels.clear();
 		levels.add(new MPLevel1Model());
 		levels.add(new MPLevel2Model());
+		levels.add(new MPLevel3Model());
 	}
 	
 }
