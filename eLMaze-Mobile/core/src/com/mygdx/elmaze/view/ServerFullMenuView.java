@@ -9,13 +9,13 @@ import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.controller.GameController;
 import com.mygdx.elmaze.networking.NetworkManager;
 
-public class WinningView extends MenuView {
+public class ServerFullMenuView extends MenuView {
 
     // Background
     private Button backButton;
     private Image textImage;
 
-    public WinningView(ELMaze game) {
+    public ServerFullMenuView(ELMaze game) {
         super(game, TYPE.SERVER_WAIT);
 
         loadAssets();
@@ -27,11 +27,6 @@ public class WinningView extends MenuView {
     public void render(float delta) {
         stage.act(delta);   // Perform ui logic
         stage.draw();       // Draw the UI
-
-        // Poll for server message for starting game
-        if (GameController.getInstance().isGameRunning()) {
-            game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.PLAY));
-        }
     }
 
     private void setupBackButton() {
@@ -49,16 +44,17 @@ public class WinningView extends MenuView {
     }
 
     private void setupStage(){
-        textImage = ImageFactory.makeImage(game,"youWon.png", SCREEN_WIDTH*50/100, SCREEN_HEIGHT*60/100,SCREEN_WIDTH*85/100);
+        textImage = ImageFactory.makeImage(game,"serverFull.png", SCREEN_WIDTH*50/100, SCREEN_HEIGHT*60/100,SCREEN_WIDTH*85/100);
 
         stage.addActor(textImage);
         stage.addActor(backButton);
     }
 
     protected void loadAssets() {
-        this.game.getAssetManager().load("youWon.png" , Texture.class);
+        this.game.getAssetManager().load("serverFull.png" , Texture.class);
         this.game.getAssetManager().load("backButtonUp.png" , Texture.class);
         this.game.getAssetManager().load("backButtonDown.png" , Texture.class);
         this.game.getAssetManager().finishLoading();
     }
+
 }
