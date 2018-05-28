@@ -7,8 +7,8 @@ public class DoorModel extends EntityModel {
 	private float height;
 	
 	/**
-	 * @param x The Door's x position on the screen
-	 * @param y The Door's y position on the screen
+	 * @param x The Door's x position
+	 * @param y The Door's y position
 	 * @param width The Door's width
 	 * @param height The Door's height
 	 */

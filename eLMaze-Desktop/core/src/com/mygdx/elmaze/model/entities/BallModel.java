@@ -6,8 +6,8 @@ public class BallModel extends EntityModel {
 	private float radius;
 
 	/**
-	 * @param x The Ball's x position on the Screen
-	 * @param y The Ball's y position on the Screen
+	 * @param x The Ball's x position
+	 * @param y The Ball's y position
 	 * @param radius The Ball's radius
 	 * @param playerNum The number of the player that controls the Ball
 	 */
