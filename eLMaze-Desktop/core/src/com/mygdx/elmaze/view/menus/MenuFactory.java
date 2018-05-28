@@ -39,6 +39,12 @@ public class MenuFactory {
                 case MPKEYBOARD:
                     menuCache.put(menuType, new MPKeyboardMenuView(game));
                     break;
+                case WIN:
+                    menuCache.put(menuType, new WinningMenuView(game));
+                    break;
+                case LOSTCONTOCLIENT:
+                    menuCache.put(menuType, new LostConnectionToClientMenuView(game));
+                    break;
             }
         }
 

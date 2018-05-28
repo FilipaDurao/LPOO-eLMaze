@@ -14,7 +14,18 @@ import com.mygdx.elmaze.ELMaze;
 
 public abstract class MenuView extends ScreenAdapter{
     
-	public enum TYPE { MAIN, CREDITS, INSTRUCTIONS, NUMPLAYERCHOICE, PLATFORMCHOICE, SPMOBILE, MPMOBILE, SPKEYBOARD, MPKEYBOARD };
+	public enum TYPE { MAIN, 
+					   CREDITS, 
+					   INSTRUCTIONS, 
+					   NUMPLAYERCHOICE, 
+					   PLATFORMCHOICE, 
+					   SPMOBILE, 
+					   MPMOBILE, 
+					   SPKEYBOARD, 
+					   MPKEYBOARD,
+					   WIN,
+					   LOSTCONTOCLIENT
+					 };
 	
     protected final ELMaze game;
     public static final int SCREEN_WIDTH = Gdx.graphics.getWidth();
