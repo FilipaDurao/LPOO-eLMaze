@@ -42,8 +42,8 @@ public class MenuFactory {
                 case WIN:
                     menuCache.put(menuType, new WinningMenuView(game));
                     break;
-                case LOSTCONTOCLIENT:
-                    menuCache.put(menuType, new LostConnectionToClientMenuView(game));
+                case CLIENTDC:
+                    menuCache.put(menuType, new ClientDCMenuView(game));
                     break;
             }
         }

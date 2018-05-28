@@ -17,10 +17,12 @@ public class GameController {
 	
 	private static GameController instance;
 	
+	public enum STATUS { NOT_RUNNING , RUNNING , DISCONNECT };
 	public static final int MAP_WIDTH = 20;
 	public static final int MAP_HEIGHT = MAP_WIDTH * Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
 	private final LinkedList<Level> levels = new LinkedList<Level>();
 	private boolean isSinglePlayer = true;
+	private STATUS status = STATUS.NOT_RUNNING;
 	
 	public static GameController getInstance() {
 		if (instance == null) {
@@ -36,15 +38,17 @@ public class GameController {
 	}
 	
     public void update(float delta) {
-    	levels.getFirst().update(delta);
+    	if (!levels.isEmpty()) {
+        	levels.getFirst().update(delta);
+    	}
     }
 
 	public void advanceLevel() {
 		levels.removeFirst();
 		
 		if (levels.isEmpty()) {
-			System.out.println("You win! :D");
-    		Gdx.app.exit();
+			System.out.println("Game is Over, player has won.");
+    		this.stopGame();
 		}
 	}
 	
@@ -67,6 +71,10 @@ public class GameController {
 	}
 
 	public void updateBall(int connectionID, Vector2 forceVector, boolean wake) {
+		if (levels.isEmpty()) {
+			return;
+		}
+		
 		if (isSinglePlayer) {
 			((SinglePlayerLevel) levels.getFirst()).getBallBody().applyForceToCenter(forceVector, wake);
 		}
@@ -78,5 +86,21 @@ public class GameController {
 				((MultiPlayerLevel) levels.getFirst()).getBall2Body().applyForceToCenter(forceVector, wake);
 			}
 		}
+	}
+	
+	public STATUS getStatus() {
+		return status;
+	}
+	
+	public void triggedClientDC() {
+		status = STATUS.DISCONNECT;
+	}
+	
+	public void startGame() {
+		status = STATUS.RUNNING;
+	}
+	
+	public void stopGame() {
+		status = STATUS.NOT_RUNNING;
 	}
 }

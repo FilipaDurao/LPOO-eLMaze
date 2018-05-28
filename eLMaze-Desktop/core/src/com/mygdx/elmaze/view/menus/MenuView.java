@@ -24,7 +24,7 @@ public abstract class MenuView extends ScreenAdapter{
 					   SPKEYBOARD, 
 					   MPKEYBOARD,
 					   WIN,
-					   LOSTCONTOCLIENT
+					   CLIENTDC
 					 };
 	
     protected final ELMaze game;

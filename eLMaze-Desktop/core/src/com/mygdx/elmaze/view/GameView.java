@@ -18,7 +18,11 @@ import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
 import com.mygdx.elmaze.model.levels.MultiPlayerLevelModel;
 import com.mygdx.elmaze.model.levels.SinglePlayerLevelModel;
+import com.mygdx.elmaze.networking.MessageToClient;
+import com.mygdx.elmaze.networking.NetworkManager;
 import com.mygdx.elmaze.view.entities.*;
+import com.mygdx.elmaze.view.menus.MenuFactory;
+import com.mygdx.elmaze.view.menus.MenuView.TYPE;
 
 public class GameView extends ScreenAdapter {
 
@@ -104,6 +108,8 @@ public class GameView extends ScreenAdapter {
 	        debugCamera.scl(1 / PIXEL_TO_METER);
 	        debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
         }
+        
+        checkGameStatusChange();
     }
     
     private void drawBackground() {
@@ -195,6 +201,34 @@ public class GameView extends ScreenAdapter {
     		ButtonView buttonView = (ButtonView) ViewFactory.makeView(game, button);
     		buttonView.update(button);
     		buttonView.draw(game.getSpriteBatch());
+    	}
+    }
+    
+    public void triggerClientDC() {
+    }
+    
+    public void triggerWin() {
+    	game.activateMenu(MenuFactory.makeMenu(game, TYPE.WIN));
+    }
+    
+    private void checkGameStatusChange() {
+    	switch (GameController.getInstance().getStatus()) {
+    	case DISCONNECT:
+        	game.activateMenu(MenuFactory.makeMenu(game, TYPE.CLIENTDC));
+        	GameController.getInstance().stopGame();
+        	break;
+    	case NOT_RUNNING:
+        	game.activateMenu(MenuFactory.makeMenu(game, TYPE.WIN));
+        	
+        	if (game.getPlatform() == ELMaze.PLATFORM.PHONE) {
+        		NetworkManager.getInstance().getSocketManager().broadcastMessage(
+        				new MessageToClient(MessageToClient.CONTENT.GAME_FINISH));
+        		NetworkManager.getInstance().getSocketManager().closeConnections();
+        	}
+        	
+        	break;
+    	default:
+    		break;
     	}
     }
 }
