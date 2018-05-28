@@ -1,5 +1,6 @@
 package com.mygdx.elmaze.networking;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -39,15 +40,12 @@ public class SocketListener implements Runnable {
 				}
 			}
 		} 
-		catch (IOException e) {
+		catch (EOFException e) {
 			System.out.println("Client " + connectionID + " disconnected.");
-			try {
-				socket.close();
-				NetworkManager.getInstance().getSocketManager().removeConnection(connectionID);
-			} catch (IOException e1) {
-				System.out.println("Failed to close socket ...");
-				System.exit(3);
-			}
+			closeSocket();
+		}
+		catch (IOException e) {
+			System.out.println("Input/Output operation failed ...");
 		} 
 		catch (ClassNotFoundException e) {
 			System.out.println("Tried to read to an invalid class object ...");
@@ -64,6 +62,20 @@ public class SocketListener implements Runnable {
 				e.printStackTrace();
 				System.out.println("Failed to broadcast message ...");
 			}
+		}
+	}
+	
+	public void closeSocket() {
+		if (GameController.getInstance().getStatus() == GameController.STATUS.RUNNING) {
+			GameController.getInstance().triggedClientDC();
+		}
+		
+		try {
+			socket.close();
+			NetworkManager.getInstance().getSocketManager().removeConnection(connectionID);
+		} catch (IOException e1) {
+			System.out.println("Failed to close socket ...");
+			System.exit(3);
 		}
 	}
 
