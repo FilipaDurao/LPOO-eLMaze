@@ -9,9 +9,10 @@ import com.mygdx.elmaze.view.MenuView;
 
 public class GameController {
 
+    public enum STATUS { NOT_RUNNING , RUNNING , DISCONNECT , SV_FULL };
     private static GameController instance;
     private ELMaze game;
-    private boolean isGameRunning = false;
+    private STATUS status = STATUS.NOT_RUNNING;
 
     public static GameController getInstance() {
         if (instance == null) {
@@ -28,11 +29,26 @@ public class GameController {
     }
 
     public void startGame() {
-        isGameRunning = true;
+        status = STATUS.RUNNING;
     }
 
-    public void disconnectGame() {
-        isGameRunning = false;
+    public void stopGame() {
+        status = STATUS.NOT_RUNNING;
+    }
+
+    public void triggerServerFull() {
+        status = STATUS.SV_FULL;
+        for (int i=0 ; i<2 ; i++) {
+            System.out.println("IN Controller");
+        }
+    }
+
+    public void triggerServerDC() {
+        status = STATUS.DISCONNECT;
+    }
+
+    public STATUS getStatus() {
+        return status;
     }
 
     public void moveBall(float accelerometerX, float accelerometerY) {
@@ -45,10 +61,6 @@ public class GameController {
             NetworkManager.getInstance().closeConnection();
             game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.SERVER_DC));
         }
-    }
-
-    public boolean isGameRunning() {
-        return isGameRunning;
     }
 
 }

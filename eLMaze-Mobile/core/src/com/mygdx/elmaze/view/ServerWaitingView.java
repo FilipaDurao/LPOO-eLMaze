@@ -28,19 +28,7 @@ public class ServerWaitingView extends MenuView {
         stage.act(delta); //Perform ui logic
         stage.draw(); //Draw the UI
 
-        // Poll for server message for starting game
-        if (GameController.getInstance().isGameRunning()) {
-            for (int i=0 ; i<10 ; i++) {
-                System.out.println("Game is supostamente running");
-            }
-
-            game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.PLAY));
-        }
-        else {
-            for (int i=0 ; i<10 ; i++) {
-                System.out.println("Game is not running");
-            }
-        }
+        checkGameStatusChange();
     }
 
     private void setupExitButton() {
@@ -51,7 +39,7 @@ public class ServerWaitingView extends MenuView {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 NetworkManager.getInstance().closeConnection();
-                GameController.getInstance().disconnectGame();
+                GameController.getInstance().stopGame();
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.MAIN));
             }
         });
@@ -69,5 +57,28 @@ public class ServerWaitingView extends MenuView {
         this.game.getAssetManager().load("backButtonUp.png" , Texture.class);
         this.game.getAssetManager().load("backButtonDown.png" , Texture.class);
         this.game.getAssetManager().finishLoading();
+    }
+
+    private void checkGameStatusChange() {
+        switch (GameController.getInstance().getStatus()) {
+            case SV_FULL:
+                for (int i=0 ; i<2 ; i++) {
+                    System.out.println("Polled an SV Full");
+                }
+                game.activateMenu(MenuFactory.makeMenu(game, TYPE.SERVER_FULL));
+                GameController.getInstance().stopGame();
+                NetworkManager.getInstance().closeConnection();
+                break;
+            case RUNNING:
+                game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.PLAY));
+                break;
+            case DISCONNECT:
+                game.activateMenu(MenuFactory.makeMenu(game, TYPE.SERVER_DC));
+                GameController.getInstance().stopGame();
+                NetworkManager.getInstance().closeConnection();
+                break;
+            default:
+                break;
+        }
     }
 }

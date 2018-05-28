@@ -9,14 +9,19 @@ import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.controller.GameController;
 import com.mygdx.elmaze.networking.NetworkManager;
 
-public class ServerFullMenuView extends MenuView {
+public class ServerFullView extends MenuView {
 
     // Background
     private Button backButton;
     private Image textImage;
 
-    public ServerFullMenuView(ELMaze game) {
-        super(game, TYPE.SERVER_WAIT);
+    public ServerFullView(ELMaze game) {
+        super(game, TYPE.SERVER_FULL);
+
+
+        for (int i=0 ; i<2 ; i++) {
+            System.out.println("Creating SV Full");
+        }
 
         loadAssets();
         setupBackButton();
@@ -25,6 +30,7 @@ public class ServerFullMenuView extends MenuView {
 
     @Override
     public void render(float delta) {
+        System.out.println("IN SEVER FULL VIEW");
         stage.act(delta);   // Perform ui logic
         stage.draw();       // Draw the UI
     }
@@ -36,8 +42,6 @@ public class ServerFullMenuView extends MenuView {
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                NetworkManager.getInstance().closeConnection();
-                GameController.getInstance().disconnectGame();
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.MAIN));
             }
         });

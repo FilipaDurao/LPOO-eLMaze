@@ -16,7 +16,7 @@ public class WinningView extends MenuView {
     private Image textImage;
 
     public WinningView(ELMaze game) {
-        super(game, TYPE.SERVER_WAIT);
+        super(game, TYPE.WIN);
 
         loadAssets();
         setupBackButton();
@@ -27,11 +27,6 @@ public class WinningView extends MenuView {
     public void render(float delta) {
         stage.act(delta);   // Perform ui logic
         stage.draw();       // Draw the UI
-
-        // Poll for server message for starting game
-        if (GameController.getInstance().isGameRunning()) {
-            game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.PLAY));
-        }
     }
 
     private void setupBackButton() {
@@ -41,8 +36,6 @@ public class WinningView extends MenuView {
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                NetworkManager.getInstance().closeConnection();
-                GameController.getInstance().disconnectGame();
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.MAIN));
             }
         });
