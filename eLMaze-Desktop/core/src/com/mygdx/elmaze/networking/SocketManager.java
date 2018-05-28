@@ -33,10 +33,12 @@ public class SocketManager implements Runnable {
 					continue;
 				}
 
-				int connectionID = numConnections;
+				int connectionID = getEmptySocketSlotIndex();
+				System.out.println("New client with id " + connectionID + " connected.");
+				
 				SocketListener clientSocketListener = new SocketListener(clientSocket, connectionID);
 				Thread thread = new Thread(clientSocketListener);
-				addConnection(clientSocketListener, thread);
+				addConnection(clientSocketListener, thread, connectionID);
 				thread.start();
 			} catch (IOException e) {
 				System.out.println("Failed to attend client socket...");
@@ -45,9 +47,19 @@ public class SocketManager implements Runnable {
 		}
 	}
 	
-	public void addConnection(SocketListener socketListener, Thread thread) {
-		socketListeners[numConnections] = socketListener;
-		threads[numConnections] = thread;
+	private int getEmptySocketSlotIndex() {
+		for (int index=0 ; index<socketListeners.length ; index++) {
+			if (socketListeners[index] == null) {
+				return index;
+			}
+		}
+		
+		return -1;
+	}
+	
+	public void addConnection(SocketListener socketListener, Thread thread, int connectionID) {
+		socketListeners[connectionID] = socketListener;
+		threads[connectionID] = thread;
 		numConnections++;
 	}
 	
