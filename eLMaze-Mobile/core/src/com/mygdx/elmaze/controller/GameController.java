@@ -1,6 +1,5 @@
 package com.mygdx.elmaze.controller;
 
-import com.badlogic.gdx.Gdx;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.networking.MessageToServer;
 import com.mygdx.elmaze.networking.NetworkManager;
