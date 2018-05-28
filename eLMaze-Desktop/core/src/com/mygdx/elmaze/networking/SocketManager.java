@@ -1,6 +1,7 @@
 package com.mygdx.elmaze.networking;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -28,8 +29,7 @@ public class SocketManager implements Runnable {
 
 				if (numConnections >= maxNumConnections) {
 					System.out.println("New client cannot be attended - Server is Full");
-					// TODO Close socket and communicate to client
-					clientSocket.close();
+					communicateServerFull(clientSocket);
 					continue;
 				}
 
@@ -75,6 +75,23 @@ public class SocketManager implements Runnable {
 			if (socketListeners[i] != null && threads[i] != null) {
 				removeConnection(i);
 			}
+		}
+	}
+	
+	private void communicateServerFull(Socket clientSocket) {
+		try {
+			ObjectOutputStream oStream = new ObjectOutputStream(clientSocket.getOutputStream());
+			MessageToClient msg = new MessageToClient(MessageToClient.CONTENT.SERVER_FULL);
+            oStream.writeObject(msg);
+            oStream.close();
+		} catch (IOException e) {
+			System.out.println("Failed to communicate to client that the server is full.");
+		}
+		
+		try {
+			clientSocket.close();
+		} catch (IOException e) {
+			System.out.println("Failed to close client socket when communicating the server is full.");
 		}
 	}
 	

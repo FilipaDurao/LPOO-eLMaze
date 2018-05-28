@@ -72,6 +72,7 @@ public class SocketListener implements Runnable {
 		
 		try {
 			socket.close();
+			oStream.close();
 			NetworkManager.getInstance().getSocketManager().removeConnection(connectionID);
 		} catch (IOException e1) {
 			System.out.println("Failed to close socket ...");
