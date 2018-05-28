@@ -26,13 +26,10 @@ public class ELMaze extends Game {
 		spriteBatch = new SpriteBatch();
 		assetManager = new AssetManager();
 		
-		startElMaze();
-	}
-	
-	private void startElMaze() {
+
 		MenuView mainMenuView = MenuFactory.makeMenu(this, MenuView.TYPE.MAIN);
         setScreen(mainMenuView);
-    }
+	}
 
     @Override
 	public void dispose () {
@@ -85,6 +82,7 @@ public class ELMaze extends Game {
 		}
 		
 		GameView.getInstance().setGameReference(this);
+		GameController.getInstance().startGame();
         setScreen(GameView.getInstance());
 	}
 	

@@ -7,13 +7,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
 
-public class LostConnectionToClientMenuView extends MenuView {
+public class ClientDCMenuView extends MenuView {
 
 	private Image winText;
     private Button backButton;
 	
-	public LostConnectionToClientMenuView(ELMaze game) {
-		super(game, TYPE.LOSTCONTOCLIENT);
+	public ClientDCMenuView(ELMaze game) {
+		super(game, TYPE.CLIENTDC);
         
 		winText = ImageFactory.makeImage("lostConnectionToClient.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*65/100, SCREEN_WIDTH*92/100);
         stage.addActor(winText);

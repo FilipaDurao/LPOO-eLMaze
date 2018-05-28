@@ -1,6 +1,7 @@
 package com.mygdx.elmaze.networking;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -9,15 +10,15 @@ public class SocketManager implements Runnable {
 	private final ServerSocket serverSocket;
 	private final int maxNumConnections;
 	private static int numConnections = 0;
-	private final Socket[] sockets;
 	private final SocketListener[] socketListeners;
+	private final Thread[] threads;
 	
 	
 	public SocketManager (ServerSocket serverSocket, int maxNumConnections) {
 		this.maxNumConnections = maxNumConnections;
 		this.serverSocket = serverSocket;
-		this.sockets = new Socket[maxNumConnections];
 		this.socketListeners = new SocketListener[maxNumConnections];
+		this.threads = new Thread[maxNumConnections];
 	}
 
 	@Override
@@ -28,13 +29,14 @@ public class SocketManager implements Runnable {
 
 				if (numConnections >= maxNumConnections) {
 					System.out.println("New client cannot be attended - Server is Full");
+					communicateServerFull(clientSocket);
 					continue;
 				}
 
 				int connectionID = numConnections;
 				SocketListener clientSocketListener = new SocketListener(clientSocket, connectionID);
-				addConnection(clientSocket, clientSocketListener);
 				Thread thread = new Thread(clientSocketListener);
+				addConnection(clientSocketListener, thread);
 				thread.start();
 			} catch (IOException e) {
 				System.out.println("Failed to attend client socket...");
@@ -43,15 +45,16 @@ public class SocketManager implements Runnable {
 		}
 	}
 	
-	public void addConnection(Socket socket, SocketListener socketListener) {
-		sockets[numConnections] = socket;
+	public void addConnection(SocketListener socketListener, Thread thread) {
 		socketListeners[numConnections] = socketListener;
+		threads[numConnections] = thread;
 		numConnections++;
 	}
 	
 	public void removeConnection(int connectionID) {
 		numConnections--;
-		sockets[connectionID] = null;
+		threads[connectionID].interrupt();
+		threads[connectionID] = null;
 		socketListeners[connectionID] = null;
 	}
 	
@@ -64,6 +67,31 @@ public class SocketManager implements Runnable {
 			if (socketListener != null) {
 				socketListener.broadcastMessage(msg);
 			}
+		}
+	}
+	
+	public void closeConnections() {
+		for (int i=0 ; i<numConnections ; i++) {
+			if (socketListeners[i] != null && threads[i] != null) {
+				removeConnection(i);
+			}
+		}
+	}
+	
+	private void communicateServerFull(Socket clientSocket) {
+		try {
+			ObjectOutputStream oStream = new ObjectOutputStream(clientSocket.getOutputStream());
+			MessageToClient msg = new MessageToClient(MessageToClient.CONTENT.SERVER_FULL);
+            oStream.writeObject(msg);
+            oStream.close();
+		} catch (IOException e) {
+			System.out.println("Failed to communicate to client that the server is full.");
+		}
+		
+		try {
+			clientSocket.close();
+		} catch (IOException e) {
+			System.out.println("Failed to close client socket when communicating the server is full.");
 		}
 	}
 	
