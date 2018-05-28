@@ -6,6 +6,13 @@ public class ButtonModel extends EntityModel {
 	private final DoorModel openableDoor;
 	private float radius;
 	
+	/**
+	 * @brief The constructor to use if the Button doesn't have a Door associated
+	 * 
+	 * @param x The Button's x position on the screen
+	 * @param y The Button's y position on the screen
+	 * @param radius The Button's radius
+	 */
 	public ButtonModel(float x, float y, float radius) {
 		super(x, y);
 		this.radius = radius;
@@ -14,6 +21,8 @@ public class ButtonModel extends EntityModel {
 	}
 	
 	/**
+	 * @brief The constructor to use if the Button has a Door associated
+	 * 
 	 * @param x The Button's x position on the screen
 	 * @param y The Button's y position on the screen
 	 * @param radius The Button's radius

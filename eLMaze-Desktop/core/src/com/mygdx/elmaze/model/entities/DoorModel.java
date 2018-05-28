@@ -6,7 +6,12 @@ public class DoorModel extends EntityModel {
 	private float width;
 	private float height;
 	
-	
+	/**
+	 * @param x The Door's x position on the screen
+	 * @param y The Door's y position on the screen
+	 * @param width The Door's width
+	 * @param height The Door's height
+	 */
 	public DoorModel(float x, float y, float width, float height) {
 		super(x, y);
 		this.isOpen = false;
@@ -14,30 +19,55 @@ public class DoorModel extends EntityModel {
 		this.height = height;
 	}
 
+	/**
+	 * @return Returns true if the Door is open, false otherwise
+	 */
 	public boolean isOpen() {
 		return isOpen;
 	}
 	
+	/**
+	 * @return Returns true if the Door is closed, false otherwise
+	 */
 	public boolean isClosed() {
 		return !isOpen;
 	}
 
+	/**
+	 * @brief Sets the Door to open
+	 */
 	public void open() {
 		this.isOpen = true;
 	}
 
+	/**
+	 * @return Returns the Door's width
+	 */
 	public float getWidth() {
 		return width;
 	}
 
+	/**
+	 * @brief Sets the Door's width to the value passed as parameter
+	 * 
+	 * @param width The value to set the Door's width with
+	 */
 	public void setWidth(float width) {
 		this.width = width;
 	}
 
+	/**
+	 * @return Returns the Door's height
+	 */
 	public float getHeight() {
 		return height;
 	}
 
+	/**
+	 * @brief Sets the Door's height to the value passed as parameter
+	 * 
+	 * @param width The value to set the Door's width height
+	 */
 	public void setHeight(float height) {
 		this.height = height;
 	}
