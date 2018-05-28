@@ -16,26 +16,47 @@ public abstract class LevelModel {
 
 	public LevelModel() {}
 
+	/**
+	 * @return Returns the Level's Door Models
+	 */
 	public ArrayList<DoorModel> getDoors() {
 		return doors;
 	}
 
+	/**
+	 * @return Returns the Level's Button Models
+	 */
 	public ArrayList<ButtonModel> getButtons() {
 		return buttons;
 	}
 
+	/**
+	 * @return Returns the Level's Wall Models
+	 */
 	public ArrayList<WallModel> getWalls() {
 		return walls;
 	}
 
+	/**
+	 * @return Returns the Level's Exit Model
+	 */
 	public ExitModel getExit() {
 		return exit;
 	}
 	
+	/**
+	 * @brief Creates the Doors and the Buttons of the Level
+	 */
 	protected abstract void createButtonsDoors();
 	
+	/**
+	 * @brief Creates the Walls of the Level
+	 */
 	protected abstract void createWalls();
 	
+	/**
+	 * @brief Creates the Exit of the Level
+	 */
 	protected abstract void createExit();
 
 }
