@@ -13,6 +13,12 @@ public class ButtonModel extends EntityModel {
 		this.openableDoor = null;
 	}
 	
+	/**
+	 * @param x The Button's x position on the screen
+	 * @param y The Button's y position on the screen
+	 * @param radius The Button's radius
+	 * @param openableDoor The Door that the Button opens
+	 */
 	public ButtonModel(float x, float y, float radius, DoorModel openableDoor) {
 		super(x, y);
 		this.radius = radius;
@@ -20,10 +26,16 @@ public class ButtonModel extends EntityModel {
 		this.openableDoor = openableDoor;
 	}
 
+	/**
+	 * @return Returns true if the Button is pressed, false otherwise
+	 */
 	public boolean isPressed() {
 		return isPressed;
 	}
 
+	/**
+	 * @brief "Presses" the Button and opens the associated Door if there is one
+	 */
 	public void press() {
 		this.isPressed = true;
 		
@@ -32,10 +44,18 @@ public class ButtonModel extends EntityModel {
 		}
 	}
 	
+	/**
+	 * @return Returns the radius of the Button
+	 */
 	public float getRadius() {
 		return radius;
 	}
 	
+	/**
+	 * @brief Sets the Button's radius to the value passed as parameter
+	 * 
+	 * @param radius The value to set the Button's radius
+	 */
 	public void setRadius(float radius) {
 		this.radius = radius;
 	}
