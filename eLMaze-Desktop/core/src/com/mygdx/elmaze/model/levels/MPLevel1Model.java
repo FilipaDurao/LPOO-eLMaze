@@ -9,6 +9,9 @@ import com.mygdx.elmaze.model.entities.WallModel;
 
 public class MPLevel1Model extends MultiPlayerLevelModel {
 
+	/**
+	 * @brief Creates the first multiplayer Level
+	 */
 	public MPLevel1Model() {
 		createBalls();
 		createExit();
@@ -16,12 +19,18 @@ public class MPLevel1Model extends MultiPlayerLevelModel {
 		createButtonsDoors();
 	}
 
+	/**
+	 * @brief Creates the Balls of the first multiplayer Level
+	 */
 	@Override
 	protected void createBalls() {
 		ball1 = new BallModel(1.5f, 1.5f, 0.5f, 0);
 		ball2 = new BallModel(GameController.MAP_WIDTH - 1.5f, 1.5f, 0.5f, 1);
 	}
 
+	/**
+	 * @brief Creates the Doors and Buttons of the first multiplayer Level
+	 */
 	@Override
 	protected void createButtonsDoors() {
 		DoorModel door1 = new DoorModel(0.5f, GameController.MAP_HEIGHT/2 - 0.15f, 3.0f, 0.3f);
@@ -33,6 +42,9 @@ public class MPLevel1Model extends MultiPlayerLevelModel {
 		buttons.add(new ButtonModel(GameController.MAP_WIDTH/2 - 1.2f, GameController.MAP_HEIGHT/2 - 1.2f, 0.7f, doors.get(1)));
 	}
 
+	/**
+	 * @brief Creates the Walls of the first multiplayer Level
+	 */
 	@Override
 	protected void createWalls() {
 		walls.add(new WallModel(0, 0, GameController.MAP_WIDTH, 0.5f));	
@@ -44,6 +56,9 @@ public class MPLevel1Model extends MultiPlayerLevelModel {
 		walls.add(new WallModel(GameController.MAP_WIDTH/2 + 0.25f, GameController.MAP_HEIGHT/2 - 0.25f, GameController.MAP_WIDTH/2-3.75f, 0.5f));
 	}
 
+	/**
+	 * @brief Creates the Exit of the first multiplayer Level
+	 */
 	@Override
 	protected void createExit() {
 		exit = new ExitModel(1.5f, GameController.MAP_HEIGHT - 1.5f, 0.6f);
