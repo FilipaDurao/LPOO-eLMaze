@@ -22,9 +22,11 @@ public class NetworkMessageTest {
 	public void MessageToClientTest() {
 		MessageToClient msgStart = new MessageToClient(MessageToClient.CONTENT.GAME_START);
 		MessageToClient msgFinish = new MessageToClient(MessageToClient.CONTENT.GAME_FINISH);
+		MessageToClient msgFull = new MessageToClient(MessageToClient.CONTENT.SERVER_FULL);
 		
 		// Message content
 		assertEquals(msgStart.getContent(), MessageToClient.CONTENT.GAME_START);
 		assertEquals(msgFinish.getContent(), MessageToClient.CONTENT.GAME_FINISH);
+		assertEquals(msgFull.getContent(), MessageToClient.CONTENT.SERVER_FULL);
 	}
 }
