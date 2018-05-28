@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.controller.GameController;
+import com.mygdx.elmaze.networking.NetworkManager;
 
 public class PlayGameView extends MenuView {
 
@@ -26,10 +27,7 @@ public class PlayGameView extends MenuView {
         stage.act(delta); //Perform ui logic
         stage.draw(); //Draw the UI
 
-        // Poll for server message for finished game
-        if (!GameController.getInstance().isGameRunning()) {
-            game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.SERVER_DC));
-        }
+        checkGameStatusChange();
     }
 
     private void setupStage() {
@@ -51,6 +49,22 @@ public class PlayGameView extends MenuView {
         this.game.getAssetManager().load("playText.png" , Texture.class);
         this.game.getAssetManager().load("ball.png" , Texture.class);
         this.game.getAssetManager().finishLoading();
+    }
+
+    private void checkGameStatusChange() {
+        switch (GameController.getInstance().getStatus()) {
+            case NOT_RUNNING:
+                game.activateMenu(MenuFactory.makeMenu(game, TYPE.WIN));
+                NetworkManager.getInstance().closeConnection();
+                break;
+            case DISCONNECT:
+                game.activateMenu(MenuFactory.makeMenu(game, TYPE.SERVER_DC));
+                GameController.getInstance().stopGame();
+                NetworkManager.getInstance().closeConnection();
+                break;
+            default:
+                break;
+        }
     }
 
 }

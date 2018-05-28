@@ -36,6 +36,12 @@ public class MenuFactory {
                 case WIN:
                     menuCache.put(menuType, new WinningView(game));
                     break;
+                case SERVER_FULL:
+                    for (int i=0 ; i<2 ; i++) {
+                        System.out.println("Creating a full cache.");
+                    }
+                    menuCache.put(menuType, new ServerFullView(game));
+                    break;
             }
         }
 
