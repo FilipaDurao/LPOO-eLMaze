@@ -34,16 +34,15 @@ public class SocketManager implements Runnable {
 				}
 
 				int connectionID = getEmptySocketSlotIndex();
+				//int connectionID = numConnections;
 				System.out.println("New client with id " + connectionID + " connected.");
 				
 				SocketListener clientSocketListener = new SocketListener(clientSocket, connectionID);
 				Thread thread = new Thread(clientSocketListener);
 				addConnection(clientSocketListener, thread, connectionID);
+				//addConnection(clientSocketListener, thread);
 				thread.start();
-			} catch (IOException e) {
-				System.out.println("Failed to attend client socket...");
-				System.exit(2);
-			}
+			} catch (IOException e) { }
 		}
 	}
 	
@@ -63,8 +62,16 @@ public class SocketManager implements Runnable {
 		numConnections++;
 	}
 	
+//	public void addConnection(SocketListener socketListener, Thread thread) {
+//		socketListeners[numConnections] = socketListener;
+//		threads[numConnections] = thread;
+//		numConnections++;
+//	}
+	
 	public void removeConnection(int connectionID) {
+		System.out.println("Removing connection " + connectionID + ".");
 		numConnections--;
+		socketListeners[connectionID].closeSocket();
 		threads[connectionID].interrupt();
 		threads[connectionID] = null;
 		socketListeners[connectionID] = null;
@@ -83,6 +90,7 @@ public class SocketManager implements Runnable {
 	}
 	
 	public void closeConnections() {
+		System.out.println("Removing connections.");
 		for (int i=0 ; i<numConnections ; i++) {
 			if (socketListeners[i] != null && threads[i] != null) {
 				removeConnection(i);
@@ -100,11 +108,11 @@ public class SocketManager implements Runnable {
 			System.out.println("Failed to communicate to client that the server is full.");
 		}
 		
-		try {
-			clientSocket.close();
-		} catch (IOException e) {
-			System.out.println("Failed to close client socket when communicating the server is full.");
-		}
+//		try {
+//			clientSocket.close();
+//		} catch (IOException e) {
+//			System.out.println("Failed to close client socket when communicating the server is full.");
+//		}
 	}
 	
 }

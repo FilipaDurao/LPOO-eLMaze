@@ -204,18 +204,14 @@ public class GameView extends ScreenAdapter {
     	}
     }
     
-    public void triggerClientDC() {
-    }
-    
-    public void triggerWin() {
-    	game.activateMenu(MenuFactory.makeMenu(game, TYPE.WIN));
-    }
     
     private void checkGameStatusChange() {
     	switch (GameController.getInstance().getStatus()) {
     	case DISCONNECT:
         	game.activateMenu(MenuFactory.makeMenu(game, TYPE.CLIENTDC));
         	GameController.getInstance().stopGame();
+    		NetworkManager.getInstance().getSocketManager().closeConnections();
+    		NetworkManager.getInstance().closeServer();
         	break;
     	case NOT_RUNNING:
         	game.activateMenu(MenuFactory.makeMenu(game, TYPE.WIN));
@@ -223,7 +219,6 @@ public class GameView extends ScreenAdapter {
         	if (game.getPlatform() == ELMaze.PLATFORM.PHONE) {
         		NetworkManager.getInstance().getSocketManager().broadcastMessage(
         				new MessageToClient(MessageToClient.CONTENT.GAME_FINISH));
-        		NetworkManager.getInstance().getSocketManager().closeConnections();
         	}
         	
         	break;

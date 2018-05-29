@@ -45,8 +45,8 @@ public class GameModel {
 		levels.clear();
 		levels.add(new SPLevel1Model());
 		levels.add(new SPLevel2Model());
-		levels.add(new SPLevel3Model());
-		levels.add(new SPLevel4Model());
+		//levels.add(new SPLevel3Model());
+		//levels.add(new SPLevel4Model());
 	}
 	
 	public void setMultiPlayerMode() {

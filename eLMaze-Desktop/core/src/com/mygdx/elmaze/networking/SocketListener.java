@@ -23,6 +23,7 @@ public class SocketListener implements Runnable {
 	@Override
 	public void run() {
 		try {
+			System.out.println("Thread running with ID: " + connectionID);
 			oStream = new ObjectOutputStream(socket.getOutputStream());
 			ObjectInputStream iStream = new ObjectInputStream(socket.getInputStream());
 			MessageToServer msg = null;
@@ -42,11 +43,13 @@ public class SocketListener implements Runnable {
 		} 
 		catch (EOFException e) {
 			System.out.println("Client " + connectionID + " disconnected.");
-			closeSocket();
+			if (GameController.getInstance().getStatus() == GameController.STATUS.RUNNING) {
+				GameController.getInstance().triggerClientDC();
+			} else {
+				NetworkManager.getInstance().getSocketManager().removeConnection(connectionID);
+			}
 		}
-		catch (IOException e) {
-			System.out.println("Input/Output operation failed ...");
-		} 
+		catch (IOException e) { } 
 		catch (ClassNotFoundException e) {
 			System.out.println("Tried to read to an invalid class object ...");
 			System.exit(4);
@@ -66,17 +69,11 @@ public class SocketListener implements Runnable {
 	}
 	
 	public void closeSocket() {
-		if (GameController.getInstance().getStatus() == GameController.STATUS.RUNNING) {
-			GameController.getInstance().triggedClientDC();
-		}
-		
 		try {
 			socket.close();
 			oStream.close();
-			NetworkManager.getInstance().getSocketManager().removeConnection(connectionID);
 		} catch (IOException e1) {
-			System.out.println("Failed to close socket ...");
-			System.exit(3);
+			System.out.println("Failed to close socket from client " + connectionID + " ...");
 		}
 	}
 

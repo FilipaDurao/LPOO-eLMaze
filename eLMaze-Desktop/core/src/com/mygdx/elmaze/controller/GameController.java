@@ -47,7 +47,6 @@ public class GameController {
 		levels.removeFirst();
 		
 		if (levels.isEmpty()) {
-			System.out.println("Game is Over, player has won.");
     		this.stopGame();
 		}
 	}
@@ -92,7 +91,7 @@ public class GameController {
 		return status;
 	}
 	
-	public void triggedClientDC() {
+	public void triggerClientDC() {
 		status = STATUS.DISCONNECT;
 	}
 	
