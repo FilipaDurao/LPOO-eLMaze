@@ -7,6 +7,9 @@ import com.mygdx.elmaze.model.entities.EntityModel;
 import com.mygdx.elmaze.model.entities.WallModel;
 import com.mygdx.elmaze.view.GameView;
 
+/**
+ * Represents a Wall View
+ */
 public class WallView extends EntityView {
 
 	public WallView(ELMaze game, EntityModel model) {

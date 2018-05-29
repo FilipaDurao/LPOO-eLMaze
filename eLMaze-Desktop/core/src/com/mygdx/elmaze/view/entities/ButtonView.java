@@ -7,6 +7,9 @@ import com.mygdx.elmaze.model.entities.ButtonModel;
 import com.mygdx.elmaze.model.entities.EntityModel;
 import com.mygdx.elmaze.view.GameView;
 
+/**
+ * Represents a Button View
+ */
 public class ButtonView extends EntityView {
 	
 	private final Texture unpressedTexture;

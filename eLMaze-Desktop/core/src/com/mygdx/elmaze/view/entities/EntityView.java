@@ -6,6 +6,9 @@ import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.model.entities.EntityModel;
 import com.mygdx.elmaze.view.GameView;
 
+/**
+ * Represents an abstract Entity View
+ */
 public abstract class EntityView {
 	
 	Sprite sprite;
