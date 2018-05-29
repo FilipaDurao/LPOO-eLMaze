@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
+import com.mygdx.elmaze.ELMaze.PLATFORM;
 import com.mygdx.elmaze.networking.NetworkManager;
 
 public class WinningMenuView extends MenuView {
@@ -56,7 +57,9 @@ public class WinningMenuView extends MenuView {
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                NetworkManager.getInstance().getSocketManager().closeConnections();
+            	if (game.getPlatform() == PLATFORM.PHONE) {
+                    NetworkManager.getInstance().getSocketManager().closeConnections();
+            	}
                 Gdx.app.exit();
             }
         });
