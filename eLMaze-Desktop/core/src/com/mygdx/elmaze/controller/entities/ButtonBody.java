@@ -7,8 +7,15 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.elmaze.model.entities.ButtonModel;
 import com.mygdx.elmaze.model.entities.EntityModel;
 
+/**
+ * Physical world button body
+ */
 public class ButtonBody extends EntityBody {
 
+	/**
+	 * @param world World the button body belongs to
+	 * @param model Model representing the button's data
+	 */
 	public ButtonBody(World world, EntityModel model) {
 		super(world, model, BodyDef.BodyType.StaticBody);
 

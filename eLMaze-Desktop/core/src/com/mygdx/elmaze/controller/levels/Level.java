@@ -15,27 +15,31 @@ import com.mygdx.elmaze.model.entities.EntityModel;
 import com.mygdx.elmaze.model.entities.WallModel;
 import com.mygdx.elmaze.model.levels.LevelModel;
 
+/**
+ * Game level controller
+ */
 public abstract class Level {
 	
 	protected final World world;
 	
+	/**
+	 * Initializes a Level controller and its physical world (libGDX)
+	 * 
+	 * @param levelModel Level model containing the physical world objects models
+	 */
 	public Level(LevelModel levelModel) {
 		world = new World(new Vector2(0, 0), true);
 		
-		// Exit
 		new ExitBody(world, levelModel.getExit());
 		
-		// Walls
 		for (WallModel wallModel : levelModel.getWalls()) {
 			new WallBody(world, wallModel);
 		}
 		
-		// Doors
 		for (DoorModel doorModel : levelModel.getDoors()) {
 			new DoorBody(world, doorModel);
 		}
 		
-		// Buttons
 		for (ButtonModel buttonModel : levelModel.getButtons()) {
 			new ButtonBody(world, buttonModel);
 		}
@@ -43,6 +47,11 @@ public abstract class Level {
 		world.setContactListener(CollisionListener.getInstance());
 	}
 	
+	/**
+	 * Updates the level controller physical world
+	 * 
+	 * @param delta Time since last update
+	 */
 	public void update(float delta) {
     	world.step(delta, 6, 2);
     	
@@ -55,6 +64,11 @@ public abstract class Level {
         }
     }
     
+	/**
+	 * Verifies if a door was opened
+	 * 
+	 * @param body Physical body of a world object
+	 */
     private void checkOpenDoor(Body body) {
     	if (body.getUserData() instanceof DoorModel) {
         	DoorModel door = (DoorModel) body.getUserData();
@@ -64,6 +78,9 @@ public abstract class Level {
         }
     }
     
+    /**
+     * @return Level controller physical world
+     */
     public World getWorld() {
 		return world;
 	}

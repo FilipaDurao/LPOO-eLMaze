@@ -7,8 +7,15 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.elmaze.model.entities.EntityModel;
 import com.mygdx.elmaze.model.entities.WallModel;
 
+/**
+ * Physical world wall body
+ */
 public class WallBody extends EntityBody {
 
+	/**
+	 * @param world World the wall body belongs to
+	 * @param model Model representing the wall's data
+	 */
 	public WallBody(World world, EntityModel model) {
 		super(world, model, BodyDef.BodyType.StaticBody);
 

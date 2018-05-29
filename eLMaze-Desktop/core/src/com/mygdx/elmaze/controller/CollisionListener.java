@@ -10,10 +10,16 @@ import com.mygdx.elmaze.model.entities.BallModel;
 import com.mygdx.elmaze.model.entities.ButtonModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 
+/**
+ * Singleton Class that listens for collisions (contact listener) for that game's physical worlds, acting as an observer
+ */
 public class CollisionListener implements ContactListener {
 	
 	private static CollisionListener instance;
 	
+	/**
+	 * @return Singleton's class instance
+	 */
 	public static CollisionListener getInstance() {
 		if (instance == null) {
 			instance = new CollisionListener();
@@ -24,6 +30,11 @@ public class CollisionListener implements ContactListener {
 	
 	private CollisionListener() {}
 	
+	/**
+	 * Verifies the start of a collision between two bodies
+	 * 
+	 * @param contact Information regarding the collision
+	 */
 	@Override
 	public void beginContact(Contact contact) {
         Body bodyA = contact.getFixtureA().getBody();

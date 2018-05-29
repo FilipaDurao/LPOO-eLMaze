@@ -7,8 +7,15 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.elmaze.model.entities.EntityModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 
+/**
+ * Physical world exit body
+ */
 public class ExitBody extends EntityBody {
 
+	/**
+	 * @param world World the exit body belongs to
+	 * @param model Model representing the exit's data
+	 */
 	public ExitBody(World world, EntityModel model) {
 		super(world, model, BodyDef.BodyType.StaticBody);
 
