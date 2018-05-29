@@ -1,6 +1,5 @@
 package com.mygdx.elmaze.model.levels;
 
-import com.mygdx.elmaze.controller.GameController;
 import com.mygdx.elmaze.model.entities.BallModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
@@ -25,11 +24,11 @@ public class SPLevel1Model extends SinglePlayerLevelModel {
 	 */
 	@Override
 	protected void createBall() {
-		ball = new BallModel(2.05f, GameController.MAP_HEIGHT - 2.05f, 0.5f, 0);
+		ball = new BallModel(2.05f, LEVEL_HEIGHT - 2.05f, 0.5f, 0);
 	}
 
 	/**
-	 *  Because the Level doesn't have Doors or Buttons, doesn't do anything
+	 *  Creates the Buttons and Doors of the second singleplayer Level
 	 */
 	@Override
 	protected void createButtonsDoors() {}
@@ -39,13 +38,13 @@ public class SPLevel1Model extends SinglePlayerLevelModel {
 	 */
 	@Override
 	protected void createWalls() {
-		walls.add(new WallModel(0, 0, GameController.MAP_WIDTH, 0.5f));	
-		walls.add(new WallModel(0, GameController.MAP_HEIGHT - 0.5f, GameController.MAP_WIDTH, 0.5f));	
-		walls.add(new WallModel(0, 0, 0.5f, GameController.MAP_HEIGHT));	
-		walls.add(new WallModel(GameController.MAP_WIDTH - 0.5f, 0, 0.5f, GameController.MAP_HEIGHT));			
-		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*1/4, GameController.MAP_WIDTH - 3.5f, 0.5f));			
-		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*2/4, GameController.MAP_WIDTH - 3.5f, 0.5f));			
-		walls.add(new WallModel(0.5f, (GameController.MAP_HEIGHT-0.25f)*3/4, GameController.MAP_WIDTH - 3.5f, 0.5f));
+		walls.add(new WallModel(0, 0, LEVEL_WIDTH, 0.5f));	
+		walls.add(new WallModel(0, LEVEL_HEIGHT - 0.5f, LEVEL_WIDTH, 0.5f));	
+		walls.add(new WallModel(0, 0, 0.5f, LEVEL_HEIGHT));	
+		walls.add(new WallModel(LEVEL_WIDTH - 0.5f, 0, 0.5f, LEVEL_HEIGHT));			
+		walls.add(new WallModel(0.5f, (LEVEL_HEIGHT-0.25f)*1/4, LEVEL_WIDTH - 3.5f, 0.5f));			
+		walls.add(new WallModel(0.5f, (LEVEL_HEIGHT-0.25f)*2/4, LEVEL_WIDTH - 3.5f, 0.5f));			
+		walls.add(new WallModel(0.5f, (LEVEL_HEIGHT-0.25f)*3/4, LEVEL_WIDTH - 3.5f, 0.5f));
 	}
 
 	/**
@@ -53,7 +52,7 @@ public class SPLevel1Model extends SinglePlayerLevelModel {
 	 */
 	@Override
 	protected void createExit() {
-		exit = new ExitModel(2.05f, (GameController.MAP_HEIGHT-0.25f)*3/8 + 0.25f, 0.6f);
+		exit = new ExitModel(2.05f, (LEVEL_HEIGHT-0.25f)*3/8 + 0.25f, 0.6f);
 	}
 
 }

@@ -11,7 +11,9 @@ import com.mygdx.elmaze.model.entities.WallModel;
  * Represents a LevelModel
  */
 public abstract class LevelModel {
-	
+
+	public static final int LEVEL_WIDTH = 20;
+	public static final int LEVEL_HEIGHT = LEVEL_WIDTH * 3/4;
 	protected ArrayList<DoorModel> doors = new ArrayList<DoorModel>();
 	protected ArrayList<ButtonModel> buttons = new ArrayList<ButtonModel>();
 	protected ArrayList<WallModel> walls = new ArrayList<WallModel>();
