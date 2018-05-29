@@ -62,9 +62,6 @@ public class ServerWaitingView extends MenuView {
     private void checkGameStatusChange() {
         switch (GameController.getInstance().getStatus()) {
             case SV_FULL:
-                for (int i=0 ; i<2 ; i++) {
-                    System.out.println("Polled an SV Full");
-                }
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.SERVER_FULL));
                 GameController.getInstance().stopGame();
                 NetworkManager.getInstance().closeConnection();

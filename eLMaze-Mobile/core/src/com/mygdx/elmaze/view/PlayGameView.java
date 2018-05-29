@@ -12,6 +12,8 @@ public class PlayGameView extends MenuView {
 
     private Image textImage;
     private Image ballImage;
+    private float timeSinceLastUpdate = 0;
+    private final int NUM_MESSAGES_PER_SECOND = 20;
 
     public PlayGameView(ELMaze game) {
         super(game, TYPE.PLAY);
@@ -22,7 +24,7 @@ public class PlayGameView extends MenuView {
 
     @Override
     public void render(float delta) {
-        handleInputs();
+        handleInputs(delta);
 
         stage.act(delta); //Perform ui logic
         stage.draw(); //Draw the UI
@@ -38,11 +40,17 @@ public class PlayGameView extends MenuView {
         stage.addActor(ballImage);
     }
 
-    private void handleInputs(){
-        GameController.getInstance().moveBall(
-            Gdx.input.getAccelerometerY(),
-            -Gdx.input.getAccelerometerX()
-        );
+    private void handleInputs(float delta) {
+        timeSinceLastUpdate += delta;
+
+        // Send message with a fixed maximum rate.
+        if (timeSinceLastUpdate > 1/NUM_MESSAGES_PER_SECOND) {
+            GameController.getInstance().moveBall(
+                    Gdx.input.getAccelerometerY(),
+                    -Gdx.input.getAccelerometerX()
+            );
+            timeSinceLastUpdate = 0;
+        }
     }
 
     protected void loadAssets() {

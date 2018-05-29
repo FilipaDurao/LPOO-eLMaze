@@ -37,9 +37,6 @@ public class GameController {
 
     public void triggerServerFull() {
         status = STATUS.SV_FULL;
-        for (int i=0 ; i<2 ; i++) {
-            System.out.println("IN Controller");
-        }
     }
 
     public void triggerServerDC() {
