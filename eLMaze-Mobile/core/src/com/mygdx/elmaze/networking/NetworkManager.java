@@ -1,7 +1,6 @@
 package com.mygdx.elmaze.networking;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -57,8 +56,7 @@ public class NetworkManager {
             oStream.writeObject(msg);
             oStream.reset();
             return true;
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             return false;
         }
     }

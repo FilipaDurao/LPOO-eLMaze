@@ -1,5 +1,6 @@
 package com.mygdx.elmaze.networking;
 
+import com.badlogic.gdx.Game;
 import com.mygdx.elmaze.controller.GameController;
 
 import java.io.EOFException;
@@ -40,7 +41,22 @@ public class ServerListener implements Runnable {
             }
         }
         catch (Exception e) {
-            GameController.getInstance().triggerServerDC();
+            switch (GameController.getInstance().getStatus()) {
+                case SV_FULL:
+                    GameController.getInstance().triggerServerFull();
+                    break;
+                case NOT_RUNNING:
+                    GameController.getInstance().stopGame();
+                    break;
+                default:
+                    GameController.getInstance().triggerServerDC();
+                    break;
+            }
+
+
+            if (GameController.getInstance().getStatus() != GameController.STATUS.SV_FULL) {
+                GameController.getInstance().triggerServerDC();
+            }
         }
     }
 }

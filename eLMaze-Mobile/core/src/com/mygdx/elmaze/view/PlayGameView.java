@@ -64,6 +64,7 @@ public class PlayGameView extends MenuView {
             case NOT_RUNNING:
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.WIN));
                 NetworkManager.getInstance().closeConnection();
+                GameController.getInstance().stopGame();
                 break;
             case DISCONNECT:
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.SERVER_DC));

@@ -62,14 +62,17 @@ public class ServerWaitingView extends MenuView {
     private void checkGameStatusChange() {
         switch (GameController.getInstance().getStatus()) {
             case SV_FULL:
+                System.out.println("Receiving #1");
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.SERVER_FULL));
                 GameController.getInstance().stopGame();
                 NetworkManager.getInstance().closeConnection();
                 break;
             case RUNNING:
+                System.out.println("Receiving #2");
                 game.activateMenu(MenuFactory.makeMenu(game, MenuView.TYPE.PLAY));
                 break;
             case DISCONNECT:
+                System.out.println("Receiving #3");
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.SERVER_DC));
                 GameController.getInstance().stopGame();
                 NetworkManager.getInstance().closeConnection();

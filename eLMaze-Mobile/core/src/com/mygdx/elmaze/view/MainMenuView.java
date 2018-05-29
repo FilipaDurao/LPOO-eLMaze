@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
+import com.mygdx.elmaze.controller.GameController;
 
 public class MainMenuView extends MenuView {
 
@@ -53,6 +54,7 @@ public class MainMenuView extends MenuView {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.CONNECTION));
+                GameController.getInstance().stopGame();
             }
         });
 
