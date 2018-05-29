@@ -1,6 +1,5 @@
 package com.mygdx.elmaze.view;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -26,8 +25,8 @@ public class PlayGameView extends MenuView {
     public void render(float delta) {
         handleInputs(delta);
 
-        stage.act(delta); //Perform ui logic
-        stage.draw(); //Draw the UI
+        stage.act(delta);
+        stage.draw();
 
         checkGameStatusChange();
     }

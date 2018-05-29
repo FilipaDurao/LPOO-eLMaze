@@ -10,7 +10,6 @@ import com.mygdx.elmaze.networking.NetworkManager;
 
 public class ServerDisconnectView extends MenuView {
 
-    // Background
     private Button exitButton;
     private Image textImage;
 
@@ -24,8 +23,8 @@ public class ServerDisconnectView extends MenuView {
 
     @Override
     public void render(float delta) {
-        stage.act(delta); //Perform ui logic
-        stage.draw(); //Draw the UI
+        stage.act(delta);
+        stage.draw();
     }
 
     private void setupExitButton() {

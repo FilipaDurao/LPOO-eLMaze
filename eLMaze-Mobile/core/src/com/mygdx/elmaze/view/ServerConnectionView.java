@@ -16,10 +16,7 @@ import java.util.LinkedList;
 
 public class ServerConnectionView extends MenuView {
 
-    // Title
     private Image title;
-
-    // Background
     private Image inputArea;
     private Button startButton;
     private Button backspaceButton;
@@ -46,8 +43,8 @@ public class ServerConnectionView extends MenuView {
 
     @Override
     public void render(float delta) {
-        stage.act(delta); //Perform ui logic
-        stage.draw(); //Draw the UI
+        stage.act(delta);
+        stage.draw();
     }
 
     private void setupImages() {

@@ -9,7 +9,6 @@ import com.mygdx.elmaze.ELMaze;
 
 public class CreditsView extends MenuView {
 
-    // Text Table
     private Image textTableImage;
     private Button exitButton;
 
@@ -23,8 +22,8 @@ public class CreditsView extends MenuView {
 
     @Override
     public void render(float delta) {
-        stage.act(delta); //Perform ui logic
-        stage.draw(); //Draw the UI
+        stage.act(delta);
+        stage.draw();
     }
 
     private void setupExitButton() {

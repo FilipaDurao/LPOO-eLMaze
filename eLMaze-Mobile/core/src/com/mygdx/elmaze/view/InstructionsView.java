@@ -9,7 +9,6 @@ import com.mygdx.elmaze.ELMaze;
 
 public class InstructionsView extends MenuView {
 
-    // Background
     private Image instructionsTable;
     private Button exitButton;
 
@@ -23,8 +22,8 @@ public class InstructionsView extends MenuView {
 
     @Override
     public void render(float delta) {
-        stage.act(delta); //Perform ui logic
-        stage.draw(); //Draw the UI
+        stage.act(delta);
+        stage.draw();
     }
 
     private void setupExitButton() {

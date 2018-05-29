@@ -1,10 +1,6 @@
 package com.mygdx.elmaze.networking;
 
-import com.badlogic.gdx.Game;
 import com.mygdx.elmaze.controller.GameController;
-
-import java.io.EOFException;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
