@@ -15,11 +15,19 @@ public class SocketListener implements Runnable {
 	private ObjectOutputStream oStream;
 	private final int connectionID;
 
+	/**
+	 * @param socket Socket to communicate with
+	 * @param connectionID Client connection identification number
+	 */
 	public SocketListener(Socket socket, int connectionID) {
 		this.socket = socket;
 		this.connectionID = connectionID;
 	}
 
+	/**
+	 * Socket Listener running method (can be launched in a separate thread). Waits for message from the client (in
+	 * a blocking call) and, after receiving a message, communicates with the game controller, depending on its status.
+	 */
 	@Override
 	public void run() {
 		try {
@@ -56,6 +64,11 @@ public class SocketListener implements Runnable {
 		}
 	}
 	
+	/**
+	 * Broadcasts a message to the client 
+	 * 
+	 * @param msg Message to be sent
+	 */
 	public void broadcastMessage(MessageToClient msg) {
 		if (socket != null) {
             try {
@@ -68,6 +81,9 @@ public class SocketListener implements Runnable {
 		}
 	}
 	
+	/**
+	 * Closes the client's socket and respective object output stream
+	 */
 	public void closeSocket() {
 		try {
 			socket.close();
