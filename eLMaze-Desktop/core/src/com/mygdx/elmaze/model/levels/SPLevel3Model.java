@@ -7,10 +7,13 @@ import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
 
+/**
+ * Represents the third singleplayer Level Model
+ */
 public class SPLevel3Model extends SinglePlayerLevelModel {
 
 	/**
-	 * @brief Creates the third singleplayer Level
+	 *  Creates the third singleplayer Level
 	 */
 	public SPLevel3Model() {
 		createBall();
@@ -20,7 +23,7 @@ public class SPLevel3Model extends SinglePlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Ball of the third singleplayer Level
+	 *  Creates the Ball of the third singleplayer Level
 	 */
 	@Override
 	protected void createBall() {
@@ -28,7 +31,7 @@ public class SPLevel3Model extends SinglePlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Buttons and Doors of the third singleplayer Level
+	 *  Creates the Buttons and Doors of the third singleplayer Level
 	 */
 	@Override
 	protected void createButtonsDoors() {
@@ -44,7 +47,7 @@ public class SPLevel3Model extends SinglePlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Walls of the third singleplayer Level
+	 *  Creates the Walls of the third singleplayer Level
 	 */
 	@Override
 	protected void createWalls() {
@@ -60,7 +63,7 @@ public class SPLevel3Model extends SinglePlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Exit of the third singleplayer Level
+	 *  Creates the Exit of the third singleplayer Level
 	 */
 	@Override
 	protected void createExit() {

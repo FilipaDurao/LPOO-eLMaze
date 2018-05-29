@@ -7,11 +7,20 @@ import com.mygdx.elmaze.model.entities.BallModel;
 import com.mygdx.elmaze.model.entities.EntityModel;
 import com.mygdx.elmaze.view.GameView;
 
+/**
+ * Represents a Ball View
+ */
 public class BallView extends EntityView {
 	
 	private static String player1SpriteName;
 	private static String player2SpriteName;
 
+	/**
+	 * Creates a BallView
+	 * 
+	 * @param game 
+	 * @param model
+	 */
 	public BallView(ELMaze game, BallModel model) {
 		super(game, model);
 	}

@@ -1,5 +1,8 @@
 package com.mygdx.elmaze.model.entities;
 
+/**
+ * Represents a ButtonModel
+ */
 public class ButtonModel extends EntityModel {
 
 	private boolean isPressed;
@@ -7,7 +10,7 @@ public class ButtonModel extends EntityModel {
 	private float radius;
 	
 	/**
-	 * @brief The constructor to use if the Button doesn't have a Door associated
+	 *  The constructor to use if the Button doesn't have a Door associated
 	 * 
 	 * @param x The Button's x position
 	 * @param y The Button's y position
@@ -21,7 +24,7 @@ public class ButtonModel extends EntityModel {
 	}
 	
 	/**
-	 * @brief The constructor to use if the Button has a Door associated
+	 *  The constructor to use if the Button has a Door associated
 	 * 
 	 * @param x The Button's x position
 	 * @param y The Button's y position
@@ -43,7 +46,7 @@ public class ButtonModel extends EntityModel {
 	}
 
 	/**
-	 * @brief "Presses" the Button and opens the associated Door if there is one
+	 *  "Presses" the Button and opens the associated Door if there is one
 	 */
 	public void press() {
 		this.isPressed = true;
@@ -61,7 +64,7 @@ public class ButtonModel extends EntityModel {
 	}
 	
 	/**
-	 * @brief Sets the Button's radius to the value passed as parameter
+	 *  Sets the Button's radius to the value passed as parameter
 	 * 
 	 * @param radius The value to set the Button's radius
 	 */

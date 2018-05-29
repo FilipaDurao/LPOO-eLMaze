@@ -7,6 +7,9 @@ import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
 
+/**
+ * Represents the first multiplayer level Model
+ */
 public class MPLevel1Model extends MultiPlayerLevelModel {
 
 	/**

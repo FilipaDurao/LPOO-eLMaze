@@ -2,6 +2,9 @@ package com.mygdx.elmaze.model.entities;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Represents an EntityModel
+ */
 public class EntityModel {
 	
 	private float x;
@@ -25,7 +28,7 @@ public class EntityModel {
 	}
 
 	/**
-	 * @brief Sets the Entity's x position to the value passed as parameter
+	 *  Sets the Entity's x position to the value passed as parameter
 	 * 
 	 * @param x The value to set the Entity's x position
 	 */
@@ -41,7 +44,7 @@ public class EntityModel {
 	}
 
 	/**
-	 * @brief Sets the Entity's y position to the value passed as parameter
+	 *  Sets the Entity's y position to the value passed as parameter
 	 * 
 	 * @param y The value to set the Entity's y position
 	 */
@@ -50,7 +53,7 @@ public class EntityModel {
 	}	
 	
 	/**
-	 * @brief Sets the Entity's x and y positions to the values passed as parameter
+	 *  Sets the Entity's x and y positions to the values passed as parameter
 	 * 
 	 * @param x The value to set the Entity's x position
 	 * @param y The value to set the Entity's y position
@@ -61,7 +64,7 @@ public class EntityModel {
 	}
 	
 	/**
-	 * @brief Sets the Entity's x and y positions to the values in the vector passed as parameter
+	 *  Sets the Entity's x and y positions to the values in the vector passed as parameter
 	 * 
 	 * @param position A vector with the x and y position values for the Entity
 	 */
@@ -78,7 +81,7 @@ public class EntityModel {
 	}
 	
 	/**
-	 * @brief Calculates the distance between this Entity and another one passed as parameter
+	 *  Calculates the distance between this Entity and another one passed as parameter
 	 * 
 	 * @param other The Entity we want to get the distance to
 	 * 

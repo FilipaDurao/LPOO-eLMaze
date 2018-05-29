@@ -7,10 +7,13 @@ import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
 
+/**
+ * Represents the second singleplayer Level Model
+ */
 public class SPLevel2Model extends SinglePlayerLevelModel {
 
 	/**
-	 * @brief Creates the second singleplayer Level
+	 *  Creates the second singleplayer Level
 	 */
 	public SPLevel2Model() {
 		createBall();
@@ -20,7 +23,7 @@ public class SPLevel2Model extends SinglePlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Ball of the second singleplayer Level
+	 *  Creates the Ball of the second singleplayer Level
 	 */
 	@Override
 	protected void createBall() {
@@ -28,7 +31,7 @@ public class SPLevel2Model extends SinglePlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Buttons and Doors of the second singleplayer Level
+	 *  Creates the Buttons and Doors of the second singleplayer Level
 	 */
 	@Override
 	protected void createButtonsDoors() {
@@ -39,7 +42,7 @@ public class SPLevel2Model extends SinglePlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Walls of the second singleplayer Level
+	 *  Creates the Walls of the second singleplayer Level
 	 */
 	@Override
 	protected void createWalls() {
@@ -53,7 +56,7 @@ public class SPLevel2Model extends SinglePlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates he Exit of the second singleplayer Level
+	 *  Creates he Exit of the second singleplayer Level
 	 */
 	@Override
 	protected void createExit() {

@@ -7,6 +7,9 @@ import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.EntityModel;
 import com.mygdx.elmaze.view.GameView;
 
+/**
+ * Represents a Door View
+ */
 public class DoorView extends EntityView {
 
 	public DoorView(ELMaze game, EntityModel model) {

@@ -2,13 +2,16 @@ package com.mygdx.elmaze.model.levels;
 
 import com.mygdx.elmaze.model.entities.BallModel;
 
+/**
+ * Represents a Multiplayer Level Model
+ */
 public abstract class MultiPlayerLevelModel extends LevelModel {
 
 	protected BallModel ball1;
 	protected BallModel ball2;
 	
 	/**
-	 * @brief Creates a multiplayer Level Model
+	 *  Creates a multiplayer Level Model
 	 */
 	public MultiPlayerLevelModel() {
 		super();
@@ -29,7 +32,7 @@ public abstract class MultiPlayerLevelModel extends LevelModel {
 	}
 	
 	/**
-	 * @brief Creates the two Balls of a multiplayer Level
+	 *  Creates the two Balls of a multiplayer Level
 	 */
 	protected abstract void createBalls();
 

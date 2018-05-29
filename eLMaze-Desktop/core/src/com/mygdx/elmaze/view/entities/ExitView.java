@@ -7,6 +7,9 @@ import com.mygdx.elmaze.model.entities.EntityModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.view.GameView;
 
+/**
+ * Represents an Exit View
+ */
 public class ExitView extends EntityView {
 
 	public ExitView(ELMaze game, EntityModel model) {

@@ -1,5 +1,8 @@
 package com.mygdx.elmaze.model.entities;
 
+/**
+ * Represents a DoorModel
+ */
 public class DoorModel extends EntityModel {
 
 	private boolean isOpen;	
@@ -34,7 +37,7 @@ public class DoorModel extends EntityModel {
 	}
 
 	/**
-	 * @brief Sets the Door to open
+	 *  Sets the Door to open
 	 */
 	public void open() {
 		this.isOpen = true;
@@ -48,7 +51,7 @@ public class DoorModel extends EntityModel {
 	}
 
 	/**
-	 * @brief Sets the Door's width to the value passed as parameter
+	 *  Sets the Door's width to the value passed as parameter
 	 * 
 	 * @param width The value to set the Door's width with
 	 */
@@ -64,7 +67,7 @@ public class DoorModel extends EntityModel {
 	}
 
 	/**
-	 * @brief Sets the Door's height to the value passed as parameter
+	 *  Sets the Door's height to the value passed as parameter
 	 * 
 	 * @param width The value to set the Door's width height
 	 */
