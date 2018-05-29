@@ -1,5 +1,8 @@
 package com.mygdx.elmaze.model.entities;
 
+/**
+ * Represents a WallModel
+ */
 public class WallModel extends EntityModel {
 	
 	private float width;
@@ -25,7 +28,7 @@ public class WallModel extends EntityModel {
 	}
 
 	/**
-	 * @brief Sets the Wall's width to the value passed as parameter
+	 *  Sets the Wall's width to the value passed as parameter
 	 * 
 	 * @param width The value to set the Wall's width with
 	 */
@@ -41,7 +44,7 @@ public class WallModel extends EntityModel {
 	}
 
 	/**
-	 * @brief Sets the Wall's height to the value passed as parameter
+	 *  Sets the Wall's height to the value passed as parameter
 	 * 
 	 * @param height The value to set the Wall's height with
 	 */
@@ -50,7 +53,7 @@ public class WallModel extends EntityModel {
 	}
 	
 	/**
-	 * @brief Resizes the Wall to the width and height passed as parameter
+	 *  Resizes the Wall to the width and height passed as parameter
 	 * 
 	 * @param width The value to set the Wall's width with
 	 * @param height The value to set the Wall's height with

@@ -7,10 +7,13 @@ import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
 
+/**
+ * Represents the second multiplayer level Model
+ */
 public class MPLevel2Model extends MultiPlayerLevelModel {
 
 	/**
-	 * @brief Creates the second multiplayer Level
+	 *  Creates the second multiplayer Level
 	 */
 	public MPLevel2Model() {
 		createBalls();
@@ -20,7 +23,7 @@ public class MPLevel2Model extends MultiPlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Balls of the second multiplayer Level
+	 *  Creates the Balls of the second multiplayer Level
 	 */
 	@Override
 	protected void createBalls() {
@@ -29,7 +32,7 @@ public class MPLevel2Model extends MultiPlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Buttons and the Doors of the second multiplayer Level
+	 *  Creates the Buttons and the Doors of the second multiplayer Level
 	 */
 	@Override
 	protected void createButtonsDoors() {
@@ -43,7 +46,7 @@ public class MPLevel2Model extends MultiPlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Walls of the second multiplayer Level
+	 *  Creates the Walls of the second multiplayer Level
 	 */
 	@Override
 	protected void createWalls() {
@@ -65,7 +68,7 @@ public class MPLevel2Model extends MultiPlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Exit of the second multiplayer Level
+	 *  Creates the Exit of the second multiplayer Level
 	 */
 	@Override
 	protected void createExit() {

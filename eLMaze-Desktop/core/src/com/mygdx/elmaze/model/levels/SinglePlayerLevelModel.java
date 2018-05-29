@@ -2,12 +2,15 @@ package com.mygdx.elmaze.model.levels;
 
 import com.mygdx.elmaze.model.entities.BallModel;
 
+/**
+ * Represents a Singleplayer Level Model
+ */
 public abstract class SinglePlayerLevelModel extends LevelModel {
 
 	protected BallModel ball;
 	
 	/**
-	 * @brief Creates a singleplayer Level Model
+	 *  Creates a singleplayer Level Model
 	 */
 	public SinglePlayerLevelModel() {
 		super();
@@ -21,7 +24,7 @@ public abstract class SinglePlayerLevelModel extends LevelModel {
 	}
 	
 	/**
-	 * @brief Creates the Ball of a singleplayer Level
+	 *  Creates the Ball of a singleplayer Level
 	 */
 	protected abstract void createBall();
 

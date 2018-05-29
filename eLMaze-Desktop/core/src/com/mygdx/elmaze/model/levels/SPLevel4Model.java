@@ -7,10 +7,13 @@ import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
 
+/**
+ * Represents the fourth singleplayer Level Model
+ */
 public class SPLevel4Model extends SinglePlayerLevelModel {
 
 	/**
-	 * @brief Creates the fourth singleplayer Level
+	 *  Creates the fourth singleplayer Level
 	 */
 	public SPLevel4Model() {
 		createBall();
@@ -20,7 +23,7 @@ public class SPLevel4Model extends SinglePlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Ball of the fourth singleplayer Level
+	 *  Creates the Ball of the fourth singleplayer Level
 	 */
 	@Override
 	protected void createBall() {
@@ -28,7 +31,7 @@ public class SPLevel4Model extends SinglePlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Buttons and the Door of the fourth singleplayer Level
+	 *  Creates the Buttons and the Door of the fourth singleplayer Level
 	 */
 	@Override
 	protected void createButtonsDoors() {
@@ -42,7 +45,7 @@ public class SPLevel4Model extends SinglePlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Walls of the fourth singleplayer Level
+	 *  Creates the Walls of the fourth singleplayer Level
 	 */
 	@Override
 	protected void createWalls() {
@@ -62,7 +65,7 @@ public class SPLevel4Model extends SinglePlayerLevelModel {
 	}
 
 	/**
-	 * @brief Creates the Exit of the fourth singleplayer Level
+	 *  Creates the Exit of the fourth singleplayer Level
 	 */
 	@Override
 	protected void createExit() {

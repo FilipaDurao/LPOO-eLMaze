@@ -7,6 +7,9 @@ import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
 import com.mygdx.elmaze.model.entities.WallModel;
 
+/**
+ * Represents a LevelModel
+ */
 public abstract class LevelModel {
 	
 	protected ArrayList<DoorModel> doors = new ArrayList<DoorModel>();
@@ -45,17 +48,17 @@ public abstract class LevelModel {
 	}
 	
 	/**
-	 * @brief Creates the Doors and the Buttons of the Level
+	 *  Creates the Doors and the Buttons of the Level
 	 */
 	protected abstract void createButtonsDoors();
 	
 	/**
-	 * @brief Creates the Walls of the Level
+	 *  Creates the Walls of the Level
 	 */
 	protected abstract void createWalls();
 	
 	/**
-	 * @brief Creates the Exit of the Level
+	 *  Creates the Exit of the Level
 	 */
 	protected abstract void createExit();
 
