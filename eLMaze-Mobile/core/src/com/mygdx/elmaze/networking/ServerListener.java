@@ -8,14 +8,24 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+/**
+ * Listens to server messages
+ */
 public class ServerListener implements Runnable {
 
     private final Socket socket;
 
+    /**
+     * @param socket
+     */
     public ServerListener(Socket socket) {
         this.socket = socket;
     }
 
+    /**
+     * Server Listener running method (can be launched in a separate thread). Waits for message from the server (in
+     * a blocking call) and, after receiving a message, communicates with the game controller, depending on its status.
+     */
     @Override
     public void run() {
         try {
@@ -46,16 +56,12 @@ public class ServerListener implements Runnable {
                     GameController.getInstance().triggerServerFull();
                     break;
                 case NOT_RUNNING:
+                    GameController.getInstance().triggerServerDC();
                     GameController.getInstance().stopGame();
                     break;
                 default:
                     GameController.getInstance().triggerServerDC();
                     break;
-            }
-
-
-            if (GameController.getInstance().getStatus() != GameController.STATUS.SV_FULL) {
-                GameController.getInstance().triggerServerDC();
             }
         }
     }

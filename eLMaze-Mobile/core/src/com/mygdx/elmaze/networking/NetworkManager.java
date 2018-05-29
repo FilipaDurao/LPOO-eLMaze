@@ -6,6 +6,9 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
 
+/**
+ * Singleton Class that manages all the client's networking
+ */
 public class NetworkManager {
 
     private static NetworkManager instance;
@@ -14,6 +17,9 @@ public class NetworkManager {
     private ObjectOutputStream oStream;
     private Socket socket;
 
+    /**
+     * @return Singleton's class instance
+     */
     public static NetworkManager getInstance() {
         if (instance == null) {
             instance = new NetworkManager();
@@ -24,6 +30,14 @@ public class NetworkManager {
 
     private NetworkManager() {}
 
+    /**
+     * Connects to a server in a specific address
+     *
+     * @param serverAddress Server IP address
+     * @param timeout Number of seconds before connection attempt timing out
+     *
+     * @return Returns whether the connection was successful or not
+     */
     public boolean establishConnection(String serverAddress, int timeout)  {
         try {
             // Connect to server
@@ -44,6 +58,9 @@ public class NetworkManager {
         }
     }
 
+    /**
+     * Closes the connection the server
+     */
     public void closeConnection() {
         try {
             socket.close();
@@ -51,6 +68,13 @@ public class NetworkManager {
         } catch (Exception e) { }
     }
 
+    /**
+     * Broadcasts a message to the server
+     *
+     * @param msg Message to send
+     *
+     * @return Returns whether the message was successfully sent or not
+     */
     public boolean broadcastMessage(MessageToServer msg) {
         try {
             oStream.writeObject(msg);
@@ -61,6 +85,11 @@ public class NetworkManager {
         }
     }
 
+    /**
+     * Creates a socket to connect to the server
+     *
+     * @throws Exception
+     */
     private void createSocket() throws Exception {
         try {
             socket = new Socket();
@@ -70,6 +99,11 @@ public class NetworkManager {
         }
     }
 
+    /**
+     * Crestes an ObjectOutputStream class instance to communicate with the server
+     *
+     * @throws IOException
+     */
     private void createOutputStream() throws IOException {
         try {
             oStream = new ObjectOutputStream(socket.getOutputStream());
