@@ -12,10 +12,21 @@ import com.mygdx.elmaze.view.GameView;
  */
 public class ExitView extends EntityView {
 
+	/**
+	 * Creates a Exit View
+	 * 
+	 * @param game Reference to the Game object
+	 * @param model The Model of the Ball that this view represents
+	 */
 	public ExitView(ELMaze game, EntityModel model) {
 		super(game, model);
 	}
 	
+    /**
+     * Positions the sprite on the location of the respective model
+     * 
+     * @param model The model associated with the view
+     */
 	@Override
 	public void update(EntityModel model) {}
 
