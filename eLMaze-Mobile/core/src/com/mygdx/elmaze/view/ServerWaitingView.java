@@ -37,6 +37,7 @@ public class ServerWaitingView extends MenuView {
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                playButtonSound();
                 NetworkManager.getInstance().closeConnection();
                 GameController.getInstance().stopGame();
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.MAIN));

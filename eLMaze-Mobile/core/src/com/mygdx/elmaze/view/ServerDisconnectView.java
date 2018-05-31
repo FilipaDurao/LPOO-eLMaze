@@ -34,6 +34,7 @@ public class ServerDisconnectView extends MenuView {
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                playButtonSound();
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.MAIN));
             }
         });

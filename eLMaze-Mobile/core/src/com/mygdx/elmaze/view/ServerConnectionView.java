@@ -129,6 +129,7 @@ public class ServerConnectionView extends MenuView {
             keypadButtons.get(i).addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
+                    playButtonSound();
                     if (keyCode.size() < 8) {
                         keyCodeImages.get(keyCode.size()).setDrawable(new TextureRegionDrawable(
                                 new TextureRegion(new Texture(symbolFileNames.get(myIndex)))));
@@ -141,6 +142,7 @@ public class ServerConnectionView extends MenuView {
         backspaceButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                playButtonSound();
                 if (!keyCode.isEmpty()) {
                     keyCode.removeLast();
                     keyCodeImages.get(keyCode.size()).setDrawable(null);
@@ -151,6 +153,7 @@ public class ServerConnectionView extends MenuView {
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                playButtonSound();
                 connectToServer();
             }
         });
