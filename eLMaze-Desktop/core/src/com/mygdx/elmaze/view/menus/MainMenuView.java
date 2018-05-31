@@ -8,6 +8,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
 
+/**
+ * Represents the Main Menu View
+ */
 public class MainMenuView extends MenuView {
 
 	private Button playButton;
@@ -16,6 +19,11 @@ public class MainMenuView extends MenuView {
     private Button exitButton;
     private Image title;
 	
+    /**
+     * Creates the Main menu
+     * 
+     * @param game Reference to the Game object
+     */
 	public MainMenuView(ELMaze game) {
 		super(game, TYPE.MAIN);
 		
@@ -32,6 +40,9 @@ public class MainMenuView extends MenuView {
 		stage.addActor(title);
 	}
 
+    /**
+	 * Loads all assets needed for the menu
+	 */
 	protected void loadAssets() {
 		this.game.getAssetManager().load( "eLMazeTitleBig.png" , Texture.class);
         this.game.getAssetManager().load( "menuBackground.jpg" , Texture.class);
@@ -47,12 +58,20 @@ public class MainMenuView extends MenuView {
         this.game.getAssetManager().finishLoading();
 	}
 	
+	/**
+	 * Renders the menu on the screen
+	 * 
+	 * @param delta Time since last render
+	 */
 	@Override
     public void render(float delta) {
         stage.act(delta);
         stage.draw();
     }
 	
+	/**
+	 * Creates the Play Button
+	 */
 	private void createPlayButton() {
 		playButton = ButtonFactory.makeButton(game.getAssetManager().get("playButtonUp.png", Texture.class),
 											  game.getAssetManager().get("playButtonDown.png", Texture.class), 
@@ -64,6 +83,9 @@ public class MainMenuView extends MenuView {
 		stage.addActor(playButton);
 	}
 	
+	/**
+	 * Creates the Instructions Button
+	 */
 	private void createInstructionsButton() {
 		instructionsButton = ButtonFactory.makeButton(game.getAssetManager().get("instructionsButtonUp.png", Texture.class),
 													  game.getAssetManager().get("instructionsButtonDown.png", Texture.class), 
@@ -75,6 +97,9 @@ public class MainMenuView extends MenuView {
 		stage.addActor(instructionsButton);
 	}
 	
+	/**
+	 * Creates the Credits Button
+	 */
 	private void createCreditsButton() {
 		creditsButton = ButtonFactory.makeButton(game.getAssetManager().get("creditsButtonUp.png", Texture.class),
 											  	 game.getAssetManager().get("creditsButtonDown.png", Texture.class), 
@@ -86,6 +111,9 @@ public class MainMenuView extends MenuView {
 		stage.addActor(creditsButton);
 	}
 	
+	/**
+	 * Creates the Exit Button
+	 */
 	private void createExitButton() {
 		exitButton = ButtonFactory.makeButton(game.getAssetManager().get("exitButtonUp.png", Texture.class),
 			  	 							  game.getAssetManager().get("exitButtonDown.png", Texture.class), 
@@ -97,6 +125,9 @@ public class MainMenuView extends MenuView {
 		stage.addActor(exitButton);
 	}
 	
+	/**
+	 * Adds all the Button listeners
+	 */
     private void addButtonListeners() {
         playButton.addListener(new ClickListener() {
             @Override

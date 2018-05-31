@@ -13,6 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.view.entities.BallView;
 
+/**
+ * Represents the Singleplayer Keyboard menu view
+ */
 public class SPKeyboardMenuView extends MenuView {
 
 	private Button frontArrowButton;
@@ -24,6 +27,11 @@ public class SPKeyboardMenuView extends MenuView {
     private Integer currentBallSpriteIndex;
     private Image ballImage;
 	
+    /**
+     * Creates the singleplayer Keyboard menu
+     * 
+     * @param game Reference to the Game object
+     */
 	public SPKeyboardMenuView(ELMaze game) {
 		super(game, TYPE.SPKEYBOARD);
 		
@@ -43,6 +51,9 @@ public class SPKeyboardMenuView extends MenuView {
 	
 	}
 
+    /**
+	 * Loads all assets needed for the menu
+	 */
 	protected void loadAssets() {
 		this.game.getAssetManager().load( "player1Title.png" , Texture.class);
 		this.game.getAssetManager().load( "menuBackground.jpg" , Texture.class);
@@ -62,17 +73,28 @@ public class SPKeyboardMenuView extends MenuView {
         this.game.getAssetManager().finishLoading();
 	}
 	
+	/**
+	 * Renders the menu on the screen
+	 * 
+	 * @param delta Time since last render
+	 */
 	@Override
     public void render(float delta) {
         stage.act(delta);
         stage.draw();
     }
 	
+	/**
+	 * Sets up the text title in the screen
+	 */
 	private void setUpTitle() {
 		title = ImageFactory.makeImage("player1Title.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*85/100,SCREEN_WIDTH/2);
 		stage.addActor(title);
 	}
 	
+	/**
+	 * Fills the array of Ball sprites
+	 */
 	private void fillSpritesArray() {
 		balls.add("ball.png");
 		balls.add("jade_ball.png");
@@ -81,11 +103,17 @@ public class SPKeyboardMenuView extends MenuView {
 		balls.add("ruby_ball.png");
 	}
 	
+	/**
+	 * Creates the Ball images present on the screen
+	 */
 	private void createBallImage(){
 		ballImage = ImageFactory.makeImage("ball.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*60/100, SCREEN_WIDTH*15/100);
 		stage.addActor(ballImage);
 	}
 	
+    /**
+     * Creates the "Next Arrow" Button
+     */
 	private void createFrontArrowButton() {
 		frontArrowButton = ButtonFactory.makeButton(game.getAssetManager().get("arrowButtonUp.png", Texture.class),
 											  game.getAssetManager().get("arrowButtonDown.png", Texture.class), 
@@ -97,6 +125,9 @@ public class SPKeyboardMenuView extends MenuView {
 		stage.addActor(frontArrowButton);
 	}
 	
+    /**
+     * Creates the "Back Arrow" Button
+     */
 	private void createBackArrowButton() {
 		backArrowButton = ButtonFactory.makeButton(game.getAssetManager().get("backspaceButtonUp.png", Texture.class),
 													  game.getAssetManager().get("backspaceButtonDown.png", Texture.class), 
@@ -108,6 +139,9 @@ public class SPKeyboardMenuView extends MenuView {
 		stage.addActor(backArrowButton);
 	}
 	
+	/**
+	 * Creates the Play and Back Buttons
+	 */
 	private void createBackAndPlayButtons() {
 		playButton = ButtonFactory.makeButton(game.getAssetManager().get("playButtonUp.png", Texture.class),
 				  game.getAssetManager().get("playButtonDown.png", Texture.class), 
@@ -128,6 +162,9 @@ public class SPKeyboardMenuView extends MenuView {
 		stage.addActor(backButton);
 	}
 	
+	/**
+	 * Adds all the Button listeners
+	 */
     private void addButtonListeners() {
     	frontArrowButton.addListener(new ClickListener() {
             @Override

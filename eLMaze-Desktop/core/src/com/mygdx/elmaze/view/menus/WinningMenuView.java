@@ -10,11 +10,19 @@ import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.ELMaze.PLATFORM;
 import com.mygdx.elmaze.networking.NetworkManager;
 
+/**
+ * Represents the Winning view menu
+ */
 public class WinningMenuView extends MenuView {
 
 	private Image winText;
     private Button backButton;
 	
+    /**
+     * Creates the winning view menu
+     * 
+     * @param game Reference to the Game object
+     */
 	public WinningMenuView(ELMaze game) {
 		super(game, TYPE.WIN);
         
@@ -25,6 +33,9 @@ public class WinningMenuView extends MenuView {
         addButtonListeners();
 	}
 
+    /**
+	 * Loads all assets needed for the menu
+	 */
 	@Override
 	protected void loadAssets() {
 		this.game.getAssetManager().load( "bigYouWon.png" , Texture.class);
@@ -36,12 +47,20 @@ public class WinningMenuView extends MenuView {
 		
 	}
     
+	/**
+	 * Renders the menu on the screen
+	 * 
+	 * @param delta Time since last render
+	 */
     @Override
     public void render(float delta) {    	
         stage.act(delta);
         stage.draw();
     }
 
+    /**
+     * Creates the "Back" Button
+     */
 	private void createBackButton() {
 		backButton = ButtonFactory.makeButton(game.getAssetManager().get("exitButtonUp.png", Texture.class),
 			  	 							  game.getAssetManager().get("exitButtonDown.png", Texture.class), 
@@ -53,6 +72,9 @@ public class WinningMenuView extends MenuView {
 		stage.addActor(backButton);
 	}
 	
+	/**
+	 * Adds all the Button listeners
+	 */
 	private void addButtonListeners() {
         backButton.addListener(new ClickListener() {
             @Override

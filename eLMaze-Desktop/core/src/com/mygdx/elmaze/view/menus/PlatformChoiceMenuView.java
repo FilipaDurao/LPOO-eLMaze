@@ -12,6 +12,9 @@ import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.ELMaze.PLATFORM;
 import com.mygdx.elmaze.ELMaze.PLAY_MODE;
 
+/**
+ * Represents the Platform choice menu view
+ */
 public class PlatformChoiceMenuView extends MenuView {
 
 	private Button phoneButton;
@@ -19,6 +22,11 @@ public class PlatformChoiceMenuView extends MenuView {
     private Image errorMessage;
     private Image title;
 	
+    /**
+     * Creates the platform choice menu
+     * 
+     * @param game Reference to the Game object
+     */
 	public PlatformChoiceMenuView(ELMaze game) {
 		super(game, TYPE.PLATFORMCHOICE);
 		
@@ -34,6 +42,9 @@ public class PlatformChoiceMenuView extends MenuView {
 		stage.addActor(title);
 	}
 
+    /**
+	 * Loads all assets needed for the menu
+	 */
 	protected void loadAssets() {
 		this.game.getAssetManager().load( "platformChoiceTitle.png" , Texture.class);
 		this.game.getAssetManager().load( "menuBackground.jpg" , Texture.class);
@@ -46,17 +57,28 @@ public class PlatformChoiceMenuView extends MenuView {
         this.game.getAssetManager().finishLoading();
 	}
 	
+	/**
+	 * Renders the menu on the screen
+	 * 
+	 * @param delta Time since last render
+	 */
 	@Override
     public void render(float delta) {
         stage.act(delta);
         stage.draw();
     }
 	
+	/**
+	 * Creates the error message to present on the screen
+	 */
 	private void createErrorMessage() {
 		errorMessage = ImageFactory.makeImage("empty.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*1/20, SCREEN_WIDTH*50/100, SCREEN_HEIGHT*7/100);
 		stage.addActor(errorMessage);
 	}
 	
+	/**
+	 * Creates the "Phone" Button
+	 */
 	private void createPhoneButton() {
 		phoneButton = ButtonFactory.makeButton(game.getAssetManager().get("phoneButtonUp.png", Texture.class),
 											  game.getAssetManager().get("phoneButtonDown.png", Texture.class), 
@@ -68,6 +90,9 @@ public class PlatformChoiceMenuView extends MenuView {
 		stage.addActor(phoneButton);
 	}
 	
+	/**
+	 * Creates the "Keyboard" Button
+	 */
 	private void createKeyboardButton() {
 		keyboardButton = ButtonFactory.makeButton(game.getAssetManager().get("keyboardButtonUp.png", Texture.class),
 													  game.getAssetManager().get("keyboardButtonDown.png", Texture.class), 
@@ -79,7 +104,9 @@ public class PlatformChoiceMenuView extends MenuView {
 		stage.addActor(keyboardButton);
 	}
 	
-	
+	/**
+	 * Adds all the Button listeners
+	 */
     private void addButtonListeners() {
     	phoneButton.addListener(new ClickListener() {
             @Override

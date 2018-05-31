@@ -12,8 +12,19 @@ import com.mygdx.elmaze.model.entities.WallModel;
 
 public class ViewFactory {
 
+	/**
+	 * Views cache for faster views reloading
+	 */
 	private static HashMap<EntityModel, EntityView> viewCache = new HashMap<EntityModel, EntityView>();
 
+	/**
+	 * Creates an object view and stores them in the view cache for future uses
+	 * 
+	 * @param game Reference to the Game object
+	 * @param model Reference to a model
+	 * 
+	 * @return Returns the requested view
+	 */
     public static EntityView makeView(ELMaze  game, EntityModel model) {
         if (!viewCache.containsKey(model)) {
             if (model instanceof BallModel) {

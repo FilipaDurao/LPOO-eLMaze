@@ -30,6 +30,12 @@ public class ExitView extends EntityView {
 	@Override
 	public void update(EntityModel model) {}
 
+	/**
+     * Creates the sprite associated with the model
+     * 
+     * @param game Reference to the Game object
+     * @param model The Entity Model associated with the View
+	 */
 	@Override
 	public void createSprite(ELMaze game, EntityModel model) {
         Texture texture = game.getAssetManager().get("exit.png");

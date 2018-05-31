@@ -15,6 +15,9 @@ import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.networking.NetworkManager;
 import com.mygdx.elmaze.view.entities.BallView;
 
+/**
+ * Represents the Singleplayer mobile menu view
+ */
 public class SPMobileMenuView extends MenuView {
 
 	private Button frontArrowButton;
@@ -30,6 +33,11 @@ public class SPMobileMenuView extends MenuView {
     private Integer currentBallSpriteIndex;
     private Image ballImage;
 	
+    /**
+     * Creates the singleplayer mobile menu
+     * 
+     * @param game Reference to the Game object
+     */
 	public SPMobileMenuView(ELMaze game) {
 		super(game, TYPE.SPMOBILE);
 		
@@ -50,6 +58,9 @@ public class SPMobileMenuView extends MenuView {
 		addButtonListeners();
 	}
 
+    /**
+	 * Loads all assets needed for the menu
+	 */
 	protected void loadAssets() {
 		this.game.getAssetManager().load("player1Title.png" , Texture.class);
 		this.game.getAssetManager().load("menuBackground.jpg" , Texture.class);
@@ -75,6 +86,9 @@ public class SPMobileMenuView extends MenuView {
         this.game.getAssetManager().finishLoading();
 	}
 	
+	/**
+	 * Loads all the symbols to use in the key code
+	 */
 	private void loadSymbolAssets() {
 		this.game.getAssetManager().load("alphaSymbol.png", Texture.class);
 		this.game.getAssetManager().load("betaSymbol.png", Texture.class);
@@ -94,12 +108,20 @@ public class SPMobileMenuView extends MenuView {
 		this.game.getAssetManager().load("tauSymbol.png", Texture.class);
 	}
 	
+	/**
+	 * Renders the menu on the screen
+	 * 
+	 * @param delta Time since last render
+	 */
 	@Override
     public void render(float delta) {
         stage.act(delta);
         stage.draw();
     }
 	
+	/**
+	 * Creates the key Code based on the parsed IP
+	 */
 	private void createKeyCode() {
 		int symbolSize = (int)(SCREEN_WIDTH*3.5/100);
 		LinkedList<Integer> parsedIP = NetworkManager.getInstance().getParsedIP();
@@ -109,6 +131,9 @@ public class SPMobileMenuView extends MenuView {
 		}
 	}
 	 
+	/**
+	 * Set up the names of the symbols used for the key code
+	 */
 	private void setupSymbolNames() {
 		symbolFileNames.add("alphaSymbol.png");
 	    symbolFileNames.add("betaSymbol.png");
@@ -128,6 +153,9 @@ public class SPMobileMenuView extends MenuView {
 	    symbolFileNames.add("tauSymbol.png");
 	}
 	
+	/**
+	 * Sets up the text titles in the screen
+	 */
 	private void setUpTitles() {
 		title = ImageFactory.makeImage("player1Title.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*9/10,SCREEN_WIDTH/3);
 		stage.addActor(title);
@@ -139,6 +167,9 @@ public class SPMobileMenuView extends MenuView {
 		stage.addActor(gameCodeBar);
 	}
 	
+	/**
+	 * Fills the array of Ball sprites
+	 */
 	private void fillSpritesArray() {
 		balls.add("ball.png");
 		balls.add("jade_ball.png");
@@ -147,16 +178,25 @@ public class SPMobileMenuView extends MenuView {
 		balls.add("ruby_ball.png");
 	}
 	
+	/**
+	 * Creates the Ball image present on the screen
+	 */
 	private void createBallImage() {
 		ballImage = ImageFactory.makeImage("ball.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*3/4, SCREEN_WIDTH*12/100);
 		stage.addActor(ballImage);
 	}
 	
+	/**
+	 * Creates the Error message to present on the screen
+	 */
 	private void createErrorMessage() {
 		errorMessage = ImageFactory.makeImage("empty.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*1/20, SCREEN_WIDTH*45/100, SCREEN_HEIGHT*4/100);
 		stage.addActor(errorMessage);
 	}
 	
+    /**
+     * Creates the "Next Arrow" Button
+     */
 	private void createFrontArrowButton() {
 		frontArrowButton = ButtonFactory.makeButton(game.getAssetManager().get("arrowButtonUp.png", Texture.class),
 											  game.getAssetManager().get("arrowButtonDown.png", Texture.class), 
@@ -168,6 +208,9 @@ public class SPMobileMenuView extends MenuView {
 		stage.addActor(frontArrowButton);
 	}
 	
+    /**
+     * Creates the "Back Arrow" Button
+     */
 	private void createBackArrowButton() {
 		backArrowButton = ButtonFactory.makeButton(game.getAssetManager().get("backspaceButtonUp.png", Texture.class),
 													  game.getAssetManager().get("backspaceButtonDown.png", Texture.class), 
@@ -179,6 +222,9 @@ public class SPMobileMenuView extends MenuView {
 		stage.addActor(backArrowButton);
 	}
 	
+	/**
+	 * Creates the Play and Back Buttons
+	 */
 	private void createBackAndPlayButtons() {
 		playButton = ButtonFactory.makeButton(game.getAssetManager().get("playButtonUp.png", Texture.class),
 				  game.getAssetManager().get("playButtonDown.png", Texture.class), 
@@ -199,6 +245,9 @@ public class SPMobileMenuView extends MenuView {
 		stage.addActor(backButton);
 	}
 	
+	/**
+	 * Adds all the Button listeners
+	 */
     private void addButtonListeners() {
     	frontArrowButton.addListener(new ClickListener() {
             @Override

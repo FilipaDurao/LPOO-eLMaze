@@ -12,13 +12,30 @@ import com.mygdx.elmaze.view.GameView;
  */
 public class WallView extends EntityView {
 
+	/**
+	 * Creates a Wall View
+	 * 
+	 * @param game Reference to the Game object
+	 * @param model The Model of the Ball that this view represents
+	 */
 	public WallView(ELMaze game, EntityModel model) {
 		super(game, model);
 	}
 	
+    /**
+     * Positions the sprite on the location of the respective model
+     * 
+     * @param model The model associated with the view
+     */
 	@Override
 	public void update(EntityModel model) {}
 
+	/**
+     * Creates the sprite associated with the model
+     * 
+     * @param game Reference to the Game object
+     * @param model The Entity Model associated with the View
+	 */
 	@Override
 	public void createSprite(ELMaze game, EntityModel model) {
 		WallModel wall = (WallModel) model;

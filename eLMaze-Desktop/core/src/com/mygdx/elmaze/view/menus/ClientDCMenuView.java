@@ -8,11 +8,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
 
+/**
+ * Menu used when the client disconects middle-game
+ */
 public class ClientDCMenuView extends MenuView {
 
 	private Image winText;
     private Button backButton;
 	
+    /**
+     * Creates the Client Disconected menu
+     * 
+     * @param game Reference to the Game object
+     */
 	public ClientDCMenuView(ELMaze game) {
 		super(game, TYPE.CLIENTDC);
         
@@ -23,6 +31,9 @@ public class ClientDCMenuView extends MenuView {
         addButtonListeners();
 	}
 
+	/**
+	 * Loads all assets needed for the menu
+	 */
 	@Override
 	protected void loadAssets() {
 		this.game.getAssetManager().load( "lostConnectionToClient.png" , Texture.class);
@@ -34,12 +45,20 @@ public class ClientDCMenuView extends MenuView {
 		
 	}
     
+	/**
+	 * Renders the menu on the screen
+	 * 
+	 * @param delta Time since last render
+	 */
     @Override
     public void render(float delta) {    	
         stage.act(delta);
         stage.draw();
     }
 
+    /**
+     * Creates the Back Button
+     */
 	private void createBackButton() {
 		backButton = ButtonFactory.makeButton(game.getAssetManager().get("exitButtonUp.png", Texture.class),
 			  	 							  game.getAssetManager().get("exitButtonDown.png", Texture.class), 
@@ -51,6 +70,9 @@ public class ClientDCMenuView extends MenuView {
 		stage.addActor(backButton);
 	}
 	
+	/**
+	 * Adds all the Button listeners
+	 */
 	private void addButtonListeners() {
         backButton.addListener(new ClickListener() {
             @Override

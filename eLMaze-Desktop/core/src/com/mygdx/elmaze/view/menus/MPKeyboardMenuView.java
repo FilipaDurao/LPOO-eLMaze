@@ -13,6 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.view.entities.BallView;
 
+/**
+ * Represents the Multiplayer Keyboard menu view
+ */
 public class MPKeyboardMenuView extends MenuView {
 
 	private Button frontArrowButton1;
@@ -29,6 +32,11 @@ public class MPKeyboardMenuView extends MenuView {
     private Image ballImage1;
     private Image ballImage2;
 	
+    /**
+     * Creates the multiplayer Keyboard menu
+     * 
+     * @param game Reference to the Game object
+     */
 	public MPKeyboardMenuView(ELMaze game) {
 		super(game, TYPE.MPKEYBOARD);
 		
@@ -52,6 +60,9 @@ public class MPKeyboardMenuView extends MenuView {
 	
 	}
 
+    /**
+	 * Loads all assets needed for the menu
+	 */
 	protected void loadAssets() {
 		this.game.getAssetManager().load( "player1Title.png" , Texture.class);
 		this.game.getAssetManager().load( "player2Title.png" , Texture.class);
@@ -72,12 +83,20 @@ public class MPKeyboardMenuView extends MenuView {
         this.game.getAssetManager().finishLoading();
 	}
 	
+	/**
+	 * Renders the menu on the screen
+	 * 
+	 * @param delta Time since last render
+	 */
 	@Override
     public void render(float delta) {
         stage.act(delta);
         stage.draw();
     }
 	
+	/**
+	 * Sets up the text titles in the screen
+	 */
 	private void setUpTitles() {
 		title1 = ImageFactory.makeImage("player1Title.png", SCREEN_WIDTH/4, SCREEN_HEIGHT*80/100,SCREEN_WIDTH*40/100);
 		stage.addActor(title1);
@@ -86,6 +105,9 @@ public class MPKeyboardMenuView extends MenuView {
 		stage.addActor(title2);
 	}
 	
+	/**
+	 * Fills the array of Ball sprites
+	 */
 	private void fillSpritesArray() {
 		balls.add("ball.png");
 		balls.add("jade_ball.png");
@@ -94,6 +116,9 @@ public class MPKeyboardMenuView extends MenuView {
 		balls.add("ruby_ball.png");
 	}
 	
+	/**
+	 * Creates the Ball images present on the screen
+	 */
 	private void createBallImages(){
 		ballImage1 = ImageFactory.makeImage("ball.png", SCREEN_WIDTH*24/100, SCREEN_HEIGHT*55/100, SCREEN_WIDTH*12/100);
 		stage.addActor(ballImage1);
@@ -102,6 +127,9 @@ public class MPKeyboardMenuView extends MenuView {
 		stage.addActor(ballImage2);
 	}
 	
+    /**
+     * Creates the "Next Arrow 1" Button
+     */
 	private void createFrontArrowButton1() {
 		frontArrowButton1 = ButtonFactory.makeButton(game.getAssetManager().get("arrowButtonUp.png", Texture.class),
 											  game.getAssetManager().get("arrowButtonDown.png", Texture.class), 
@@ -113,6 +141,9 @@ public class MPKeyboardMenuView extends MenuView {
 		stage.addActor(frontArrowButton1);
 	}
 	
+    /**
+     * Creates the "Back Arrow 1" Button
+     */
 	private void createBackArrowButton1() {
 		backArrowButton1 = ButtonFactory.makeButton(game.getAssetManager().get("backspaceButtonUp.png", Texture.class),
 													  game.getAssetManager().get("backspaceButtonDown.png", Texture.class), 
@@ -124,6 +155,9 @@ public class MPKeyboardMenuView extends MenuView {
 		stage.addActor(backArrowButton1);
 	}
 	
+    /**
+     * Creates the "Next Arrow 2" Button
+     */
 	private void createFrontArrowButton2() {
 		frontArrowButton2 = ButtonFactory.makeButton(game.getAssetManager().get("arrowButtonUp.png", Texture.class),
 											  game.getAssetManager().get("arrowButtonDown.png", Texture.class), 
@@ -135,6 +169,9 @@ public class MPKeyboardMenuView extends MenuView {
 		stage.addActor(frontArrowButton2);
 	}
 	
+    /**
+     * Creates the "Back Arrow 2" Button
+     */
 	private void createBackArrowButton2() {
 		backArrowButton2 = ButtonFactory.makeButton(game.getAssetManager().get("backspaceButtonUp.png", Texture.class),
 													  game.getAssetManager().get("backspaceButtonDown.png", Texture.class), 
@@ -146,6 +183,9 @@ public class MPKeyboardMenuView extends MenuView {
 		stage.addActor(backArrowButton2);
 	}
 	
+	/**
+	 * Creates the Play and Back Buttons
+	 */
 	private void createBackAndPlayButtons() {
 		playButton = ButtonFactory.makeButton(game.getAssetManager().get("playButtonUp.png", Texture.class),
 				  game.getAssetManager().get("playButtonDown.png", Texture.class), 
@@ -166,6 +206,9 @@ public class MPKeyboardMenuView extends MenuView {
 		stage.addActor(backButton);
 	}
 	
+	/**
+	 * Adds all the Button listeners
+	 */
     private void addButtonListeners() {
     	frontArrowButton1.addListener(new ClickListener() {
             @Override

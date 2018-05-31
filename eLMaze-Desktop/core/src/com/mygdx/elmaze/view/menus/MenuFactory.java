@@ -4,10 +4,24 @@ import com.mygdx.elmaze.ELMaze;
 
 import java.util.HashMap;
 
+/**
+ * Implements functions related to the creation of Menus
+ */
 public class MenuFactory {
 
+	/**
+	 * Menu Views cache for faster menu reloading
+	 */
     private static HashMap<MenuView.TYPE, MenuView> menuCache = new HashMap<MenuView.TYPE, MenuView>();
 
+    /**
+     * Creates a menu view and stores them in the menu cache for future uses
+     * 
+     * @param game Reference to the Game object
+     * @param menuType Reference to a model
+     * 
+     * @return Returns the requested menu
+     */
     public static MenuView makeMenu(ELMaze game, MenuView.TYPE menuType) {
 
         if (!menuCache.containsKey(menuType)) {

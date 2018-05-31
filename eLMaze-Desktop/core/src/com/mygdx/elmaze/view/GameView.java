@@ -25,6 +25,9 @@ import com.mygdx.elmaze.view.entities.*;
 import com.mygdx.elmaze.view.menus.MenuFactory;
 import com.mygdx.elmaze.view.menus.MenuView.TYPE;
 
+/**
+ * Represents the Game View
+ */
 public class GameView extends ScreenAdapter {
 
 	private static GameView instance;
@@ -41,6 +44,9 @@ public class GameView extends ScreenAdapter {
     private Box2DDebugRenderer debugRenderer;
     private Matrix4 debugCamera;
     
+    /**
+     * @return Returns the Game View instance
+     */
     public static GameView getInstance() {
     	if (instance == null) {
     		instance = new GameView();
@@ -52,11 +58,19 @@ public class GameView extends ScreenAdapter {
     	camera = initCamera();
     }
     
+    /**
+     * Sets the game reference to the game object passed as parameter
+     * 
+     * @param game Reference to the Game object
+     */
     public void setGameReference(ELMaze game) {
     	this.game = game;
     	loadAssets();	
     }
     
+    /**
+	 * Loads all assets needed for the Game
+	 */
     private void loadAssets() {
         this.game.getAssetManager().load( "ball.png" , Texture.class);
         this.game.getAssetManager().load( "jade_ball.png" , Texture.class);
@@ -93,6 +107,11 @@ public class GameView extends ScreenAdapter {
         return camera;
     }   
     
+	/**
+	 * Renders the Game on the screen
+	 * 
+	 * @param delta Time since last render
+	 */
     @Override
     public void render(float delta) {
     	if (game.getPlatform() == ELMaze.PLATFORM.KEYBOARD) {
@@ -118,12 +137,18 @@ public class GameView extends ScreenAdapter {
         checkGameStatusChange();
     }
     
+    /**
+     * Sets up the background of the Game with the background image
+     */
     private void drawBackground() {
     	Texture background = game.getAssetManager().get("background.png", Texture.class);
     	background.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
     	game.getSpriteBatch().draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
     
+    /**
+     * Draws the Entities on the screen
+     */
     private void drawEntities() {
     	drawWalls();
     	drawDoors();
@@ -131,7 +156,10 @@ public class GameView extends ScreenAdapter {
     	drawExit();
     	drawBall();
     }
-    	
+    
+    /**
+     * Handles the inputs from the player(s)
+     */
     private void handleInputs() {
     	float speed = 5;
     	
@@ -161,6 +189,9 @@ public class GameView extends ScreenAdapter {
 		}
     }
     
+    /**
+     * Draws the Ball on the screen
+     */
     private void drawBall() {
     	if (game.getPlayMode() == ELMaze.PLAY_MODE.SINGLEPLAYER) {
         	BallModel ball = ((SinglePlayerLevelModel) GameModel.getInstance().getCurrentLevel()).getBall();
@@ -180,12 +211,18 @@ public class GameView extends ScreenAdapter {
     	}
     }
     
+    /**
+     * Draws the Exit on the screen
+     */
     private void drawExit() {
     	ExitModel exit = GameModel.getInstance().getCurrentLevel().getExit();
     	ExitView exitView = (ExitView) ViewFactory.makeView(game, exit);
     	exitView.draw(game.getSpriteBatch());
     }
     
+    /**
+     * Draws the Walls on the screen
+     */
     private void drawWalls() {    	
     	for (WallModel wall : GameModel.getInstance().getCurrentLevel().getWalls()) {
     		WallView wallView = (WallView) ViewFactory.makeView(game, wall);
@@ -193,6 +230,9 @@ public class GameView extends ScreenAdapter {
     	}
     }
     
+    /**
+     * Draws the Doors on the screen
+     */
     private void drawDoors() {
     	for (DoorModel door : GameModel.getInstance().getCurrentLevel().getDoors()) {
     		if (door.isClosed()) {
@@ -202,6 +242,9 @@ public class GameView extends ScreenAdapter {
     	}
     }
     
+    /**
+     * Draws the Buttons on the screen
+     */
     private void drawButtons() {
     	for (ButtonModel button: GameModel.getInstance().getCurrentLevel().getButtons()) {
     		ButtonView buttonView = (ButtonView) ViewFactory.makeView(game, button);
@@ -210,7 +253,9 @@ public class GameView extends ScreenAdapter {
     	}
     }
     
-    
+    /**
+     * Checks the Game's status for updating the views
+     */
     private void checkGameStatusChange() {
     	switch (GameController.getInstance().getStatus()) {
     	case DISCONNECT:
@@ -233,26 +278,41 @@ public class GameView extends ScreenAdapter {
     	}
     }
     
+    /**
+     * Plays a sound when a ball collides with a wall
+     */
     public void playBallWallCollisionSound() {
     	Sound collisionSound = game.getAssetManager().get("ballCollision.mp3");
     	collisionSound.play(0.6f);
     }
     
+    /**
+     * Plays a sound when a ball collides with a button
+     */
     public void playBallButtonCollisionSound() {
     	Sound collisionSound = game.getAssetManager().get("buttonPress.mp3");
     	collisionSound.play(0.8f);
     }
     
+    /**
+     * Plays a sound when a ball collides with an exit
+     */
     public void playBallExitCollisionSound() {
     	Sound collisionSound = game.getAssetManager().get("fall.mp3");
     	collisionSound.play(1.0f);
     }
     
+    /**
+     * Plays a sound when a ball collides with a door
+     */
     public void playBallDoorCollisionSound() {
     	Sound collisionSound = game.getAssetManager().get("metal.mp3");
     	collisionSound.play(0.35f);
     }
     
+    /**
+     * Plays a sound when a ball collides with another ball
+     */
     public void playBallBallCollisionSound() {
     	Sound collisionSound = game.getAssetManager().get("poolBall.mp3");
     	collisionSound.play(0.9f);

@@ -9,13 +9,20 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.ELMaze.PLAY_MODE;
 
+/**
+ * Represents the Number of Players choice menu View
+ */
 public class PlayerChoiceMenuView extends MenuView {
-
 
 	private Button onePlayerButton;
     private Button twoPlayersButton;
     private Image title;
 	
+    /**
+     * Creates the Player choice menu
+     * 
+     * @param game Reference to the Game object
+     */
 	public PlayerChoiceMenuView(ELMaze game) {
 		super(game, TYPE.NUMPLAYERCHOICE);
 		
@@ -30,6 +37,9 @@ public class PlayerChoiceMenuView extends MenuView {
 		stage.addActor(title);
 	}
 
+    /**
+	 * Loads all assets needed for the menu
+	 */
 	protected void loadAssets() {
 		this.game.getAssetManager().load( "howManyPlayersTitle.png" , Texture.class);
 		this.game.getAssetManager().load( "menuBackground.jpg" , Texture.class);
@@ -40,12 +50,20 @@ public class PlayerChoiceMenuView extends MenuView {
         this.game.getAssetManager().finishLoading();
 	}
 	
+	/**
+	 * Renders the menu on the screen
+	 * 
+	 * @param delta Time since last render
+	 */
 	@Override
     public void render(float delta) {
         stage.act(delta);
         stage.draw();
     }
 	
+	/**
+	 * Creates the "1 Player" Button
+	 */
 	private void createOnePlayerButton() {
 		onePlayerButton = ButtonFactory.makeButton(game.getAssetManager().get("1PlayerButtonUp.png", Texture.class),
 											  game.getAssetManager().get("1PlayerButtonDown.png", Texture.class), 
@@ -57,6 +75,9 @@ public class PlayerChoiceMenuView extends MenuView {
 		stage.addActor(onePlayerButton);
 	}
 	
+	/**
+	 * Creates the "2 Players" Button
+	 */
 	private void createTwoPlayersButton() {
 		twoPlayersButton = ButtonFactory.makeButton(game.getAssetManager().get("2PlayersButtonUp.png", Texture.class),
 													  game.getAssetManager().get("2PlayersButtonDown.png", Texture.class), 
@@ -68,7 +89,9 @@ public class PlayerChoiceMenuView extends MenuView {
 		stage.addActor(twoPlayersButton);
 	}
 	
-	
+	/**
+	 * Adds all the Button listeners
+	 */
     private void addButtonListeners() {
     	onePlayerButton.addListener(new ClickListener() {
             @Override

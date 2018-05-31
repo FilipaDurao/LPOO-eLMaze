@@ -9,6 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
 
+/**
+ * Represents the Instructions pages view
+ */
 public class InstructionsView extends MenuView {
 
     private Image instructions;
@@ -16,6 +19,11 @@ public class InstructionsView extends MenuView {
     private Button nextArrowButton;
     private Button previousArrowButton;
 	
+    /**
+     * Creates the Instructions menu
+     * 
+     * @param game Reference to the Game object
+     */
 	public InstructionsView(ELMaze game) {
 		super(game, TYPE.INSTRUCTIONS);
         
@@ -29,6 +37,9 @@ public class InstructionsView extends MenuView {
         addButtonListeners();
 	}
 
+    /**
+	 * Loads all assets needed for the menu
+	 */
 	@Override
 	protected void loadAssets() {
 		this.game.getAssetManager().load( "desktopInstructions1.png" , Texture.class);
@@ -44,12 +55,20 @@ public class InstructionsView extends MenuView {
 		
 	}
     
+	/**
+	 * Renders the menu on the screen
+	 * 
+	 * @param delta Time since last render
+	 */
     @Override
     public void render(float delta) {    	
         stage.act(delta);
         stage.draw();
     }
 
+    /**
+     * Creates the Back Button
+     */
 	private void createBackButton() {
 		backButton = ButtonFactory.makeButton(game.getAssetManager().get("backButtonUp.png", Texture.class),
 			  	 							  game.getAssetManager().get("backButtonDown.png", Texture.class), 
@@ -61,6 +80,9 @@ public class InstructionsView extends MenuView {
 		stage.addActor(backButton);
 	}
 	
+    /**
+     * Creates the "Next Arrow" Button
+     */
 	private void createNextArrowButton(){
 		nextArrowButton = ButtonFactory.makeButton(game.getAssetManager().get("nextArrowButtonUp.png", Texture.class),
 												   game.getAssetManager().get("nextArrowButtonDown.png", Texture.class),
@@ -72,6 +94,9 @@ public class InstructionsView extends MenuView {
 		stage.addActor(nextArrowButton);
 	}
 	
+    /**
+     * Creates the "Previous Arrow" Button
+     */
 	private void createPreviousArrowButton(){
 		previousArrowButton = ButtonFactory.makeButton(game.getAssetManager().get("previousArrowButtonUp.png", Texture.class),
 													   game.getAssetManager().get("previousArrowButtonDown.png", Texture.class), 
@@ -83,7 +108,9 @@ public class InstructionsView extends MenuView {
 		stage.addActor(previousArrowButton);
 	}
 	
-	
+	/**
+	 * Adds all the Button listeners
+	 */
 	private void addButtonListeners() {
         backButton.addListener(new ClickListener() {
             @Override
