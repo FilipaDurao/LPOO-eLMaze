@@ -101,6 +101,7 @@ public class MainMenuView extends MenuView {
         playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.NUMPLAYERCHOICE));
             }
         });
@@ -108,6 +109,7 @@ public class MainMenuView extends MenuView {
         instructionsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.INSTRUCTIONS));
             }
         });
@@ -115,6 +117,7 @@ public class MainMenuView extends MenuView {
         creditsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.CREDITS));
             }
         });
@@ -122,6 +125,7 @@ public class MainMenuView extends MenuView {
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
                 Gdx.app.exit();
             }
         });

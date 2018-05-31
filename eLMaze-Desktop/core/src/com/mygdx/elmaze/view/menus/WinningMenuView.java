@@ -57,6 +57,7 @@ public class WinningMenuView extends MenuView {
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	if (game.getPlatform() == PLATFORM.PHONE) {
                     NetworkManager.getInstance().getSocketManager().closeConnections();
             	}

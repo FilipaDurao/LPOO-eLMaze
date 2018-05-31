@@ -132,6 +132,7 @@ public class SPKeyboardMenuView extends MenuView {
     	frontArrowButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	currentBallSpriteIndex = (currentBallSpriteIndex+1)%balls.size();
             	ballImage.setDrawable(new TextureRegionDrawable(new TextureRegion(
             			(Texture) game.getAssetManager().get(balls.get(currentBallSpriteIndex)))));
@@ -141,6 +142,7 @@ public class SPKeyboardMenuView extends MenuView {
     	backArrowButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	currentBallSpriteIndex = currentBallSpriteIndex == 0 ? balls.size()-1 : currentBallSpriteIndex-1;
             	ballImage.setDrawable(new TextureRegionDrawable(new TextureRegion(
             			(Texture) game.getAssetManager().get(balls.get(currentBallSpriteIndex)))));
@@ -150,6 +152,7 @@ public class SPKeyboardMenuView extends MenuView {
     	playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	BallView.setPlayer1SpriteName(balls.get(currentBallSpriteIndex));
             	game.startGame();
             }
@@ -158,6 +161,7 @@ public class SPKeyboardMenuView extends MenuView {
     	backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	game.activateMenu(MenuFactory.makeMenu(game, TYPE.PLATFORMCHOICE));
             }
         });

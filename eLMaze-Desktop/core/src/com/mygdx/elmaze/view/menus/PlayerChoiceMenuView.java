@@ -73,6 +73,7 @@ public class PlayerChoiceMenuView extends MenuView {
     	onePlayerButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	game.setNumPlayers(PLAY_MODE.SINGLEPLAYER);
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.PLATFORMCHOICE));
             }
@@ -81,6 +82,7 @@ public class PlayerChoiceMenuView extends MenuView {
     	twoPlayersButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	game.setNumPlayers(PLAY_MODE.MULTIPLAYER);
             	game.activateMenu(MenuFactory.makeMenu(game, TYPE.PLATFORMCHOICE));
             }

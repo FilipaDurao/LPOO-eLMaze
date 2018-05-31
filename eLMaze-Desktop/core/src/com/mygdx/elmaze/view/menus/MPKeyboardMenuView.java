@@ -170,6 +170,7 @@ public class MPKeyboardMenuView extends MenuView {
     	frontArrowButton1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	currentBallSpriteIndex1 = (currentBallSpriteIndex1+1)%balls.size();
             	
             	if(currentBallSpriteIndex1 == currentBallSpriteIndex2) {
@@ -184,6 +185,7 @@ public class MPKeyboardMenuView extends MenuView {
     	backArrowButton1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	currentBallSpriteIndex1 = currentBallSpriteIndex1 == 0 ? balls.size()-1 : currentBallSpriteIndex1 - 1;
             	
             	if(currentBallSpriteIndex1 == currentBallSpriteIndex2) {
@@ -198,6 +200,7 @@ public class MPKeyboardMenuView extends MenuView {
     	frontArrowButton2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	currentBallSpriteIndex2 = (currentBallSpriteIndex2+1)%balls.size();
             	
             	if(currentBallSpriteIndex2 == currentBallSpriteIndex1) {
@@ -212,6 +215,7 @@ public class MPKeyboardMenuView extends MenuView {
     	backArrowButton2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	currentBallSpriteIndex2 = currentBallSpriteIndex2 == 0 ? balls.size()-1 : currentBallSpriteIndex2 - 1;
             	
             	if(currentBallSpriteIndex2 == currentBallSpriteIndex1) {
@@ -226,6 +230,7 @@ public class MPKeyboardMenuView extends MenuView {
     	playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	BallView.setPlayer1SpriteName(balls.get(currentBallSpriteIndex1));
             	BallView.setPlayer2SpriteName(balls.get(currentBallSpriteIndex2));
             	game.startGame();
@@ -235,6 +240,7 @@ public class MPKeyboardMenuView extends MenuView {
     	backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	game.activateMenu(MenuFactory.makeMenu(game, TYPE.PLATFORMCHOICE));
             }
         });

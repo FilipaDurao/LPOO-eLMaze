@@ -88,6 +88,7 @@ public class InstructionsView extends MenuView {
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
                 game.activateMenu(MenuFactory.makeMenu(game, TYPE.MAIN));
             }
         });
@@ -95,6 +96,7 @@ public class InstructionsView extends MenuView {
         nextArrowButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	instructions.setDrawable(new TextureRegionDrawable(new TextureRegion(
     					game.getAssetManager().get("desktopInstructions2.jpg", Texture.class))));
             	instructions.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -104,6 +106,7 @@ public class InstructionsView extends MenuView {
        previousArrowButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	Texture instructionsTex = game.getAssetManager().get("desktopInstructions1.png", Texture.class);
             	float texRatio = (float)instructionsTex.getWidth()/(float)instructionsTex.getHeight();
             	instructions.setDrawable(new TextureRegionDrawable(new TextureRegion(instructionsTex)));

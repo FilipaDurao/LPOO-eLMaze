@@ -3,6 +3,7 @@ package com.mygdx.elmaze.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
@@ -68,6 +69,11 @@ public class GameView extends ScreenAdapter {
         this.game.getAssetManager().load( "door.png" , Texture.class);
         this.game.getAssetManager().load( "button.png" , Texture.class);
         this.game.getAssetManager().load( "pressed_button.png" , Texture.class);
+        this.game.getAssetManager().load( "ballCollision.mp3" , Sound.class);
+        this.game.getAssetManager().load( "fall.mp3" , Sound.class);
+        this.game.getAssetManager().load( "buttonPress.mp3" , Sound.class);
+        this.game.getAssetManager().load( "metal.mp3" , Sound.class);
+        this.game.getAssetManager().load( "poolBall.mp3" , Sound.class);
 
         this.game.getAssetManager().finishLoading();
     }
@@ -225,5 +231,30 @@ public class GameView extends ScreenAdapter {
     	default:
     		break;
     	}
+    }
+    
+    public void playBallWallCollisionSound() {
+    	Sound collisionSound = game.getAssetManager().get("ballCollision.mp3");
+    	collisionSound.play(0.6f);
+    }
+    
+    public void playBallButtonCollisionSound() {
+    	Sound collisionSound = game.getAssetManager().get("buttonPress.mp3");
+    	collisionSound.play(0.8f);
+    }
+    
+    public void playBallExitCollisionSound() {
+    	Sound collisionSound = game.getAssetManager().get("fall.mp3");
+    	collisionSound.play(1.0f);
+    }
+    
+    public void playBallDoorCollisionSound() {
+    	Sound collisionSound = game.getAssetManager().get("metal.mp3");
+    	collisionSound.play(0.35f);
+    }
+    
+    public void playBallBallCollisionSound() {
+    	Sound collisionSound = game.getAssetManager().get("poolBall.mp3");
+    	collisionSound.play(0.9f);
     }
 }

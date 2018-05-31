@@ -8,7 +8,10 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.mygdx.elmaze.model.GameModel;
 import com.mygdx.elmaze.model.entities.BallModel;
 import com.mygdx.elmaze.model.entities.ButtonModel;
+import com.mygdx.elmaze.model.entities.DoorModel;
 import com.mygdx.elmaze.model.entities.ExitModel;
+import com.mygdx.elmaze.model.entities.WallModel;
+import com.mygdx.elmaze.view.GameView;
 
 /**
  * Singleton Class that listens for collisions (contact listener) for that game's physical worlds, acting as an observer
@@ -40,22 +43,12 @@ public class CollisionListener implements ContactListener {
         Body bodyA = contact.getFixtureA().getBody();
         Body bodyB = contact.getFixtureB().getBody();
         
-        if ((bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof ExitModel) || 
-        	(bodyA.getUserData() instanceof ExitModel && bodyB.getUserData() instanceof BallModel)) {
-        	
-        	GameController.getInstance().advanceLevel();
-        	GameModel.getInstance().advanceLevel();
-        }
         
-        if ((bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof ButtonModel) ||
-        	(bodyA.getUserData() instanceof ButtonModel && bodyB.getUserData() instanceof BallModel)) {
-        	
-        	if (bodyA.getUserData() instanceof ButtonModel) {
-            	((ButtonModel) bodyA.getUserData()).press();
-        	} else {
-            	((ButtonModel) bodyB.getUserData()).press();
-        	}
-        }
+        checkBallExitCollision(bodyA, bodyB);
+        checkBallWallCollision(bodyA, bodyB);
+        checkBallButtonCollision(bodyA, bodyB);
+        checkBallDoorCollision(bodyA, bodyB);
+        checkBallBallCollision(bodyA, bodyB);
 	}
 
 	@Override
@@ -66,5 +59,86 @@ public class CollisionListener implements ContactListener {
 
 	@Override
 	public void postSolve(Contact contact, ContactImpulse impulse) {}
+	
+	/**
+	 * Verifies a collision between a ball and an exit
+	 * 
+	 * @param bodyA first body
+	 * @param bodyB second body
+	 */
+	private void checkBallExitCollision(Body bodyA, Body bodyB) {
+        if ((bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof ExitModel) || 
+        	(bodyA.getUserData() instanceof ExitModel && bodyB.getUserData() instanceof BallModel)) {
+
+        	GameView.getInstance().playBallExitCollisionSound();
+        	GameController.getInstance().advanceLevel();
+        	GameModel.getInstance().advanceLevel();
+        }
+	}
+	
+	/**
+	 * Verifies a collision between a ball and a wall
+	 * 
+	 * @param bodyA first body
+	 * @param bodyB second body
+	 */
+	private void checkBallWallCollision(Body bodyA, Body bodyB) {
+		if ((bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof WallModel) ||
+        	(bodyA.getUserData() instanceof WallModel && bodyB.getUserData() instanceof BallModel)) {
+        	
+        	GameView.getInstance().playBallWallCollisionSound();
+        }
+	}
+	
+	/**
+	 * Verifies a collision between a ball and a door
+	 * 
+	 * @param bodyA first body
+	 * @param bodyB second body
+	 */
+	private void checkBallDoorCollision(Body bodyA, Body bodyB) {
+		if ((bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof DoorModel) ||
+        	(bodyA.getUserData() instanceof DoorModel && bodyB.getUserData() instanceof BallModel)) {
+        	
+        	GameView.getInstance().playBallDoorCollisionSound();
+        }
+	}
+	
+	/**
+	 * Verifies a collision between two balls
+	 * 
+	 * @param bodyA first body
+	 * @param bodyB second body
+	 */
+	private void checkBallBallCollision(Body bodyA, Body bodyB) {
+		if (bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof BallModel) {
+        	GameView.getInstance().playBallBallCollisionSound();
+        }
+	}
+	
+	/**
+	 * Verifies a collision between a ball and a button
+	 * 
+	 * @param bodyA first body
+	 * @param bodyB second body
+	 */
+	private void checkBallButtonCollision(Body bodyA, Body bodyB) {
+		if ((bodyA.getUserData() instanceof BallModel && bodyB.getUserData() instanceof ButtonModel) ||
+        	(bodyA.getUserData() instanceof ButtonModel && bodyB.getUserData() instanceof BallModel)) {
+        	
+        	if (bodyA.getUserData() instanceof ButtonModel) {
+        		if (!(((ButtonModel) bodyA.getUserData()).isPressed())) {
+                	((ButtonModel) bodyA.getUserData()).press();
+        			GameView.getInstance().playBallButtonCollisionSound();
+        		}
+        	} 
+        	else {
+        		if (!(((ButtonModel) bodyB.getUserData()).isPressed())) {
+                	((ButtonModel) bodyB.getUserData()).press();
+        			GameView.getInstance().playBallButtonCollisionSound();
+        		}
+        	}
+        }
+    }
 
 }

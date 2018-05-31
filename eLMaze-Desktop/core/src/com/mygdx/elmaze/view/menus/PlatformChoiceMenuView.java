@@ -84,6 +84,7 @@ public class PlatformChoiceMenuView extends MenuView {
     	phoneButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	game.setPlatform(PLATFORM.PHONE);
             	
             	// Try to start the server
@@ -108,6 +109,7 @@ public class PlatformChoiceMenuView extends MenuView {
     	keyboardButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	game.setPlatform(PLATFORM.KEYBOARD);
 
         		errorMessage.setDrawable(new TextureRegionDrawable(new TextureRegion(

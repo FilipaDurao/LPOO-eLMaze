@@ -203,6 +203,7 @@ public class SPMobileMenuView extends MenuView {
     	frontArrowButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	currentBallSpriteIndex = (currentBallSpriteIndex+1)%balls.size();
             	ballImage.setDrawable(new TextureRegionDrawable(new TextureRegion(
             			(Texture) game.getAssetManager().get(balls.get(currentBallSpriteIndex)))));
@@ -212,6 +213,7 @@ public class SPMobileMenuView extends MenuView {
     	backArrowButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	currentBallSpriteIndex = currentBallSpriteIndex == 0 ? balls.size()-1 : currentBallSpriteIndex-1;
             	ballImage.setDrawable(new TextureRegionDrawable(new TextureRegion(
             			(Texture) game.getAssetManager().get(balls.get(currentBallSpriteIndex)))));
@@ -221,6 +223,7 @@ public class SPMobileMenuView extends MenuView {
     	playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	if (NetworkManager.getInstance().getSocketManager().getNumConnections() != 1) {
             		errorMessage.setDrawable(new TextureRegionDrawable(new TextureRegion(
             				game.getAssetManager().get("playerNotConnectedError.png", Texture.class))));
@@ -236,6 +239,7 @@ public class SPMobileMenuView extends MenuView {
     	backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+            	playButtonSound();
             	game.activateMenu(MenuFactory.makeMenu(game, TYPE.PLATFORMCHOICE));
             }
         });
