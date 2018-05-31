@@ -7,6 +7,9 @@ import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.controller.GameController;
 import com.mygdx.elmaze.networking.NetworkManager;
 
+/**
+ * Represents the Play Game view
+ */
 public class PlayGameView extends MenuView {
 
     private Image textImage;
@@ -14,6 +17,11 @@ public class PlayGameView extends MenuView {
     private float timeSinceLastUpdate = 0;
     private final int NUM_MESSAGES_PER_SECOND = 20;
 
+    /**
+     * Creates the Play Game view
+     *
+     * @param game Reference to the Game object
+     */
     public PlayGameView(ELMaze game) {
         super(game, TYPE.PLAY);
 
@@ -21,6 +29,11 @@ public class PlayGameView extends MenuView {
         setupStage();
     }
 
+    /**
+     * Renders the menu on the screen
+     *
+     * @param delta Time since last render
+     */
     @Override
     public void render(float delta) {
         handleInputs(delta);
@@ -31,6 +44,9 @@ public class PlayGameView extends MenuView {
         checkGameStatusChange();
     }
 
+    /**
+     * Sets up the stage
+     */
     private void setupStage() {
         textImage = ImageFactory.makeImage(game,"playText.png", SCREEN_WIDTH*5/7, SCREEN_HEIGHT/2,SCREEN_WIDTH*3/10);
         ballImage = ImageFactory.makeImage(game,"ball.png", SCREEN_WIDTH*7/28, SCREEN_HEIGHT/2,SCREEN_WIDTH*3/10);
@@ -39,6 +55,11 @@ public class PlayGameView extends MenuView {
         stage.addActor(ballImage);
     }
 
+    /**
+     * Handles the inputs from the user
+     *
+     * @param delta Time since last handle
+     */
     private void handleInputs(float delta) {
         timeSinceLastUpdate += delta;
 
@@ -52,12 +73,19 @@ public class PlayGameView extends MenuView {
         }
     }
 
+    /**
+     * Loads all assets needed for the menu
+     */
     protected void loadAssets() {
         this.game.getAssetManager().load("playText.png" , Texture.class);
         this.game.getAssetManager().load("ball.png" , Texture.class);
         this.game.getAssetManager().finishLoading();
     }
 
+    /**
+     * Checks for any changes in the Game status in order to know if a screen chang is needed or
+     * if the game can continue to run
+     */
     private void checkGameStatusChange() {
         switch (GameController.getInstance().getStatus()) {
             case NOT_RUNNING:

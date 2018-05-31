@@ -9,11 +9,19 @@ import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.controller.GameController;
 import com.mygdx.elmaze.networking.NetworkManager;
 
+/**
+ * Represents a Server Waiting View
+ */
 public class ServerWaitingView extends MenuView {
 
     private Button exitButton;
     private Image textImage;
 
+    /**
+     * Creates the Server Waiting View
+     *
+     * @param game Reference to the Game object
+     */
     public ServerWaitingView(ELMaze game) {
         super(game, TYPE.SERVER_WAIT);
 
@@ -22,6 +30,11 @@ public class ServerWaitingView extends MenuView {
         setupStage();
     }
 
+    /**
+     * Renders the menu on the screen
+     *
+     * @param delta Time since last render
+     */
     @Override
     public void render(float delta) {
         stage.act(delta);
@@ -30,6 +43,9 @@ public class ServerWaitingView extends MenuView {
         checkGameStatusChange();
     }
 
+    /**
+     * Sets up the "Exit" Button
+     */
     private void setupExitButton() {
         exitButton = ButtonFactory.makeButton(game,"backButtonUp.png","backButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
@@ -45,6 +61,9 @@ public class ServerWaitingView extends MenuView {
         });
     }
 
+    /**
+     * Sets up the stage
+     */
     private void setupStage(){
         textImage = ImageFactory.makeImage(game,"waitingForServerText.png", SCREEN_WIDTH*50/100, SCREEN_HEIGHT*60/100,SCREEN_WIDTH*85/100);
 
@@ -52,6 +71,9 @@ public class ServerWaitingView extends MenuView {
         stage.addActor(exitButton);
     }
 
+    /**
+     * Loads all assets needed for the menu
+     */
     protected void loadAssets() {
         this.game.getAssetManager().load("waitingForServerText.png" , Texture.class);
         this.game.getAssetManager().load("backButtonUp.png" , Texture.class);
@@ -59,6 +81,9 @@ public class ServerWaitingView extends MenuView {
         this.game.getAssetManager().finishLoading();
     }
 
+    /**
+     * Checks for changes in the game status to verify if a screen change is needed
+     */
     private void checkGameStatusChange() {
         switch (GameController.getInstance().getStatus()) {
             case SV_FULL:

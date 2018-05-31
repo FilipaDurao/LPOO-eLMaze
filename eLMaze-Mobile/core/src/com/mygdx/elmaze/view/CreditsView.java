@@ -7,11 +7,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
 
+/**
+ * Represents the credits page view
+ */
 public class CreditsView extends MenuView {
 
     private Image textTableImage;
     private Button exitButton;
 
+    /**
+     * Creates the Credits menu
+     *
+     * @param game Reference to the Game object
+     */
     public CreditsView(ELMaze game) {
         super(game, TYPE.CREDITS);
 
@@ -20,12 +28,20 @@ public class CreditsView extends MenuView {
         setupStage();
     }
 
+    /**
+     * Renders the menu on the screen
+     *
+     * @param delta Time since last render
+     */
     @Override
     public void render(float delta) {
         stage.act(delta);
         stage.draw();
     }
 
+    /**
+     * Sets up the characteristics of the Exit Button
+     */
     private void setupExitButton() {
         exitButton = ButtonFactory.makeButton(game,"backButtonUp.png","backButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
@@ -39,6 +55,9 @@ public class CreditsView extends MenuView {
         });
     }
 
+    /**
+     * Sets up the Stage
+     */
     private void setupStage() {
         textTableImage = ImageFactory.makeImage(game,"creditsTable.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*6/10,SCREEN_WIDTH*90/100);
 
@@ -46,6 +65,9 @@ public class CreditsView extends MenuView {
         stage.addActor(exitButton);
     }
 
+    /**
+     * Loads all assets needed for the menu
+     */
     protected void loadAssets() {
         this.game.getAssetManager().load("creditsTable.png" , Texture.class);
         this.game.getAssetManager().load("backButtonDown.png" , Texture.class);

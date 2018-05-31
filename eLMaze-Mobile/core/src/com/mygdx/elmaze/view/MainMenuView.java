@@ -11,8 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.controller.GameController;
 
+/**
+ * Represents the Main Menu View
+ */
 public class MainMenuView extends MenuView {
-
 
     private Image title;
     private Button playButton;
@@ -20,6 +22,11 @@ public class MainMenuView extends MenuView {
     private Button creditsButton;
     private Button exitButton;
 
+    /**
+     * Creates the Main menu
+     *
+     * @param game Reference to the Game object
+     */
     public MainMenuView(ELMaze game) {
         super(game, TYPE.MAIN);
 
@@ -28,12 +35,20 @@ public class MainMenuView extends MenuView {
         setupStage();
     }
 
+    /**
+     * Renders the menu on the screen
+     *
+     * @param delta Time since last render
+     */
     @Override
     public void render(float delta) {
         stage.act(delta);
         stage.draw();
     }
 
+    /**
+     * Sets up all the Buttons of the menu
+     */
     private void setupButtons() {
         exitButton = ButtonFactory.makeButton(game,"exitButtonUp.png","exitButtonDown.png",
                 SCREEN_WIDTH/2, SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
@@ -47,6 +62,9 @@ public class MainMenuView extends MenuView {
         addButtonListeners();
     }
 
+    /**
+     * Adds all the Button listeners
+     */
     private void addButtonListeners() {
         playButton.addListener(new ClickListener() {
             @Override
@@ -82,6 +100,9 @@ public class MainMenuView extends MenuView {
         });
     }
 
+    /**
+     * Sets up the stage
+     */
     private void setupStage() {
         title = ImageFactory.makeImage(game,"eLMazeTitle.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*7.7f/9,SCREEN_WIDTH*82/100);
 
@@ -92,6 +113,9 @@ public class MainMenuView extends MenuView {
         stage.addActor(exitButton);
     }
 
+    /**
+     * Loads all assets needed for the menu
+     */
     protected void loadAssets() {
         this.game.getAssetManager().load("eLMazeTitle.png" , Texture.class);
         this.game.getAssetManager().load("exitButtonUp.png" , Texture.class);

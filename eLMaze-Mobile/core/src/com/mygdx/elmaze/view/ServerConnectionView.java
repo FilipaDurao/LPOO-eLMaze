@@ -14,6 +14,9 @@ import com.mygdx.elmaze.networking.NetworkManager;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+/**
+ * Represents a server connection view
+ */
 public class ServerConnectionView extends MenuView {
 
     private Image title;
@@ -30,6 +33,11 @@ public class ServerConnectionView extends MenuView {
     private LinkedList<Integer> keyCode = new LinkedList<Integer>();
     private ArrayList<Image> keyCodeImages = new ArrayList<Image>();
 
+    /**
+     * Creates the Server Connection View
+     *
+     * @param game Reference to the Game object
+     */
     public ServerConnectionView(ELMaze game) {
         super(game, TYPE.CONNECTION);
 
@@ -41,12 +49,20 @@ public class ServerConnectionView extends MenuView {
         createButtonListeners();
     }
 
+    /**
+     * Renders the menu on the screen
+     *
+     * @param delta Time since last render
+     */
     @Override
     public void render(float delta) {
         stage.act(delta);
         stage.draw();
     }
 
+    /**
+     * Sets up he images to print on the screen
+     */
     private void setupImages() {
         inputArea = ImageFactory.makeImage(
                 game,
@@ -58,6 +74,9 @@ public class ServerConnectionView extends MenuView {
         );
     }
 
+    /**
+     * Sets up the Buttons to use on the menu
+     */
     private void setupButtons() {
         int buttonSize = (int)(SCREEN_WIDTH*0.15);
         startButton = ButtonFactory.makeButton(game,"startButtonUp.png","startButtonDown.png",SCREEN_WIDTH*3/5,SCREEN_HEIGHT*1/8, (int)(0.55*SCREEN_WIDTH), buttonSize);
@@ -85,6 +104,9 @@ public class ServerConnectionView extends MenuView {
         }
     }
 
+    /**
+     * Sets up the symbol names to use on the key code
+     */
     private void setupSymbolNames() {
         symbolFileNames.add("alphaSymbol.png");
         symbolFileNames.add("betaSymbol.png");
@@ -104,6 +126,9 @@ public class ServerConnectionView extends MenuView {
         symbolFileNames.add("tauSymbol.png");
     }
 
+    /**
+     * Sets up the stage
+     */
     private void setupStage() {
         title = ImageFactory.makeImage(game, "passcode.png", SCREEN_WIDTH/2, SCREEN_HEIGHT*8f/9,SCREEN_WIDTH*82/100);
 
@@ -123,6 +148,9 @@ public class ServerConnectionView extends MenuView {
         }
     }
 
+    /**
+     * Creates all the Button listeners
+     */
     private void createButtonListeners() {
         for (int i=0 ; i<keypadButtons.size() ; i++) {
             final int myIndex = i;
@@ -159,6 +187,9 @@ public class ServerConnectionView extends MenuView {
         });
     }
 
+    /**
+     * Connect to server. If it fails, clears the key code
+     */
     private void connectToServer() {
         if (keyCode.size() == 8 &&
             NetworkManager.getInstance().establishConnection(Utilities.parse(keyCode), 3000)) {
@@ -169,6 +200,9 @@ public class ServerConnectionView extends MenuView {
         }
     }
 
+    /**
+     * Clears the key code
+     */
     private void clearKeyCode() {
         while (!keyCode.isEmpty()) {
             keyCode.removeLast();
@@ -176,6 +210,9 @@ public class ServerConnectionView extends MenuView {
         }
     }
 
+    /**
+     * Loads all assets needed for the menu
+     */
     protected void loadAssets() {
         this.game.getAssetManager().load("passcode.png" , Texture.class);
         this.game.getAssetManager().load("wood.png" , Texture.class);
@@ -190,6 +227,9 @@ public class ServerConnectionView extends MenuView {
         this.game.getAssetManager().finishLoading();
     }
 
+    /**
+     * Load all symbols for the key code
+     */
     private void loadSymbolAssets() {
         this.game.getAssetManager().load("alphaButtonUp.png" , Texture.class);
         this.game.getAssetManager().load("alphaButtonDown.png" , Texture.class);

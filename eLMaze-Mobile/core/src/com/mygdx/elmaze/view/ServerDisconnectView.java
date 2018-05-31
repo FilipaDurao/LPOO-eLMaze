@@ -8,11 +8,19 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.elmaze.ELMaze;
 import com.mygdx.elmaze.networking.NetworkManager;
 
+/**
+ * Represents a server disconnect view
+ */
 public class ServerDisconnectView extends MenuView {
 
     private Button exitButton;
     private Image textImage;
 
+    /**
+     * Creates the Server Disconnect View
+     *
+     * @param game Reference to the Game object
+     */
     public ServerDisconnectView(ELMaze game) {
         super(game, TYPE.SERVER_DC);
 
@@ -21,12 +29,20 @@ public class ServerDisconnectView extends MenuView {
         setupStage();
     }
 
+    /**
+     * Renders the menu on the screen
+     *
+     * @param delta Time since last render
+     */
     @Override
     public void render(float delta) {
         stage.act(delta);
         stage.draw();
     }
 
+    /**
+     * Sets up the exit Button
+     */
     private void setupExitButton() {
         exitButton = ButtonFactory.makeButton(game,"backButtonUp.png","backButtonDown.png",SCREEN_WIDTH/2,
                 SCREEN_HEIGHT*1.15f/9, (int)(SCREEN_WIDTH*0.75), (int)(SCREEN_HEIGHT*0.13));
@@ -40,6 +56,9 @@ public class ServerDisconnectView extends MenuView {
         });
     }
 
+    /**
+     * Sets up the stage
+     */
     private void setupStage(){
         textImage = ImageFactory.makeImage(game,"lostConnectionText.png", SCREEN_WIDTH*50/100, SCREEN_HEIGHT*60/100,SCREEN_WIDTH*85/100);
 
@@ -47,6 +66,9 @@ public class ServerDisconnectView extends MenuView {
         stage.addActor(exitButton);
     }
 
+    /**
+     * Loads all assets needed for the menu
+     */
     protected void loadAssets() {
         this.game.getAssetManager().load("lostConnectionText.png" , Texture.class);
         this.game.getAssetManager().load("backButtonUp.png" , Texture.class);
