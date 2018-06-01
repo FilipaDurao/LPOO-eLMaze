@@ -20,7 +20,7 @@ To run the **desktop project** (server program), no installation is required. To
 Both desktop and mobile project's UML diagrams can be found under the **UMLDiagrams** folder.
 
 ### Design Decisions and Functionalities
-In order to allow the game to be played by using a phone (or other android mobile device) as a remote controller, a network communication was developed, using a desktop add (desktop project) as a server and connecting with the mobile devices as clients. A **communication protocol** was implemented to allow the communication, with messages sent in both communication directions (server->client and client->server). The communication final version is very robust, checking for all client connections and disconnections, running on a **multi-threaded architecture**.
+In order to allow the game to be played by using a phone (or other android mobile device) as a remote controller, a network communication was developed, using a desktop add (desktop project) as a server and connecting with the mobile devices as clients. A **communication protocol** was implemented to allow the communication, with messages sent in both communication directions (server->client and client->server). The communication final version is very robust, checking for all client connections and disconnections, running on a **multi-threaded architecture**. To implement the communication, we used the **Native Java *Socket* API**.
 
 ### Architectural Patterns
 Both mobile and desktop projects where developed using the architectural pattern **MVC - Model View Controller**, in order to keep the game's view, model and logics independent from each other, achieving a more modular design and separating concerns and responsiblities in different modules.
@@ -40,7 +40,7 @@ There weren't found any major difficulties in the project's development. The mos
 
 ### Work distribution and overall development time
 The project was developed, overall, equally by both members. Both members worked in all parts of the project (Desktop, Mobile, Networking, Design, Documentation, ...) and most of the code was developed in "pair programming" sessions. There were also meetings that took place in order to plan the project's structure and overall functionalities.</br>
-The amount of time spent in the project's development was equivalent by both members. The amount of working time dedicated to the project was around X hours (Sum of the number of working hours of both members). 
+The amount of time spent in the project's development was equivalent by both members. The amount of working time dedicated to the project was around **140 to 150 hours** (Sum of the number of working hours of both members, approximately half per member). 
 
 ### User Manual
 The full user manual can be found under the folder **UserManual**.
