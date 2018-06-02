@@ -43,4 +43,4 @@ The project was developed, overall, equally by both members. Both members worked
 The amount of time spent in the project's development was equivalent by both members. The amount of working time dedicated to the project was around **140 to 150 hours** (Sum of the number of working hours of both members, approximately half per member). 
 
 ### User Manual
-The full user manual can be found under the folder **UserManual**.
+The full user manual can be found in the pdf file **User Manual.pdf**.
