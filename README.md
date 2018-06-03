@@ -20,19 +20,18 @@ To run the **desktop project** (server program), no installation is required. To
 Both desktop and mobile project's UML diagrams can be found under the **UMLDiagrams** folder.
 
 ### Design Decisions and Functionalities
-In order to allow the game to be played by using a phone (or other android mobile device) as a remote controller, a network communication was developed, using a desktop add (desktop project) as a server and connecting with the mobile devices as clients. A **communication protocol** was implemented to allow the communication, with messages sent in both communication directions (server->client and client->server). The communication final version is very robust, checking for all client connections and disconnections, running on a **multi-threaded architecture**. To implement the communication, we used the **Native Java *Socket* API**.
+In order to allow the game to be played by using a phone (or other android mobile device) as a remote controller, a network communication was developed, using a desktop application (desktop project) as a server and connecting with the mobile devices as clients. A **communication protocol** was implemented to allow the communication, with messages sent in both communication directions (server->client and client->server). The communication final version is very robust, checking for all client connections and disconnections, running on a **multi-threaded architecture**. To implement the communication, we used the **Native Java *Socket* API**.
 
 ### Architectural Patterns
 Both mobile and desktop projects where developed using the architectural pattern **MVC - Model View Controller**, in order to keep the game's view, model and logics independent from each other, achieving a more modular design and separating concerns and responsiblities in different modules.
 
 ### Design Patterns
 In the project there were implemented many design patterns in order to improve code quality, modularity, efficiency and readability. All the design patterns that were foreseen in the intermediate check-point were successfully implemented:</br></br>
-**MVC - Model View Controller:** To keep the game's view, model and logics independent from each other, achieving a more modular design and separating concerns and responsiblities in different modules.</br>
-**Singleton:** To ensure that a given set of classes have one and only one instance (GameController, GameModel, NetworkManager, ...) and can be accessed by other classes in a simple and clean way.</br>
+**Singleton:** To ensure that a given set of classes have one and only one instance (For example, GameController, GameModel, NetworkManager, ...) and can be accessed by other classes in a simple and clean way.</br>
 **Observer:** In the controller package, the CollisionListener class will be responsible to process all the game's physical world's collisions, thus acting as a collision observer (The collisions are implemented by the LibGDX library)</br>
-**Factory:** To keep the responsibility of creating objects to a specific class, by hiding all the object creation complexity from the direct object instantiation, thus making the code cleaner and simpler (MenuFactory, ImageFactory, ButtonFactory, ViewFactory, ...)</br>
-**FactoryMethod:** Used to make the object instantiation defer from each of a classe's subclasses, in order to achieve a better class structure (Used in EntityView class, in the Desktop Project).</br>
-**FlyWeight:** To maintain an object cache for future re-usage, in order to make the game lighter and more responsive (Used in the ViewFactory class, in the Desktop Project).</br>
+**Factory:** To keep the responsibility of creating objects to a specific class, by hiding all the object creation complexity from the direct object instantiation, thus making the code cleaner and simpler (For example, MenuFactory, ImageFactory, ButtonFactory, ViewFactory, ...)</br>
+**FactoryMethod:** Used to make the object instantiation defer from each of a classe's subclasses, in order to achieve a better class structure (For example, used in EntityView class, in the Desktop Project).</br>
+**FlyWeight:** To maintain an object cache for future re-usage, in order to make the game lighter and more responsive (For example, used in the ViewFactory class, in the Desktop Project).</br>
 **State:** Both mobile and desktop applications contain their own state, which may change uppon certain events (these state and state transitions may depend on each other through the networking communication).</br>
 
 ### Difficulties found along the way
