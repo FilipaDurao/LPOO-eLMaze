@@ -1,0 +1,12 @@
+com.mygdx.elmaze
+com.mygdx.elmaze.controller
+com.mygdx.elmaze.controller.entities
+com.mygdx.elmaze.controller.levels
+com.mygdx.elmaze.model
+com.mygdx.elmaze.model.entities
+com.mygdx.elmaze.model.levels
+com.mygdx.elmaze.networking
+com.mygdx.elmaze.test
+com.mygdx.elmaze.view
+com.mygdx.elmaze.view.entities
+com.mygdx.elmaze.view.menus
