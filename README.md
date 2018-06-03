@@ -44,3 +44,14 @@ The amount of time spent in the project's development was equivalent by both mem
 
 ### User Manual
 The full user manual can be found in the pdf file **User Manual.pdf**.
+
+### Project's Documentation
+The project's documentation can be found at **https://xruialves.github.io/eLMaze-Documentation/**.
+
+### Executables
+Both desktop (*.jar* file) and mobile (*.apk* file) executable files can be found under the **Executables** folder.
+
+### Conclusions and final Considerations
+Overall, the developmnet of the project was very positive.</br>
+We used the **libGDX** java library and explored most of its functionalities (Scenes and Actors, Physical world, images, asset managers, sounds, ...)</br>
+The final deliverables are very solid in terms of structure (no bugs were found) and all the objectives that were set by the group were successfully met.
